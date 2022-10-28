@@ -1,0 +1,8 @@
+FTP_Sever:
+  host: '14.116.177.18'
+  username: 'username1'
+  password: '1PASSWORD'
+  buffer_size: 204800
+  port: '21'
+  ftp_file_path: ''
+  dst_file_path: ''
