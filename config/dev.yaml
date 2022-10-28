@@ -4,7 +4,18 @@ FTP_Sever:
   password: '1PASSWORD'
   buffer_size: 204800
   port: '21'
-  ftp_file_path: ''
-  dst_file_path: ''
-
+Douyin_Updata:
+  ftp_file_path: 'ftp'
+  dst_file_path: 'test/local/'
+HOT_Trends:
+  hottrends_local_path: ''
+  hottrends_sever_path: ''
+  searchitem_local_path: ''
+  searchitem_sever_path: ''
+  crawler_local_path: ''
+  crawler_sever_path: ''
+  crawlervideo_list_local_path: ''
+  crawlervideo_list_sever_path: ''
+  crawler_video_local_path: ''
+  crawler_video_sever_path: ''
 

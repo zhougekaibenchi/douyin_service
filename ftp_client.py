@@ -31,10 +31,10 @@ class FTP_OP(object):
         logger.info(ftp.getwelcome())
         return ftp
 
-    def download_file(self):
+    def download_file(self, local_path, sever_path):
         raise NotImplementedError()
 
-    def upload_file(self, filepath):
+    def upload_file(self, local_path, server_path):
         raise NotImplementedError()
 
     def scaner_file(self, url):
@@ -67,14 +67,12 @@ class FTP_Updata(FTP_OP):
         self.dst_file_path = config["Douyin_Updata"]["dst_file_path"]
         super().__init__(config)
 
-    def download_file(self):
+    def download_file(self, local_path=None, sever_path=None):
 
         logger.info("ftp数据传输开始")
         self.ftp = self.ftp_connect()
         file_list = self.ftp.nlst(self.ftp_file_path)
         logger.info(file_list)
-
-
         for file_name in file_list:
             ftp_file = os.path.join(self.ftp_file_path, file_name)
             logger.info("服务端ftp_file读取路径: " + ftp_file)
@@ -87,10 +85,10 @@ class FTP_Updata(FTP_OP):
         logger.info(time.strftime('%Y%m%d', time.localtime(time.time()))+"ftp数据下载完毕")
         self.ftp.quit()
 
-    def upload_file(self, filepath):
+    def upload_file(self, local_path=None, sever_path=None):
 
         self.ftp = self.ftp_connect()
-        file_list = self.scaner_file(filepath)
+        file_list = self.scaner_file(sever_path)
         for file_name in file_list:
             f = open(file_name, "rb")
             file_name = os.path.split(file_name)[-1]
@@ -100,53 +98,83 @@ class FTP_Updata(FTP_OP):
         self.ftp.quit()
 
 
-class FTP_OP_HOTTrends(FTP_OP):
+class FTP_HOTTrends(FTP_OP):
     """
     美芝老师热点数据更新
-    :param jmz_hottrends_path: 下载胡老师热榜数据地址
-    :param jmz_searchitem_path: 上传美芝搜索词
-    :param jmz_crawler_path: 下载胡老师爬虫数据
-    :param jmz_crawlervideo_list_path: 上传美芝上传爬虫音频数据列表
-    :param jmz_crawler_video_path: 下载胡老师的视频数据
+    :param hottrends_sever_path: 下载ftp热榜数据地址
+    :param hottrends_local_path: 本地存储热榜
+    :param searchitem_sever_path: 上传搜索词ftp存储地址
+    :param searchitem_local_path: 本地搜索词本地存储地址
+    :param crawler_local_path: 本地爬虫数据存储地址
+    :param crawler_sever_path: 下载ftp爬虫数据地址
+    :param crawlervideo_list_local_path: 本地ftp爬虫音频数据列表地址
+    :param crawlervideo_list_sever_path: 上传ftp爬虫音频数据列表地址
+    :param crawler_video_local_path: 本地视频数据地址
+    :param crawler_video_sever_path: 下载ftp视频数据地址
     """
     def __init__(self, config):
-        self.jmz_hottrends_path = config["HOT_Trends"]["host"]
-        self.jmz_searchitem_path = config["FTP_Sever"]["username"]
-        self.jmz_crawler_path = config["FTP_Sever"]["password"]
-        self.jmz_crawlervideo_list_path = int(config["FTP_Sever"]["port"])
-        self.jmz_crawler_video_path = config["FTP_Sever"]["password"]
+        self.hottrends_local_path = config["HOT_Trends"]["hottrends_local_path"]
+        self.hottrends_sever_path = config["HOT_Trends"]["hottrends_sever_path"]
+
+        self.searchitem_local_path = config["HOT_Trends"]["searchitem_local_path"]
+        self.searchitem_sever_path = config["HOT_Trends"]["searchitem_sever_path"]
+
+        self.crawler_local_path = config["HOT_Trends"]["crawler_local_path"]
+        self.crawler_sever_path = config["HOT_Trends"]["crawler_sever_path"]
+
+        self.crawlervideo_list_local_path = int(config["HOT_Trends"]["crawlervideo_list_local_path"])
+        self.crawlervideo_list_sever_path = int(config["HOT_Trends"]["crawlervideo_list_sever_path"])
+
+        self.crawler_video_local_path = config["HOT_Trends"]["crawler_video_local_path"]
+        self.crawler_video_sever_path = config["HOT_Trends"]["crawler_video_sever_path"]
+
+        self.ftp = self.ftp_connect()
         super().__init__(config)
 
-    def download_file(self, path):
+    def download_file(self, local_path=None, sever_path=None):
         """
         从ftp服务端，下载日常抖音数据增量文件
         """
         logger.info("ftp数据传输开始")
-        self.ftp = self.ftp_connect()
-        file_list = self.ftp.nlst(self.ftp_file_path)
+        file_list = self.ftp.nlst(local_path)
         logger.info(file_list)
         for file_name in file_list:
-            ftp_file = os.path.join(self.ftp_file_path, file_name)
+            ftp_file = os.path.join(local_path, file_name)
             logger.info("服务端ftp_file读取路径: " + ftp_file)
-            local_file = os.path.join(self.dst_file_path, file_name)
+            local_file = os.path.join(sever_path, file_name)
             logger.info("客户端local_file存储路径: " + local_file)
             f = open(local_file, "wb")
             self.ftp.retrbinary('RETR %s'%ftp_file, f.write, self.buffer_size)
             f.close()
             logger.info("文件下载成功：" + file_name)
         logger.info(time.strftime('%Y%m%d', time.localtime(time.time()))+"ftp数据下载完毕")
-        self.ftp.quit()
 
-    def upload_file(self, filepath):
+    def upload_file(self, local_path=None, sever_path=None):
 
-        self.ftp = self.ftp_connect()
-        file_list = self.scaner_file(filepath)
+        file_list = self.scaner_file(local_path)
         for file_name in file_list:
             f = open(file_name, "rb")
             file_name = os.path.split(file_name)[-1]
             self.ftp.storbinary('STOR %s' % file_name, f, self.buffer_size)
             logger.info('成功上传文件： "%s"' % file_name)
         logger.info(time.strftime('%Y%m%d', time.localtime(time.time()))+"文件全部上传完毕")
+
+    def data_collect(self):
+        """
+        （1）下载热榜数据
+        （2）todo
+        （3）上传搜索词
+        （4）下载爬虫数据
+        （5）上传爬虫数据列表
+        （6）下载视频数据
+        """
+        hot_trends = self.download_file(self.hottrends_local_path, self.hottrends_sever_path) # 取热榜
+        process(hot_trends) # todo JMZ
+        self.upload_file(self.searchitem_local_path, self.searchitem_sever_path)
+        self.download_file(self.crawler_local_path, self.crawler_sever_path)
+        self.upload_file(self.crawlervideo_list_local_path, self.crawlervideo_list_sever_path)
+        self.download_file(self.crawler_video_local_path, self.crawler_video_sever_path)
+        logger.info(time.strftime('%Y%m%d', time.localtime(time.time()))+"热点数据下载完毕")
         self.ftp.quit()
 
 

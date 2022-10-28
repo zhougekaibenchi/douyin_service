@@ -6,34 +6,27 @@
 import gc
 import logger
 from __init__ import *
-from ftp_client import FTP_Updata
+from ftp_client import FTP_Updata, FTP_HOTTrends
 from utils.read_config import Env
 
-def douyin_data_updata(env):
+
+def douyin_pipeline(env):
 
     try:
         config = Env.get(env)
-        ftp = FTP_Updata(config)
-        ftp.download_file()
-
-        #todo meizhi
-        hot_trends = ftp.upload_file_zmy()# 取热榜 stce
-        process() # MZ
-        ftp.upload_file() # 上传搜索词stce
-        ftp.download_file() # 文本数据 stce
-        ftp.upload_file() # 上传文件stce
-        ftp.download_file() # 视频数据
-
-
-
-
-
+        # 抖音账号数据更新
+        ftp_update = FTP_Updata(config)
+        ftp_update.download_file()
+        # 美芝老师热点数据更新
+        ftp_hottrends = FTP_HOTTrends(config)
+        ftp_hottrends.data_collect()
+        # 数据ASR输出
 
     except Exception as ex:
         logger.error("pipeline出现错误")
         raise ex
 
-    del ftp
+    del ftp_update, ftp_hottrends
     gc.collect()
     logger.info("pipeline完成")
 
