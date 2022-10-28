@@ -6,14 +6,14 @@
 import gc
 import logger
 from __init__ import *
-from ftp_client import FTP_OP
+from ftp_client import FTP_Updata
 from utils.read_config import Env
 
 def douyin_data_updata(env):
 
     try:
         config = Env.get(env)
-        ftp = FTP_OP(config)
+        ftp = FTP_Updata(config)
         ftp.download_file()
 
         #todo meizhi

@@ -4,8 +4,12 @@ FTP_Sever:
   password: '1PASSWORD'
   buffer_size: 204800
   port: '21'
+Douyin_Updata:
   ftp_file_path: 'ftp'
   dst_file_path: 'test/local/'
-MEIZHI:
+HOT_Trends:
   jmz_hottrends_path: ''
   jmz_searchitem_path: ''
+  jmz_crawler_path: ''
+  jmz_crawlervideo_list_path: ''
+  jmz_crawler_video_path: ''
