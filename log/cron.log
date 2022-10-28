@@ -64,3 +64,21 @@
 2022-10-27 17:27:37,630 - INFO - pipeline.py:25 - douyin_data_updata() - pipeline完成
 D:\ProgramData\Anaconda3\python.exe: Error while finding module specification for 'cron.py' (ModuleNotFoundError: __path__ attribute not found on 'cron' while trying to find 'cron.py')
 eline.py')
+2022-10-28 10:15:22,761 - INFO - read_config.py:12 - get() - 读取配置文件
+2022-10-28 10:15:25,355 - INFO - ftp_client.py:52 - download_file() - ftp数据传输开始
+2022-10-28 10:15:28,387 - INFO - ftp_client.py:45 - ftp_connect() - 220 pyftpdlib 1.5.7 ready.
+2022-10-28 10:15:28,390 - INFO - ftp_client.py:55 - download_file() - ['Audio-visual Generalised Zero-shot Learning with Cross-modal Attention and Language.pdf', 'Learning Hierarchical Cross-Modal Association for Co-Speech Gesture Generation.pdf', 'Self-Supervised Predictive Learning A Negative-Free Method for Sound Source Localization in Visual Scenes.pdf', 'UMT Unified Multi-modal Transformers for Joint Video Moment Retrieval and Highlight Detection.pdf']
+2022-10-28 10:15:28,391 - INFO - ftp_client.py:58 - download_file() - 服务端ftp_file读取路径: ftp\Audio-visual Generalised Zero-shot Learning with Cross-modal Attention and Language.pdf
+2022-10-28 10:15:28,391 - INFO - ftp_client.py:61 - download_file() - 客户端local_file存储路径: test/local/Audio-visual Generalised Zero-shot Learning with Cross-modal Attention and Language.pdf
+2022-10-28 10:15:28,408 - INFO - ftp_client.py:65 - download_file() - 文件下载成功：Audio-visual Generalised Zero-shot Learning with Cross-modal Attention and Language.pdf
+2022-10-28 10:15:28,408 - INFO - ftp_client.py:58 - download_file() - 服务端ftp_file读取路径: ftp\Learning Hierarchical Cross-Modal Association for Co-Speech Gesture Generation.pdf
+2022-10-28 10:15:28,409 - INFO - ftp_client.py:61 - download_file() - 客户端local_file存储路径: test/local/Learning Hierarchical Cross-Modal Association for Co-Speech Gesture Generation.pdf
+2022-10-28 10:15:28,425 - INFO - ftp_client.py:65 - download_file() - 文件下载成功：Learning Hierarchical Cross-Modal Association for Co-Speech Gesture Generation.pdf
+2022-10-28 10:15:28,426 - INFO - ftp_client.py:58 - download_file() - 服务端ftp_file读取路径: ftp\Self-Supervised Predictive Learning A Negative-Free Method for Sound Source Localization in Visual Scenes.pdf
+2022-10-28 10:15:28,426 - INFO - ftp_client.py:61 - download_file() - 客户端local_file存储路径: test/local/Self-Supervised Predictive Learning A Negative-Free Method for Sound Source Localization in Visual Scenes.pdf
+2022-10-28 10:15:28,438 - INFO - ftp_client.py:65 - download_file() - 文件下载成功：Self-Supervised Predictive Learning A Negative-Free Method for Sound Source Localization in Visual Scenes.pdf
+2022-10-28 10:15:28,438 - INFO - ftp_client.py:58 - download_file() - 服务端ftp_file读取路径: ftp\UMT Unified Multi-modal Transformers for Joint Video Moment Retrieval and Highlight Detection.pdf
+2022-10-28 10:15:28,439 - INFO - ftp_client.py:61 - download_file() - 客户端local_file存储路径: test/local/UMT Unified Multi-modal Transformers for Joint Video Moment Retrieval and Highlight Detection.pdf
+2022-10-28 10:15:28,449 - INFO - ftp_client.py:65 - download_file() - 文件下载成功：UMT Unified Multi-modal Transformers for Joint Video Moment Retrieval and Highlight Detection.pdf
+2022-10-28 10:15:28,449 - INFO - ftp_client.py:66 - download_file() - 20221028ftp数据下载完毕
+2022-10-28 10:15:28,450 - ERROR - pipeline.py:33 - douyin_data_updata() - pipeline出现错误

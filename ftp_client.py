@@ -26,6 +26,12 @@ class FTP_OP(object):
         :param ftp_file_path: ftp下载文件路径
         :param dst_file_path: 本地存放路径
 
+        (3) 美芝老师的数据文件
+        :param jmz_hottrends_path: 下载胡老师热榜数据地址
+        :param jmz_searchitem_path: 上传美芝搜索词
+        :param jmz_crawler_path: 下载胡老师爬虫数据
+        :param jmz_crawlervideo_list_path: 上传美芝上传爬虫音频数据列表
+        :param jmz_crawler_video_path: 下载胡老师的视频数据
         """
         self.host = config["FTP_Sever"]["host"]
         self.username = config["FTP_Sever"]["username"]
@@ -47,7 +53,7 @@ class FTP_OP(object):
 
     def download_file(self):
         """
-        从ftp服务端，下载文件到本地
+        从ftp服务端，下载日常抖音数据增量文件
         """
         logger.info("ftp数据传输开始")
         self.ftp = self.ftp_connect()
@@ -56,8 +62,7 @@ class FTP_OP(object):
         for file_name in file_list:
             ftp_file = os.path.join(self.ftp_file_path, file_name)
             logger.info("服务端ftp_file读取路径: " + ftp_file)
-            #write_file = os.path.join(dst_file_path, file_name)
-            local_file = self.dst_file_path + file_name
+            local_file = os.path.join(self.dst_file_path, file_name)
             logger.info("客户端local_file存储路径: " + local_file)
             f = open(local_file, "wb")
             self.ftp.retrbinary('RETR %s'%ftp_file, f.write, self.buffer_size)
@@ -94,6 +99,10 @@ class FTP_OP(object):
                 pass
             logger.info(real_url)
         return filename
+
+    def download_file_jmz(self):
+        # 美芝老师ftp获取数据
+        return
 
 if __name__ == '__main__':
     pass

@@ -17,7 +17,7 @@ def douyin_data_updata(env):
         ftp.download_file()
 
         #todo meizhi
-        data = ftp.upload_file()# 取热榜 stce
+        hot_trends = ftp.upload_file_zmy()# 取热榜 stce
         process() # MZ
         ftp.upload_file() # 上传搜索词stce
         ftp.download_file() # 文本数据 stce
