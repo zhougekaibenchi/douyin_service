@@ -169,9 +169,10 @@ class FTP_HOTTrends(FTP_OP):
         （6）下载视频数据
         """
         hot_trends = self.download_file(self.hottrends_local_path, self.hottrends_sever_path) # 取热榜
-        process(hot_trends) # todo JMZ
+        process_1(hot_trends) # todo JMZ
         self.upload_file(self.searchitem_local_path, self.searchitem_sever_path)
         self.download_file(self.crawler_local_path, self.crawler_sever_path)
+        process_2(hot_trends)  # todo JMZ
         self.upload_file(self.crawlervideo_list_local_path, self.crawlervideo_list_sever_path)
         self.download_file(self.crawler_video_local_path, self.crawler_video_sever_path)
         logger.info(time.strftime('%Y%m%d', time.localtime(time.time()))+"热点数据下载完毕")
