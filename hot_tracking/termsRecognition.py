@@ -88,8 +88,8 @@ class TermsRecognition(object):
 
 
 	def word_get_frequency_idf(self):
-        # 作用：计算freq 以及贴idf,同时生成'left'/right框，直接写入result
-        # 词粒度
+		# 作用：计算freq 以及贴idf,同时生成'left'/right框，直接写入result
+		# 词粒度
 		print ('Calculate Frequency for each possible words')
 		reg = [i[1] for i in self.tuple_content]              #
 		for r in reg:
@@ -368,7 +368,7 @@ if __name__ == '__main__':
 	result_dataframe.to_excel(result_file, index=False)
     
     
-    # ----------- 已分词 ----------- 
+	# ----------- 已分词 -----------
     # def not_nan(obj):
     #     return obj == obj
     #

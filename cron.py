@@ -10,11 +10,11 @@ from apscheduler.schedulers.background import BlockingScheduler
 from apscheduler.events import EVENT_JOB_ERROR, EVENT_JOB_EXECUTED
 from apscheduler.triggers.cron import CronTrigger
 
+scheduler = BlockingScheduler()
+ftp_trigger = CronTrigger(hour=18, minute=0)
+
 def main():
-    global scheduler
-    scheduler = BlockingScheduler()
-    global ftp_trigger
-    ftp_trigger = CronTrigger(hour=18, minute=0)
+
     scheduler.add_job(func=douyin_pipeline, trigger=ftp_trigger, kwargs=[sys.argv[1]], #{'env':'test'}
                       name="数据同步", id='pipeline', max_instances=1, replace_existing=True)
     scheduler.add_listener(listener_event, EVENT_JOB_ERROR | EVENT_JOB_EXECUTED)
