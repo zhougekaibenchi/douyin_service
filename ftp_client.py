@@ -7,6 +7,8 @@ from __init__ import *
 from ftplib import FTP
 import os
 import time
+from hot_tracking import hot_keyword_tracking, recall_process, data_parser
+from hot_tracking.config import Config
 
 class FTP_OP(object):
     """
@@ -65,7 +67,7 @@ class FTP_Updata(FTP_OP):
         """
         self.ftp_file_path = config["Douyin_Updata"]["ftp_file_path"]
         self.dst_file_path = config["Douyin_Updata"]["dst_file_path"]
-        super().__init__(config)
+        super(FTP_Updata, self).__init__(config)
 
     def download_file(self, local_path=None, sever_path=None):
 
@@ -122,14 +124,14 @@ class FTP_HOTTrends(FTP_OP):
         self.crawler_local_path = config["HOT_Trends"]["crawler_local_path"]
         self.crawler_sever_path = config["HOT_Trends"]["crawler_sever_path"]
 
-        self.crawlervideo_list_local_path = int(config["HOT_Trends"]["crawlervideo_list_local_path"])
-        self.crawlervideo_list_sever_path = int(config["HOT_Trends"]["crawlervideo_list_sever_path"])
+        self.crawlervideo_list_local_path = config["HOT_Trends"]["crawlervideo_list_local_path"]
+        self.crawlervideo_list_sever_path = config["HOT_Trends"]["crawlervideo_list_sever_path"]
 
         self.crawler_video_local_path = config["HOT_Trends"]["crawler_video_local_path"]
         self.crawler_video_sever_path = config["HOT_Trends"]["crawler_video_sever_path"]
 
         self.ftp = self.ftp_connect()
-        super().__init__(config)
+        super(FTP_HOTTrends, self).__init__(config)
 
     def download_file(self, local_path=None, sever_path=None):
         """
@@ -168,14 +170,27 @@ class FTP_HOTTrends(FTP_OP):
         （5）上传爬虫数据列表
         （6）下载视频数据
         """
-        hot_trends = self.download_file(self.hottrends_local_path, self.hottrends_sever_path) # 取热榜
-        process_1(hot_trends) # todo JMZ
-        self.upload_file(self.searchitem_local_path, self.searchitem_sever_path)
-        self.download_file(self.crawler_local_path, self.crawler_sever_path)
-        process_2(hot_trends)  # todo JMZ
-        self.upload_file(self.crawlervideo_list_local_path, self.crawlervideo_list_sever_path)
-        self.download_file(self.crawler_video_local_path, self.crawler_video_sever_path)
-        logger.info(time.strftime('%Y%m%d', time.localtime(time.time()))+"热点数据下载完毕")
+        self.download_file(self.hottrends_local_path, self.hottrends_sever_path) # 取热榜数据
+
+        # 生成热搜词
+        config = Config()
+        douyinDataset = data_parser.DouyinDataset(config)
+        douyinDataset.merge_dataset()    # 将json格式转换成xls
+
+        keywordMining = hot_keyword_tracking.KeywordMiningByTags(config)
+        keywordMining.merge_keywords()  # 是否使用热门视频关键短语数据
+
+        self.upload_file(self.searchitem_local_path, self.searchitem_sever_path)    # 将热搜词传送给爬虫端
+        self.download_file(self.crawler_local_path, self.crawler_sever_path)       # 从爬虫端下载搜索热词视频数据
+
+        # 召回、排序热搜词相关视频
+        recall = recall_process.RecallSearchDataset(config)
+        recallDataset = recall.recall_dataset_by_insurances()   # 召回
+        recall.rank_dataset_by_count(recallDataset)  # 排序
+
+        self.upload_file(self.crawlervideo_list_local_path, self.crawlervideo_list_sever_path)    # 将整理结果数据传送给爬虫端
+        self.download_file(self.crawler_video_local_path, self.crawler_video_sever_path)     # 从爬虫端下载对应视频文案
+        logger.info(time.strftime('%Y%m%d', time.localtime(time.time()))+"热点数据下载完毕")   #
         self.ftp.quit()
 
 

@@ -3,7 +3,7 @@
 # @Time    : 2022/10/25 15:32
 # @Author  : stce
 from __init__ import *
-from ruamel_yaml import YAML
+from ruamel.yaml import YAML
 
 
 class Env(object):

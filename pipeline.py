@@ -31,5 +31,5 @@ def douyin_pipeline(env):
     logger.info("pipeline完成")
 
 if __name__ == "__main__":
-    env = "test"
-    douyin_data_updata(env)
+    env = "dev"
+    douyin_pipeline(env)
