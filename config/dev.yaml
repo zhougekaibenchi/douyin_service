@@ -23,4 +23,18 @@ HOT_Trends:
   # 本地视频文案数据
   crawler_video_local_path: './result/hot_tracking/video_content'
   crawler_video_sever_path: ''
-
+XunFei_ASR:
+  Long_Form_ASR:
+    appid: ""
+    secret_key: ""
+    # 上传数据接口
+    upload:
+      # 接口配置
+      lfasr_host: 'https://raasr.xfyun.cn/v2/api'
+      api_upload: '/upload'
+      api_get_result: '/getResult'
+      # upload参数配置
+      sysDicts: "advertisement"
+      duration: 200
+    download:
+      # 下载数据接口

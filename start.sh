@@ -20,8 +20,8 @@ echo "kill successfully!"
 echo "(2) Please wait restart..................."
 #source /mengyuan
 #cd /douyin/pipeline || exit
-echo "Run health port................"
-nohup python -m health.py $config >> $sever_log 2>&1 &
+echo "Run sever job................"
+nohup python -m sever.py $config >> $sever_log 2>&1 &
 echo "Restart cron job................"
 nohup python -m cron.py $config >> $cron_log 2>&1 &
 echo "restart successfully!"
