@@ -1,248 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="24f17224-1609-409b-8376-efb4aab0b639" name="默认变更列表" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/抖音数据传输分析.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/hot_tracking/insurance_vocab.txt" beforeDir="false" afterPath="$PROJECT_DIR$/data/hot_tracking/insurance_vocab.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hot_tracking/termsRecognition.py" beforeDir="false" afterPath="$PROJECT_DIR$/hot_tracking/termsRecognition.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/hot_tracking/video_content/7152721903172472095.txt" beforeDir="false" afterPath="$PROJECT_DIR$/result/hot_tracking/video_content/7152721903172472095.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/hot_tracking/video_content/7152762484288507173.txt" beforeDir="false" afterPath="$PROJECT_DIR$/result/hot_tracking/video_content/7152762484288507173.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/hot_tracking/video_content/7152833235741854984.txt" beforeDir="false" afterPath="$PROJECT_DIR$/result/hot_tracking/video_content/7152833235741854984.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/hot_tracking/video_content/7152888717823266085.txt" beforeDir="false" afterPath="$PROJECT_DIR$/result/hot_tracking/video_content/7152888717823266085.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/hot_tracking/video_content/7153058957290966279.txt" beforeDir="false" afterPath="$PROJECT_DIR$/result/hot_tracking/video_content/7153058957290966279.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/hot_tracking/video_content/7153078170831326502.txt" beforeDir="false" afterPath="$PROJECT_DIR$/result/hot_tracking/video_content/7153078170831326502.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/hot_tracking/video_content/7153155654767693095.txt" beforeDir="false" afterPath="$PROJECT_DIR$/result/hot_tracking/video_content/7153155654767693095.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/hot_tracking/video_content/7153543981106744583.txt" beforeDir="false" afterPath="$PROJECT_DIR$/result/hot_tracking/video_content/7153543981106744583.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/hot_tracking/video_content/7153888141567347999.txt" beforeDir="false" afterPath="$PROJECT_DIR$/result/hot_tracking/video_content/7153888141567347999.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/hot_tracking/video_content/7153929720902520095.txt" beforeDir="false" afterPath="$PROJECT_DIR$/result/hot_tracking/video_content/7153929720902520095.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/hot_tracking/video_content/7153992241688628516.txt" beforeDir="false" afterPath="$PROJECT_DIR$/result/hot_tracking/video_content/7153992241688628516.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/hot_tracking/video_content/7154192712466517285.txt" beforeDir="false" afterPath="$PROJECT_DIR$/result/hot_tracking/video_content/7154192712466517285.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/hot_tracking/video_content/7154194706052812047.txt" beforeDir="false" afterPath="$PROJECT_DIR$/result/hot_tracking/video_content/7154194706052812047.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/hot_tracking/video_content/7154218189985991940.txt" beforeDir="false" afterPath="$PROJECT_DIR$/result/hot_tracking/video_content/7154218189985991940.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/hot_tracking/video_content/7154307532222237982.txt" beforeDir="false" afterPath="$PROJECT_DIR$/result/hot_tracking/video_content/7154307532222237982.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/hot_tracking/video_content/7154334008313253155.txt" beforeDir="false" afterPath="$PROJECT_DIR$/result/hot_tracking/video_content/7154334008313253155.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/hot_tracking/video_content/7154509472080071976.txt" beforeDir="false" afterPath="$PROJECT_DIR$/result/hot_tracking/video_content/7154509472080071976.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/hot_tracking/video_content/7154585487787838733.txt" beforeDir="false" afterPath="$PROJECT_DIR$/result/hot_tracking/video_content/7154585487787838733.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/hot_tracking/video_content/7154591382525562148.txt" beforeDir="false" afterPath="$PROJECT_DIR$/result/hot_tracking/video_content/7154591382525562148.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/hot_tracking/video_content/7154707241008893215.txt" beforeDir="false" afterPath="$PROJECT_DIR$/result/hot_tracking/video_content/7154707241008893215.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/hot_tracking/video_content/7154941165039602981.txt" beforeDir="false" afterPath="$PROJECT_DIR$/result/hot_tracking/video_content/7154941165039602981.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/hot_tracking/video_content/7154944273828285732.txt" beforeDir="false" afterPath="$PROJECT_DIR$/result/hot_tracking/video_content/7154944273828285732.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/hot_tracking/video_content/7154944863119707405.txt" beforeDir="false" afterPath="$PROJECT_DIR$/result/hot_tracking/video_content/7154944863119707405.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/hot_tracking/video_content/7154948058592054536.txt" beforeDir="false" afterPath="$PROJECT_DIR$/result/hot_tracking/video_content/7154948058592054536.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/hot_tracking/video_content/7154954282905750798.txt" beforeDir="false" afterPath="$PROJECT_DIR$/result/hot_tracking/video_content/7154954282905750798.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/hot_tracking/video_content/7154956438559935752.txt" beforeDir="false" afterPath="$PROJECT_DIR$/result/hot_tracking/video_content/7154956438559935752.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/hot_tracking/video_content/7154959088353365278.txt" beforeDir="false" afterPath="$PROJECT_DIR$/result/hot_tracking/video_content/7154959088353365278.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/hot_tracking/video_content/7154970444158749985.txt" beforeDir="false" afterPath="$PROJECT_DIR$/result/hot_tracking/video_content/7154970444158749985.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/hot_tracking/video_content/7154971025455762724.txt" beforeDir="false" afterPath="$PROJECT_DIR$/result/hot_tracking/video_content/7154971025455762724.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/hot_tracking/video_content/7154976157161491742.txt" beforeDir="false" afterPath="$PROJECT_DIR$/result/hot_tracking/video_content/7154976157161491742.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/hot_tracking/video_content/7154985606853004557.txt" beforeDir="false" afterPath="$PROJECT_DIR$/result/hot_tracking/video_content/7154985606853004557.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/hot_tracking/video_content/7155029036299816205.txt" beforeDir="false" afterPath="$PROJECT_DIR$/result/hot_tracking/video_content/7155029036299816205.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/hot_tracking/video_content/7155042476732976420.txt" beforeDir="false" afterPath="$PROJECT_DIR$/result/hot_tracking/video_content/7155042476732976420.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/hot_tracking/video_content/7155044009931590948.txt" beforeDir="false" afterPath="$PROJECT_DIR$/result/hot_tracking/video_content/7155044009931590948.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/hot_tracking/video_content/7155052470698282244.txt" beforeDir="false" afterPath="$PROJECT_DIR$/result/hot_tracking/video_content/7155052470698282244.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/hot_tracking/video_content/7155068950227815693.txt" beforeDir="false" afterPath="$PROJECT_DIR$/result/hot_tracking/video_content/7155068950227815693.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/hot_tracking/video_content/7155098462931946789.txt" beforeDir="false" afterPath="$PROJECT_DIR$/result/hot_tracking/video_content/7155098462931946789.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/hot_tracking/video_content/7155104839322668322.txt" beforeDir="false" afterPath="$PROJECT_DIR$/result/hot_tracking/video_content/7155104839322668322.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/hot_tracking/video_content/7155301535579180319.txt" beforeDir="false" afterPath="$PROJECT_DIR$/result/hot_tracking/video_content/7155301535579180319.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/hot_tracking/video_content/7155304241316285734.txt" beforeDir="false" afterPath="$PROJECT_DIR$/result/hot_tracking/video_content/7155304241316285734.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/hot_tracking/video_content/7155307054536674574.txt" beforeDir="false" afterPath="$PROJECT_DIR$/result/hot_tracking/video_content/7155307054536674574.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/hot_tracking/video_content/7155313439051648286.txt" beforeDir="false" afterPath="$PROJECT_DIR$/result/hot_tracking/video_content/7155313439051648286.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/hot_tracking/video_content/7155317548249140514.txt" beforeDir="false" afterPath="$PROJECT_DIR$/result/hot_tracking/video_content/7155317548249140514.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/hot_tracking/video_content/7155322029833506085.txt" beforeDir="false" afterPath="$PROJECT_DIR$/result/hot_tracking/video_content/7155322029833506085.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/hot_tracking/video_content/7155328044138302750.txt" beforeDir="false" afterPath="$PROJECT_DIR$/result/hot_tracking/video_content/7155328044138302750.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/hot_tracking/video_content/7155329253758749988.txt" beforeDir="false" afterPath="$PROJECT_DIR$/result/hot_tracking/video_content/7155329253758749988.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/hot_tracking/video_content/7155344063615601934.txt" beforeDir="false" afterPath="$PROJECT_DIR$/result/hot_tracking/video_content/7155344063615601934.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/hot_tracking/video_content/7155350373450927374.txt" beforeDir="false" afterPath="$PROJECT_DIR$/result/hot_tracking/video_content/7155350373450927374.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/hot_tracking/video_content/7155369185613303080.txt" beforeDir="false" afterPath="$PROJECT_DIR$/result/hot_tracking/video_content/7155369185613303080.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/hot_tracking/video_content/7155369671754059039.txt" beforeDir="false" afterPath="$PROJECT_DIR$/result/hot_tracking/video_content/7155369671754059039.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/hot_tracking/video_content/7155373103403584782.txt" beforeDir="false" afterPath="$PROJECT_DIR$/result/hot_tracking/video_content/7155373103403584782.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/hot_tracking/video_content/7155377248994987300.txt" beforeDir="false" afterPath="$PROJECT_DIR$/result/hot_tracking/video_content/7155377248994987300.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/hot_tracking/video_content/7155377572019309854.txt" beforeDir="false" afterPath="$PROJECT_DIR$/result/hot_tracking/video_content/7155377572019309854.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/hot_tracking/video_content/7155382803343953189.txt" beforeDir="false" afterPath="$PROJECT_DIR$/result/hot_tracking/video_content/7155382803343953189.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/hot_tracking/video_content/7155385028657057058.txt" beforeDir="false" afterPath="$PROJECT_DIR$/result/hot_tracking/video_content/7155385028657057058.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/hot_tracking/video_content/7155385106360732959.txt" beforeDir="false" afterPath="$PROJECT_DIR$/result/hot_tracking/video_content/7155385106360732959.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/hot_tracking/video_content/7155386106060557582.txt" beforeDir="false" afterPath="$PROJECT_DIR$/result/hot_tracking/video_content/7155386106060557582.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/hot_tracking/video_content/7155390966055062791.txt" beforeDir="false" afterPath="$PROJECT_DIR$/result/hot_tracking/video_content/7155390966055062791.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/hot_tracking/video_content/7155393758719135006.txt" beforeDir="false" afterPath="$PROJECT_DIR$/result/hot_tracking/video_content/7155393758719135006.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/hot_tracking/video_content/7155393942794652958.txt" beforeDir="false" afterPath="$PROJECT_DIR$/result/hot_tracking/video_content/7155393942794652958.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/hot_tracking/video_content/7155397082222808328.txt" beforeDir="false" afterPath="$PROJECT_DIR$/result/hot_tracking/video_content/7155397082222808328.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/hot_tracking/video_content/7155403084120788254.txt" beforeDir="false" afterPath="$PROJECT_DIR$/result/hot_tracking/video_content/7155403084120788254.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/hot_tracking/video_content/7155416516475849992.txt" beforeDir="false" afterPath="$PROJECT_DIR$/result/hot_tracking/video_content/7155416516475849992.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/hot_tracking/video_content/7155435774614195494.txt" beforeDir="false" afterPath="$PROJECT_DIR$/result/hot_tracking/video_content/7155435774614195494.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/hot_tracking/video_content/7155439672909516064.txt" beforeDir="false" afterPath="$PROJECT_DIR$/result/hot_tracking/video_content/7155439672909516064.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/hot_tracking/video_content/7155441081973411080.txt" beforeDir="false" afterPath="$PROJECT_DIR$/result/hot_tracking/video_content/7155441081973411080.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/hot_tracking/video_content/7155462698115927327.txt" beforeDir="false" afterPath="$PROJECT_DIR$/result/hot_tracking/video_content/7155462698115927327.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/hot_tracking/video_content/7155659677349530887.txt" beforeDir="false" afterPath="$PROJECT_DIR$/result/hot_tracking/video_content/7155659677349530887.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/hot_tracking/video_content/7155664788679298307.txt" beforeDir="false" afterPath="$PROJECT_DIR$/result/hot_tracking/video_content/7155664788679298307.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/hot_tracking/video_content/7155670472087047464.txt" beforeDir="false" afterPath="$PROJECT_DIR$/result/hot_tracking/video_content/7155670472087047464.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/hot_tracking/video_content/7155681360747744543.txt" beforeDir="false" afterPath="$PROJECT_DIR$/result/hot_tracking/video_content/7155681360747744543.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/hot_tracking/video_content/7155683320594976014.txt" beforeDir="false" afterPath="$PROJECT_DIR$/result/hot_tracking/video_content/7155683320594976014.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/hot_tracking/video_content/7155683487947803934.txt" beforeDir="false" afterPath="$PROJECT_DIR$/result/hot_tracking/video_content/7155683487947803934.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/hot_tracking/video_content/7155685075940609311.txt" beforeDir="false" afterPath="$PROJECT_DIR$/result/hot_tracking/video_content/7155685075940609311.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/hot_tracking/video_content/7155727503045250312.txt" beforeDir="false" afterPath="$PROJECT_DIR$/result/hot_tracking/video_content/7155727503045250312.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/hot_tracking/video_content/7155732469948468487.txt" beforeDir="false" afterPath="$PROJECT_DIR$/result/hot_tracking/video_content/7155732469948468487.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/hot_tracking/video_content/7155736888664526117.txt" beforeDir="false" afterPath="$PROJECT_DIR$/result/hot_tracking/video_content/7155736888664526117.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/hot_tracking/video_content/7155741485776932127.txt" beforeDir="false" afterPath="$PROJECT_DIR$/result/hot_tracking/video_content/7155741485776932127.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/hot_tracking/video_content/7155759154764778788.txt" beforeDir="false" afterPath="$PROJECT_DIR$/result/hot_tracking/video_content/7155759154764778788.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/hot_tracking/video_content/7155760139071393057.txt" beforeDir="false" afterPath="$PROJECT_DIR$/result/hot_tracking/video_content/7155760139071393057.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/hot_tracking/video_content/7155766689198656804.txt" beforeDir="false" afterPath="$PROJECT_DIR$/result/hot_tracking/video_content/7155766689198656804.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/hot_tracking/video_content/7155773777136192802.txt" beforeDir="false" afterPath="$PROJECT_DIR$/result/hot_tracking/video_content/7155773777136192802.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/hot_tracking/video_content/7155775391490329860.txt" beforeDir="false" afterPath="$PROJECT_DIR$/result/hot_tracking/video_content/7155775391490329860.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/hot_tracking/video_content/7155776097248955651.txt" beforeDir="false" afterPath="$PROJECT_DIR$/result/hot_tracking/video_content/7155776097248955651.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/hot_tracking/video_content/7155781935191575844.txt" beforeDir="false" afterPath="$PROJECT_DIR$/result/hot_tracking/video_content/7155781935191575844.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/hot_tracking/video_content/7155784570502155528.txt" beforeDir="false" afterPath="$PROJECT_DIR$/result/hot_tracking/video_content/7155784570502155528.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/hot_tracking/video_content/7155785842882137375.txt" beforeDir="false" afterPath="$PROJECT_DIR$/result/hot_tracking/video_content/7155785842882137375.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/hot_tracking/video_content/7155787496788380941.txt" beforeDir="false" afterPath="$PROJECT_DIR$/result/hot_tracking/video_content/7155787496788380941.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/hot_tracking/video_content/7155804355147451655.txt" beforeDir="false" afterPath="$PROJECT_DIR$/result/hot_tracking/video_content/7155804355147451655.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/hot_tracking/video_content/7155812704127552781.txt" beforeDir="false" afterPath="$PROJECT_DIR$/result/hot_tracking/video_content/7155812704127552781.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/hot_tracking/video_content/7155812875485957412.txt" beforeDir="false" afterPath="$PROJECT_DIR$/result/hot_tracking/video_content/7155812875485957412.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/hot_tracking/video_content/7155826096854863118.txt" beforeDir="false" afterPath="$PROJECT_DIR$/result/hot_tracking/video_content/7155826096854863118.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/hot_tracking/video_content/7155882282312650017.txt" beforeDir="false" afterPath="$PROJECT_DIR$/result/hot_tracking/video_content/7155882282312650017.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/hot_tracking/video_content/7156016202731572513.txt" beforeDir="false" afterPath="$PROJECT_DIR$/result/hot_tracking/video_content/7156016202731572513.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/hot_tracking/video_content/7156024252821523720.txt" beforeDir="false" afterPath="$PROJECT_DIR$/result/hot_tracking/video_content/7156024252821523720.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/hot_tracking/video_content/7156033179055443214.txt" beforeDir="false" afterPath="$PROJECT_DIR$/result/hot_tracking/video_content/7156033179055443214.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/hot_tracking/video_content/7156045051154435364.txt" beforeDir="false" afterPath="$PROJECT_DIR$/result/hot_tracking/video_content/7156045051154435364.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/hot_tracking/video_content/7156048488793607436.txt" beforeDir="false" afterPath="$PROJECT_DIR$/result/hot_tracking/video_content/7156048488793607436.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/hot_tracking/video_content/7156049843306138887.txt" beforeDir="false" afterPath="$PROJECT_DIR$/result/hot_tracking/video_content/7156049843306138887.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/hot_tracking/video_content/7156055501086657792.txt" beforeDir="false" afterPath="$PROJECT_DIR$/result/hot_tracking/video_content/7156055501086657792.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/hot_tracking/video_content/7156060357436394763.txt" beforeDir="false" afterPath="$PROJECT_DIR$/result/hot_tracking/video_content/7156060357436394763.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/hot_tracking/video_content/7156062707987336456.txt" beforeDir="false" afterPath="$PROJECT_DIR$/result/hot_tracking/video_content/7156062707987336456.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/hot_tracking/video_content/7156064913637641502.txt" beforeDir="false" afterPath="$PROJECT_DIR$/result/hot_tracking/video_content/7156064913637641502.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/hot_tracking/video_content/7156087595624107271.txt" beforeDir="false" afterPath="$PROJECT_DIR$/result/hot_tracking/video_content/7156087595624107271.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/hot_tracking/video_content/7156101053321055502.txt" beforeDir="false" afterPath="$PROJECT_DIR$/result/hot_tracking/video_content/7156101053321055502.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/hot_tracking/video_content/7156110779731692831.txt" beforeDir="false" afterPath="$PROJECT_DIR$/result/hot_tracking/video_content/7156110779731692831.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/hot_tracking/video_content/7156117284539337992.txt" beforeDir="false" afterPath="$PROJECT_DIR$/result/hot_tracking/video_content/7156117284539337992.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/hot_tracking/video_content/7156128256972950824.txt" beforeDir="false" afterPath="$PROJECT_DIR$/result/hot_tracking/video_content/7156128256972950824.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/hot_tracking/video_content/7156129266298588424.txt" beforeDir="false" afterPath="$PROJECT_DIR$/result/hot_tracking/video_content/7156129266298588424.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/hot_tracking/video_content/7156139049718140173.txt" beforeDir="false" afterPath="$PROJECT_DIR$/result/hot_tracking/video_content/7156139049718140173.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/hot_tracking/video_content/7156149413008788750.txt" beforeDir="false" afterPath="$PROJECT_DIR$/result/hot_tracking/video_content/7156149413008788750.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/hot_tracking/video_content/7156155007153261861.txt" beforeDir="false" afterPath="$PROJECT_DIR$/result/hot_tracking/video_content/7156155007153261861.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/hot_tracking/video_content/7156157752669130025.txt" beforeDir="false" afterPath="$PROJECT_DIR$/result/hot_tracking/video_content/7156157752669130025.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/hot_tracking/video_content/7156159239898123557.txt" beforeDir="false" afterPath="$PROJECT_DIR$/result/hot_tracking/video_content/7156159239898123557.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/hot_tracking/video_content/7156159437542083847.txt" beforeDir="false" afterPath="$PROJECT_DIR$/result/hot_tracking/video_content/7156159437542083847.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/hot_tracking/video_content/7156160487414156552.txt" beforeDir="false" afterPath="$PROJECT_DIR$/result/hot_tracking/video_content/7156160487414156552.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/hot_tracking/video_content/7156166011031391501.txt" beforeDir="false" afterPath="$PROJECT_DIR$/result/hot_tracking/video_content/7156166011031391501.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/hot_tracking/video_content/7156166346638691592.txt" beforeDir="false" afterPath="$PROJECT_DIR$/result/hot_tracking/video_content/7156166346638691592.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/hot_tracking/video_content/7156170873538383134.txt" beforeDir="false" afterPath="$PROJECT_DIR$/result/hot_tracking/video_content/7156170873538383134.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/hot_tracking/video_content/7156176549266427149.txt" beforeDir="false" afterPath="$PROJECT_DIR$/result/hot_tracking/video_content/7156176549266427149.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/hot_tracking/video_content/7156180843294117123.txt" beforeDir="false" afterPath="$PROJECT_DIR$/result/hot_tracking/video_content/7156180843294117123.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/hot_tracking/video_content/7156202214086675749.txt" beforeDir="false" afterPath="$PROJECT_DIR$/result/hot_tracking/video_content/7156202214086675749.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/hot_tracking/video_content/7156211483091717417.txt" beforeDir="false" afterPath="$PROJECT_DIR$/result/hot_tracking/video_content/7156211483091717417.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/hot_tracking/video_content/7156239231751343393.txt" beforeDir="false" afterPath="$PROJECT_DIR$/result/hot_tracking/video_content/7156239231751343393.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/hot_tracking/video_content/7156417038846528775.txt" beforeDir="false" afterPath="$PROJECT_DIR$/result/hot_tracking/video_content/7156417038846528775.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/hot_tracking/video_content/7156424828747140382.txt" beforeDir="false" afterPath="$PROJECT_DIR$/result/hot_tracking/video_content/7156424828747140382.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/hot_tracking/video_content/7156427852328602892.txt" beforeDir="false" afterPath="$PROJECT_DIR$/result/hot_tracking/video_content/7156427852328602892.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/hot_tracking/video_content/7156435611702873382.txt" beforeDir="false" afterPath="$PROJECT_DIR$/result/hot_tracking/video_content/7156435611702873382.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/hot_tracking/video_content/7156440201630403877.txt" beforeDir="false" afterPath="$PROJECT_DIR$/result/hot_tracking/video_content/7156440201630403877.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/hot_tracking/video_content/7156441534085287205.txt" beforeDir="false" afterPath="$PROJECT_DIR$/result/hot_tracking/video_content/7156441534085287205.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/hot_tracking/video_content/7156448089090428168.txt" beforeDir="false" afterPath="$PROJECT_DIR$/result/hot_tracking/video_content/7156448089090428168.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/hot_tracking/video_content/7156477670501453069.txt" beforeDir="false" afterPath="$PROJECT_DIR$/result/hot_tracking/video_content/7156477670501453069.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/hot_tracking/video_content/7156485680271478047.txt" beforeDir="false" afterPath="$PROJECT_DIR$/result/hot_tracking/video_content/7156485680271478047.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/hot_tracking/video_content/7156504831740382478.txt" beforeDir="false" afterPath="$PROJECT_DIR$/result/hot_tracking/video_content/7156504831740382478.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/hot_tracking/video_content/7156507060597689607.txt" beforeDir="false" afterPath="$PROJECT_DIR$/result/hot_tracking/video_content/7156507060597689607.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/hot_tracking/video_content/7156514937718852877.txt" beforeDir="false" afterPath="$PROJECT_DIR$/result/hot_tracking/video_content/7156514937718852877.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/hot_tracking/video_content/7156527614704815390.txt" beforeDir="false" afterPath="$PROJECT_DIR$/result/hot_tracking/video_content/7156527614704815390.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/hot_tracking/video_content/7156530830842645772.txt" beforeDir="false" afterPath="$PROJECT_DIR$/result/hot_tracking/video_content/7156530830842645772.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/hot_tracking/video_content/7156531001861164295.txt" beforeDir="false" afterPath="$PROJECT_DIR$/result/hot_tracking/video_content/7156531001861164295.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/hot_tracking/video_content/7156535962238061865.txt" beforeDir="false" afterPath="$PROJECT_DIR$/result/hot_tracking/video_content/7156535962238061865.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/hot_tracking/video_content/7156538104772365581.txt" beforeDir="false" afterPath="$PROJECT_DIR$/result/hot_tracking/video_content/7156538104772365581.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/hot_tracking/video_content/7156547179241327904.txt" beforeDir="false" afterPath="$PROJECT_DIR$/result/hot_tracking/video_content/7156547179241327904.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/hot_tracking/video_content/7156560680026475810.txt" beforeDir="false" afterPath="$PROJECT_DIR$/result/hot_tracking/video_content/7156560680026475810.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/hot_tracking/video_content/7156568354239630600.txt" beforeDir="false" afterPath="$PROJECT_DIR$/result/hot_tracking/video_content/7156568354239630600.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/hot_tracking/video_content/7156571110258117895.txt" beforeDir="false" afterPath="$PROJECT_DIR$/result/hot_tracking/video_content/7156571110258117895.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/hot_tracking/video_content/7156571774564584734.txt" beforeDir="false" afterPath="$PROJECT_DIR$/result/hot_tracking/video_content/7156571774564584734.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/hot_tracking/video_content/7156584328053427491.txt" beforeDir="false" afterPath="$PROJECT_DIR$/result/hot_tracking/video_content/7156584328053427491.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/hot_tracking/video_content/7156589642807020840.txt" beforeDir="false" afterPath="$PROJECT_DIR$/result/hot_tracking/video_content/7156589642807020840.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/hot_tracking/video_content/7156602082345209095.txt" beforeDir="false" afterPath="$PROJECT_DIR$/result/hot_tracking/video_content/7156602082345209095.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/hot_tracking/video_content/7156636256955419934.txt" beforeDir="false" afterPath="$PROJECT_DIR$/result/hot_tracking/video_content/7156636256955419934.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/hot_tracking/video_content/7156736800327830787.txt" beforeDir="false" afterPath="$PROJECT_DIR$/result/hot_tracking/video_content/7156736800327830787.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/hot_tracking/video_content/7156778038846409995.txt" beforeDir="false" afterPath="$PROJECT_DIR$/result/hot_tracking/video_content/7156778038846409995.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/hot_tracking/video_content/7156800342489828647.txt" beforeDir="false" afterPath="$PROJECT_DIR$/result/hot_tracking/video_content/7156800342489828647.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/hot_tracking/video_content/7156802779007274240.txt" beforeDir="false" afterPath="$PROJECT_DIR$/result/hot_tracking/video_content/7156802779007274240.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/hot_tracking/video_content/7156812055817800991.txt" beforeDir="false" afterPath="$PROJECT_DIR$/result/hot_tracking/video_content/7156812055817800991.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/hot_tracking/video_content/7156823935001136397.txt" beforeDir="false" afterPath="$PROJECT_DIR$/result/hot_tracking/video_content/7156823935001136397.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/hot_tracking/video_content/7156853986740456712.txt" beforeDir="false" afterPath="$PROJECT_DIR$/result/hot_tracking/video_content/7156853986740456712.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/hot_tracking/video_content/7156863207271927054.txt" beforeDir="false" afterPath="$PROJECT_DIR$/result/hot_tracking/video_content/7156863207271927054.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/hot_tracking/video_content/7156868493227429151.txt" beforeDir="false" afterPath="$PROJECT_DIR$/result/hot_tracking/video_content/7156868493227429151.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/hot_tracking/video_content/7156874451542445325.txt" beforeDir="false" afterPath="$PROJECT_DIR$/result/hot_tracking/video_content/7156874451542445325.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/hot_tracking/video_content/7156884780871585061.txt" beforeDir="false" afterPath="$PROJECT_DIR$/result/hot_tracking/video_content/7156884780871585061.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/hot_tracking/video_content/7156895101078293796.txt" beforeDir="false" afterPath="$PROJECT_DIR$/result/hot_tracking/video_content/7156895101078293796.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/hot_tracking/video_content/7156898450687151390.txt" beforeDir="false" afterPath="$PROJECT_DIR$/result/hot_tracking/video_content/7156898450687151390.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/hot_tracking/video_content/7156898801083600159.txt" beforeDir="false" afterPath="$PROJECT_DIR$/result/hot_tracking/video_content/7156898801083600159.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/hot_tracking/video_content/7156902342451891460.txt" beforeDir="false" afterPath="$PROJECT_DIR$/result/hot_tracking/video_content/7156902342451891460.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/hot_tracking/video_content/7156904270011419912.txt" beforeDir="false" afterPath="$PROJECT_DIR$/result/hot_tracking/video_content/7156904270011419912.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/hot_tracking/video_content/7156905786860490024.txt" beforeDir="false" afterPath="$PROJECT_DIR$/result/hot_tracking/video_content/7156905786860490024.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/hot_tracking/video_content/7156908507927809311.txt" beforeDir="false" afterPath="$PROJECT_DIR$/result/hot_tracking/video_content/7156908507927809311.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/hot_tracking/video_content/7156909288223558925.txt" beforeDir="false" afterPath="$PROJECT_DIR$/result/hot_tracking/video_content/7156909288223558925.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/hot_tracking/video_content/7156911653018144014.txt" beforeDir="false" afterPath="$PROJECT_DIR$/result/hot_tracking/video_content/7156911653018144014.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/hot_tracking/video_content/7156912832301321486.txt" beforeDir="false" afterPath="$PROJECT_DIR$/result/hot_tracking/video_content/7156912832301321486.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/hot_tracking/video_content/7156914093679545607.txt" beforeDir="false" afterPath="$PROJECT_DIR$/result/hot_tracking/video_content/7156914093679545607.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/hot_tracking/video_content/7156914318796229919.txt" beforeDir="false" afterPath="$PROJECT_DIR$/result/hot_tracking/video_content/7156914318796229919.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/hot_tracking/video_content/7156915237655039263.txt" beforeDir="false" afterPath="$PROJECT_DIR$/result/hot_tracking/video_content/7156915237655039263.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/hot_tracking/video_content/7156916930903936263.txt" beforeDir="false" afterPath="$PROJECT_DIR$/result/hot_tracking/video_content/7156916930903936263.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/hot_tracking/video_content/7156919186021780773.txt" beforeDir="false" afterPath="$PROJECT_DIR$/result/hot_tracking/video_content/7156919186021780773.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/hot_tracking/video_content/7156919379903417608.txt" beforeDir="false" afterPath="$PROJECT_DIR$/result/hot_tracking/video_content/7156919379903417608.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/hot_tracking/video_content/7156921050238848292.txt" beforeDir="false" afterPath="$PROJECT_DIR$/result/hot_tracking/video_content/7156921050238848292.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/hot_tracking/video_content/7156925686416968964.txt" beforeDir="false" afterPath="$PROJECT_DIR$/result/hot_tracking/video_content/7156925686416968964.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/hot_tracking/video_content/7156925783385197837.txt" beforeDir="false" afterPath="$PROJECT_DIR$/result/hot_tracking/video_content/7156925783385197837.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/hot_tracking/video_content/7156969544056048899.txt" beforeDir="false" afterPath="$PROJECT_DIR$/result/hot_tracking/video_content/7156969544056048899.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/hot_tracking/video_content/7157036779441310989.txt" beforeDir="false" afterPath="$PROJECT_DIR$/result/hot_tracking/video_content/7157036779441310989.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/hot_tracking/video_content/7157039203845508386.txt" beforeDir="false" afterPath="$PROJECT_DIR$/result/hot_tracking/video_content/7157039203845508386.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/hot_tracking/video_content/7157043178019835168.txt" beforeDir="false" afterPath="$PROJECT_DIR$/result/hot_tracking/video_content/7157043178019835168.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/hot_tracking/video_content/7157115871415110951.txt" beforeDir="false" afterPath="$PROJECT_DIR$/result/hot_tracking/video_content/7157115871415110951.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/hot_tracking/video_content/7157128092270578957.txt" beforeDir="false" afterPath="$PROJECT_DIR$/result/hot_tracking/video_content/7157128092270578957.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/hot_tracking/video_content/7157143160349560096.txt" beforeDir="false" afterPath="$PROJECT_DIR$/result/hot_tracking/video_content/7157143160349560096.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/hot_tracking/video_content/7157149590230224165.txt" beforeDir="false" afterPath="$PROJECT_DIR$/result/hot_tracking/video_content/7157149590230224165.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/hot_tracking/video_content/7157163060648627493.txt" beforeDir="false" afterPath="$PROJECT_DIR$/result/hot_tracking/video_content/7157163060648627493.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/hot_tracking/video_content/7157168073424817422.txt" beforeDir="false" afterPath="$PROJECT_DIR$/result/hot_tracking/video_content/7157168073424817422.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/hot_tracking/video_content/7157168324843982116.txt" beforeDir="false" afterPath="$PROJECT_DIR$/result/hot_tracking/video_content/7157168324843982116.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/hot_tracking/video_content/7157188990007807269.txt" beforeDir="false" afterPath="$PROJECT_DIR$/result/hot_tracking/video_content/7157188990007807269.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/hot_tracking/video_content/7157191278290111780.txt" beforeDir="false" afterPath="$PROJECT_DIR$/result/hot_tracking/video_content/7157191278290111780.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/hot_tracking/video_content/7157194538413509925.txt" beforeDir="false" afterPath="$PROJECT_DIR$/result/hot_tracking/video_content/7157194538413509925.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/hot_tracking/video_content/7157204694799076644.txt" beforeDir="false" afterPath="$PROJECT_DIR$/result/hot_tracking/video_content/7157204694799076644.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/hot_tracking/video_content/7157207197569600807.txt" beforeDir="false" afterPath="$PROJECT_DIR$/result/hot_tracking/video_content/7157207197569600807.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/hot_tracking/video_content/7157229158999919905.txt" beforeDir="false" afterPath="$PROJECT_DIR$/result/hot_tracking/video_content/7157229158999919905.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/hot_tracking/video_content/7157243056691907878.txt" beforeDir="false" afterPath="$PROJECT_DIR$/result/hot_tracking/video_content/7157243056691907878.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/hot_tracking/video_content/7157253758466968839.txt" beforeDir="false" afterPath="$PROJECT_DIR$/result/hot_tracking/video_content/7157253758466968839.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/hot_tracking/video_content/7157266749568699679.txt" beforeDir="false" afterPath="$PROJECT_DIR$/result/hot_tracking/video_content/7157266749568699679.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/hot_tracking/video_content/7157268970184166668.txt" beforeDir="false" afterPath="$PROJECT_DIR$/result/hot_tracking/video_content/7157268970184166668.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/hot_tracking/video_content/7157296380157938980.txt" beforeDir="false" afterPath="$PROJECT_DIR$/result/hot_tracking/video_content/7157296380157938980.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/hot_tracking/video_content/7157393432015621409.txt" beforeDir="false" afterPath="$PROJECT_DIR$/result/hot_tracking/video_content/7157393432015621409.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/hot_tracking/video_content/7157482845663939843.txt" beforeDir="false" afterPath="$PROJECT_DIR$/result/hot_tracking/video_content/7157482845663939843.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/hot_tracking/video_content/7157516219568934155.txt" beforeDir="false" afterPath="$PROJECT_DIR$/result/hot_tracking/video_content/7157516219568934155.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/hot_tracking/video_content/7157542978993573159.txt" beforeDir="false" afterPath="$PROJECT_DIR$/result/hot_tracking/video_content/7157542978993573159.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/hot_tracking/video_content/7157544157400157477.txt" beforeDir="false" afterPath="$PROJECT_DIR$/result/hot_tracking/video_content/7157544157400157477.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/hot_tracking/video_content/7157544521440496937.txt" beforeDir="false" afterPath="$PROJECT_DIR$/result/hot_tracking/video_content/7157544521440496937.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/hot_tracking/video_content/7157549975117876512.txt" beforeDir="false" afterPath="$PROJECT_DIR$/result/hot_tracking/video_content/7157549975117876512.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/hot_tracking/video_content/7157554522187943182.txt" beforeDir="false" afterPath="$PROJECT_DIR$/result/hot_tracking/video_content/7157554522187943182.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/hot_tracking/video_content/7157555799236087048.txt" beforeDir="false" afterPath="$PROJECT_DIR$/result/hot_tracking/video_content/7157555799236087048.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/hot_tracking/video_content/7157561299457641769.txt" beforeDir="false" afterPath="$PROJECT_DIR$/result/hot_tracking/video_content/7157561299457641769.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/hot_tracking/video_content/7157563352439328034.txt" beforeDir="false" afterPath="$PROJECT_DIR$/result/hot_tracking/video_content/7157563352439328034.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/hot_tracking/video_content/7157569386931326244.txt" beforeDir="false" afterPath="$PROJECT_DIR$/result/hot_tracking/video_content/7157569386931326244.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/hot_tracking/video_content/7157586486022425871.txt" beforeDir="false" afterPath="$PROJECT_DIR$/result/hot_tracking/video_content/7157586486022425871.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/hot_tracking/video_content/7157613548296801543.txt" beforeDir="false" afterPath="$PROJECT_DIR$/result/hot_tracking/video_content/7157613548296801543.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/hot_tracking/video_content/7157627977562410277.txt" beforeDir="false" afterPath="$PROJECT_DIR$/result/hot_tracking/video_content/7157627977562410277.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/hot_tracking/video_content/7157628382820240647.txt" beforeDir="false" afterPath="$PROJECT_DIR$/result/hot_tracking/video_content/7157628382820240647.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/hot_tracking/video_content/7157630054082661670.txt" beforeDir="false" afterPath="$PROJECT_DIR$/result/hot_tracking/video_content/7157630054082661670.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/hot_tracking/video_content/7157645260858936590.txt" beforeDir="false" afterPath="$PROJECT_DIR$/result/hot_tracking/video_content/7157645260858936590.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/hot_tracking/video_content/7157664590174653727.txt" beforeDir="false" afterPath="$PROJECT_DIR$/result/hot_tracking/video_content/7157664590174653727.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/hot_tracking/video_content/7157669366606204164.txt" beforeDir="false" afterPath="$PROJECT_DIR$/result/hot_tracking/video_content/7157669366606204164.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/hot_tracking/video_content/7157670536741489934.txt" beforeDir="false" afterPath="$PROJECT_DIR$/result/hot_tracking/video_content/7157670536741489934.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/hot_tracking/video_content/7157676863094017311.txt" beforeDir="false" afterPath="$PROJECT_DIR$/result/hot_tracking/video_content/7157676863094017311.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/hot_tracking/video_content/7157679625630698786.txt" beforeDir="false" afterPath="$PROJECT_DIR$/result/hot_tracking/video_content/7157679625630698786.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/hot_tracking/video_content/7157695679035395360.txt" beforeDir="false" afterPath="$PROJECT_DIR$/result/hot_tracking/video_content/7157695679035395360.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/hot_tracking/video_content/7157696085631192358.txt" beforeDir="false" afterPath="$PROJECT_DIR$/result/hot_tracking/video_content/7157696085631192358.txt" afterDir="false" />
+    <list default="true" id="24f17224-1609-409b-8376-efb4aab0b639" name="默认变更列表" comment="加入美芝老师修改的部分">
+      <change afterPath="$PROJECT_DIR$/asr/xunfei_asr.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asr/xunfei_asr_2.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/dev.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/dev.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/health.py" beforeDir="false" afterPath="$PROJECT_DIR$/server.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pipeline.py" beforeDir="false" afterPath="$PROJECT_DIR$/pipeline.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/start.sh" beforeDir="false" afterPath="$PROJECT_DIR$/start.sh" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
   </component>
   <component name="FlaskConsoleOptions" custom-start-script="import sys&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;from flask.cli import ScriptInfo&#10;locals().update(ScriptInfo(create_app=None).load_app().make_shell_context())&#10;print(&quot;Python %s on %s\nApp: %s [%s]\nInstance: %s&quot; % (sys.version, sys.platform, app.import_name, app.env, app.instance_path))">
     <envs>
@@ -266,10 +44,16 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\抖音数据传输分析\douyin_service\douyin_service\asr" />
+    </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="应用程序级" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -279,11 +63,41 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1667214229190</updated>
-      <workItem from="1667214230996" duration="35000" />
+      <workItem from="1667214230996" duration="14009000" />
     </task>
+    <task id="LOCAL-00001" summary="加入美芝老师修改的部分">
+      <created>1667214502982</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1667214502982</updated>
+    </task>
+    <task id="LOCAL-00002" summary="加入美芝老师修改的部分">
+      <created>1667214563005</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1667214563005</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="加入美芝老师修改的部分" />
+    <option name="LAST_COMMIT_MESSAGE" value="加入美芝老师修改的部分" />
   </component>
 </project>
