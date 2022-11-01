@@ -10,6 +10,7 @@ app = FastAPI()
 
 """
 (1) /health 提供健康检测的接口
+(2) /xunfei_lfasr 提供给讯飞当作回调端口，监听已经完成的ASR数据
 """
 
 
@@ -25,6 +26,11 @@ logger.setLevel(logging.DEBUG)
 def health():
     return {"status": "UP"}
 
+@app.get("/xunfei_lfasr")
+def xunfei_lfasr():
+    # todo
+
+    return
 
 if __name__ == '__main__':
     filename = sys.argv[1]
