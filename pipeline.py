@@ -6,7 +6,7 @@
 import gc
 import logger
 from __init__ import *
-from xunfei_asr.xunfei_asr import RequestApi
+from asr.xunfei_asr import RequestApi
 from ftp_client import FTP_Updata, FTP_HOTTrends
 from utils.read_config import Env
 
@@ -23,6 +23,7 @@ def douyin_pipeline(env):
         ftp_hottrends.data_collect()
         # 数据ASR输出
         asr_request = RequestApi(config)
+
 
     except Exception as ex:
         logger.error("pipeline出现错误")

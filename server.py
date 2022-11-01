@@ -21,7 +21,6 @@ import logging.handlers
 logger = logging.getLogger()
 logger.setLevel(logging.DEBUG)
 
-# 日志文件记录
 @app.get("/health")
 def health():
     return {"status": "UP"}
