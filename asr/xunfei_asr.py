@@ -117,21 +117,23 @@ class RequestApi(object):
         param_dict = self.get_upload_file_path(uploadresp)
         response = requests.post(url=self.lfasr_host + self.api_get_result + "?" + urllib.parse.urlencode(param_dict),
                                  headers={"Content-type": "application/json"})
-        logger.info("get_result_url:",response.request.url)
+        logger.info("get_result_url:", response.request.url)
         result = json.loads(response.text)
         logger.info("get_result resp:", result)
         return result
 
-    def get_result(self):
+    def upload_data(self):
         """
 
         """
-
-
-
-
-
-
+        orderId_list = []
+        path = self.get_upload_file_path(self.upload_file_path_ZMY) + self.get_upload_file_path(self.upload_file_path_JMZ)
+        for item in path:
+            uploadresp = self.upload(item)
+            orderId = uploadresp['content']['orderId']
+            orderId_list.append(orderId)
+            # result = self.download(orderId)
+        return orderId_list
 
 
     # def get_result(self):

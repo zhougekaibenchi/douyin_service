@@ -4,32 +4,43 @@
 # @Author  : stce
 
 import uvicorn
-from fastapi import FastAPI
-
-app = FastAPI()
-
-"""
-(1) /health 提供健康检测的接口
-(2) /xunfei_lfasr 提供给讯飞当作回调端口，监听已经完成的ASR数据
-"""
-
-
 import os
 import sys
 import logging.handlers
+from fastapi import FastAPI
+from __init__ import *
+app = FastAPI()
+
+"""
+(1) /xunfei_lfasr 提供给讯飞当作回调端口，接收已经完成的ASR数据并存储，
+(2) /xunfei_lfasr_listener 监听已经完成的ASR数据
+(3) /health 检查ASR接收服务是否正常
+"""
 
 logger = logging.getLogger()
 logger.setLevel(logging.DEBUG)
 
-@app.get("/health")
-def health():
-    return {"status": "UP"}
 
 @app.get("/xunfei_lfasr")
 def xunfei_lfasr():
     # todo
 
-    return
+
+
+    return {"status": "OK"}
+
+@app.get("/xunfei_lfasr_listener")
+def asr_listener():
+    pass
+
+
+
+@app.get("/health")
+def health():
+    return {"status": "UP"}
+
+
+
 
 if __name__ == '__main__':
     filename = sys.argv[1]
@@ -41,6 +52,6 @@ if __name__ == '__main__':
     )
     file_handler.setFormatter(formatter)
     logger.addHandler(file_handler)
-    logger.info("服务health接口启动..........")
-    logger.info("服务启动ip：0.0.0.0:8123")
-    uvicorn.run(app, host='0.0.0.0', port=8123)
+    logger.info("服务ASR数据接收服务启动..........")
+    logger.info("服务启动ip：0.0.0.0:8001")
+    uvicorn.run(app, host='0.0.0.0', port=8001)

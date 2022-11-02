@@ -23,6 +23,11 @@ def douyin_pipeline(env):
         ftp_hottrends.data_collect()
         # 数据ASR输出
         asr_request = RequestApi(config)
+        upload_list = asr_request.upload_data()
+        # 等待接收ASR返回，并存储到到对应位置
+
+
+        # todo ZMY其他逻辑
 
 
     except Exception as ex:
@@ -31,7 +36,7 @@ def douyin_pipeline(env):
 
     del ftp_update, ftp_hottrends
     gc.collect()
-    logger.info("pipeline完成")
+    logger.info("Pipeline Finish")
 
 if __name__ == "__main__":
     env = "dev"
