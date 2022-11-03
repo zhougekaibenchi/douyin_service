@@ -13,6 +13,7 @@ import base64
 import hashlib
 import requests
 from __init__ import *
+from utils.utils import write_complete_list, read_complete_list
 
 # lfasr_host = 'https://raasr.xfyun.cn/v2/api'
 # # 请求的接口名
@@ -122,12 +123,18 @@ class RequestApi(object):
         logger.info("get_result resp:", result)
         return result
 
-    def get_result(self):
+    def upload_data(self):
         """
-
+        （1） 上传数据
         """
+        orderId_list = []
+        path = self.get_upload_file_path(self.upload_file_path_ZMY) + self.get_upload_file_path(self.upload_file_path_JMZ)
+        for item in path:
+            uploadresp = self.upload(item)
+            orderId = uploadresp['content']['orderId']
+            orderId_list.append(orderId)
+        return orderId_list
 
-        pass
 
     def post_process(self):
         # 处理ASR获取的结果并存储数据
@@ -135,33 +142,20 @@ class RequestApi(object):
         pass
 
 
-    # def get_result(self):
-    #
-    #     uploadresp = self.upload()
-    #     orderId = uploadresp['content']['orderId']
-    #     param_dict = {}
-    #     param_dict['appId'] = self.appid
-    #     param_dict['signa'] = self.signa
-    #     param_dict['ts'] = self.ts
-    #     param_dict['orderId'] = orderId
-    #     param_dict['resultType'] = "transfer,predict"
-    #     print("")
-    #     print("查询部分：")
-    #     print("get result参数：", param_dict)
-    #     status = 3
-    #     # 建议使用回调的方式查询结果，查询接口有请求频率限制
-    #     while status == 3:
-    #         response = requests.post(url=lfasr_host + api_get_result + "?" + urllib.parse.urlencode(param_dict),
-    #                                  headers={"Content-type": "application/json"})
-    #         # print("get_result_url:",response.request.url)
-    #         print("查询中······")
-    #         result = json.loads(response.text)
-    #         status = result['content']['orderInfo']['status']
-    #         time.sleep(5)
-    #     print("get_result resp:", result)
-    #     return result
-
-
+    def listen_asr(self, total_nums):
+        complete_nums = read_complete_list()
+        count = 0
+        while complete_nums != total_nums:
+            time.sleep(6)
+            complete_nums = read_complete_list()
+            logger.info(
+                "总共需要转换的数据量{} , 已经转换完成的数据量{}， 比例{}".format(total_nums, len(complete_nums),
+                                                           len(complete_nums) / total_nums))
+            count+=1
+            if count > 1000:
+                logger.info("ASR全量数据获取失败，获取数据比例{}".format(len(complete_nums) / total_nums))
+                break
+        logger.info("*******************************ASR DataDownload Finish******************************************")
 
 
 # 输入讯飞开放平台的appid，secret_key和待转写的文件路径

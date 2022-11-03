@@ -28,8 +28,7 @@ def douyin_pipeline(env):
         upload_list = asr_request.upload_data()
 
         # 等待接收ASR返回，并存储到到对应位置
-
-        logger.info("*******************************ASR DataDownload Finish******************************************")
+        asr_request.listen_asr(len(upload_list))
 
         # todo ZMY其他逻辑
 

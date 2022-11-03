@@ -13,8 +13,7 @@ app = FastAPI()
 
 """
 (1) /xunfei_lfasr 提供给讯飞当作回调端口，接收已经完成的ASR数据并存储，
-(2) /xunfei_lfasr_listener 监听已经完成的ASR数据
-(3) /health 检查ASR接收服务是否正常
+(2) /health 检查ASR接收服务是否正常
 """
 
 
@@ -29,12 +28,6 @@ def xunfei_lfasr(orderId, status, resultType=None):
     else:
         logger.info("ASR数据接收错误")
     return {"status": "OK"}
-
-@app.get("/xunfei_lfasr_listener")
-def asr_listener(total_nums):
-    complete_nums = read_complete_list()
-    logger.info("总共数据量{}".format(len(complete_nums)/total_nums))
-
 
 
 @app.get("/health")
