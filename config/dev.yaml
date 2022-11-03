@@ -9,7 +9,8 @@ Log_Path:
   sever_log_path: "log/sever.log"
 Douyin_Updata:
   ftp_file_path: 'ftp'
-  dst_file_path: 'test/local/'
+  localMP4file_path: 'data/ASR_data/DouyinMP4/'
+  localASRfile_path: 'data/ASR_data/DouyinTxt/'
 HOT_Trends:
   # 本地热榜数据
   hottrends_local_path: './data/hot_tracking/douyin_hot_top_1024.json'

@@ -19,12 +19,16 @@ app = FastAPI()
 
 @app.get("/xunfei_lfasr")
 def xunfei_lfasr(orderId, status, resultType=None):
-    #
+    """
+    (1) 下载ASR数据
+    (2) 数据后处理
+    (3) 数据保存
+    """
     if status == "1":
         asr_download = RequestApi(config)
         result = asr_download.download(orderId)
-        asr_download.post_process(result)
-        write_complete_list(orderId)
+        asr_txt = asr_download.post_process(result)
+        asr_download.save_asrdata(asr_txt)
     else:
         logger.info("ASR数据接收错误")
     return {"status": "OK"}

@@ -13,8 +13,7 @@ import base64
 import hashlib
 import requests
 from __init__ import *
-from utils.utils import read_complete_list
-
+from utils.utils import write_complete_list, read_complete_list
 
 class RequestApi(object):
     def __init__(self, config):
@@ -32,6 +31,8 @@ class RequestApi(object):
         # 上传文件路径
         self.upload_file_path_ZMY = self.get_upload_file_path(config["HOT_Trends"]["dst_file_path"])
         self.upload_file_path_JMZ = self.get_upload_file_path(config["HOT_Trends"]["crawler_video_local_path"])
+        # ASR最终存储路径
+        self.fianalasr_savepath = config["Douyin_Updata"]["localASRfile_path"]
         self.ts = str(int(time.time()))
         self.signa = self.get_signa()
 
@@ -109,27 +110,28 @@ class RequestApi(object):
         logger.info("get result参数：", param_dict)
         return param_dict
 
+
     def download(self, uploadresp):
         # 下载数据
         param_dict = self.get_upload_file_path(uploadresp)
         response = requests.post(url=self.lfasr_host + self.api_get_result + "?" + urllib.parse.urlencode(param_dict),
                                  headers={"Content-type": "application/json"})
-        logger.info("get_result_url:",response.request.url)
+        logger.info("获取ASR数据 {} 成功:", response.request.url)
         result = json.loads(response.text)
-        logger.info("get_result resp:", result)
         return result
+
 
     def upload_data(self):
         """
         （1） 上传数据
         """
-        orderId_list = []
+        self.orderId_dic = {}
         path = self.get_upload_file_path(self.upload_file_path_ZMY) + self.get_upload_file_path(self.upload_file_path_JMZ)
         for item in path:
             uploadresp = self.upload(item)
             orderId = uploadresp['content']['orderId']
-            orderId_list.append(orderId)
-        return orderId_list
+            self.orderId_dic[orderId] = item.split("/")
+        return self.orderId_dic
 
 
     def post_process(self):
@@ -137,6 +139,16 @@ class RequestApi(object):
 
         pass
 
+
+    def save_asrdata(self, orderId, asr_txt):
+        # 存储ASR数据
+        filename = self.orderId_dic[orderId]
+        save_path = self.fianalasr_savepath + "/" + filename
+        with open(save_path, "w", encoding="utf-8") as w:
+            w.write(asr_txt)
+            w.close()
+        logger.info("文件 {} 存储完毕。")
+        write_complete_list(orderId)
 
     def listen_asr(self, total_nums):
         complete_nums = read_complete_list()

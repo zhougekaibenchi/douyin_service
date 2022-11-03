@@ -63,10 +63,10 @@ class FTP_Updata(FTP_OP):
         """
         日常抖音账号的数据更新
         :param ftp_file_path: ftp下载文件路径
-        :param dst_file_path: 本地存放路径
+        :param localMP4file_path: 本地存放路径
         """
         self.ftp_file_path = config["Douyin_Updata"]["ftp_file_path"]
-        self.dst_file_path = config["Douyin_Updata"]["dst_file_path"]
+        self.localMP4file_path = config["Douyin_Updata"]["localMP4file_path"]
         super(FTP_Updata, self).__init__(config)
 
     def download_file(self, local_path=None, sever_path=None):
@@ -78,7 +78,7 @@ class FTP_Updata(FTP_OP):
         for file_name in file_list:
             ftp_file = os.path.join(self.ftp_file_path, file_name)
             logger.info("服务端ftp_file读取路径: " + ftp_file)
-            local_file = os.path.join(self.dst_file_path, file_name)
+            local_file = os.path.join(self.localMP4file_path, file_name)
             logger.info("客户端local_file存储路径: " + local_file)
             f = open(local_file, "wb")
             self.ftp.retrbinary('RETR %s'%ftp_file, f.write, self.buffer_size)
