@@ -13,12 +13,8 @@ import base64
 import hashlib
 import requests
 from __init__ import *
-from utils.utils import write_complete_list, read_complete_list
+from utils.utils import read_complete_list
 
-# lfasr_host = 'https://raasr.xfyun.cn/v2/api'
-# # 请求的接口名
-# api_upload = '/upload'
-# api_get_result = '/getResult'
 
 class RequestApi(object):
     def __init__(self, config):
@@ -160,8 +156,8 @@ class RequestApi(object):
 
 # 输入讯飞开放平台的appid，secret_key和待转写的文件路径
 if __name__ == '__main__':
-    api = RequestApi(appid="xxxxx",
-                     secret_key="xxxxx",
-                     upload_file_path=r"audio/lfasr_涉政.wav")
-
-    api.get_result()
+    from utils.read_config import Env
+    config = Env.get("dev")
+    asr_request = RequestApi(config)
+    upload_list = asr_request.upload_data()
+    asr_request.listen_asr(len(upload_list))

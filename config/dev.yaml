@@ -1,5 +1,5 @@
 FTP_Sever:
-  host: '14.116.177.18'
+  host: '0.0.0.0' #'14.116.177.18'
   username: 'username1'
   password: '1PASSWORD'
   buffer_size: 204800
