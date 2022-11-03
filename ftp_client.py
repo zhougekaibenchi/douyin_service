@@ -65,7 +65,7 @@ class FTP_Updata(FTP_OP):
         :param ftp_file_path: ftp下载文件路径
         :param localMP4file_path: 本地存放路径
         """
-        self.ftp_file_path = config["Douyin_Updata"]["ftp_file_path"]
+        self.ftp_file_path = config["Douyin_Updata"]["ftp_file_path"] # todo 2022-10-31()/ZMY/mp3_file   2022-10-31()/ZMY/hudao_douyin.json
         self.localMP4file_path = config["Douyin_Updata"]["localMP4file_path"]
         super(FTP_Updata, self).__init__(config)
 
@@ -117,19 +117,19 @@ class FTP_HOTTrends(FTP_OP):
     """
     def __init__(self, config):
         self.hottrends_local_path = config["HOT_Trends"]["hottrends_local_path"]
-        self.hottrends_sever_path = config["HOT_Trends"]["hottrends_sever_path"]
+        self.hottrends_sever_path = config["HOT_Trends"]["hottrends_sever_path"] # 2022-11-02()\JMZ\deal_douyin_search.json
 
         self.searchitem_local_path = config["HOT_Trends"]["searchitem_local_path"]
-        self.searchitem_sever_path = config["HOT_Trends"]["searchitem_sever_path"]
+        self.searchitem_sever_path = config["HOT_Trends"]["searchitem_sever_path"] # 2022-11-02()\JMZ\xxx.json
 
         self.crawler_local_path = config["HOT_Trends"]["crawler_local_path"]
-        self.crawler_sever_path = config["HOT_Trends"]["crawler_sever_path"]
+        self.crawler_sever_path = config["HOT_Trends"]["crawler_sever_path"] # 2022-11-02()\JMZ\douyin_keyword_search.json
 
         self.crawlervideo_list_local_path = config["HOT_Trends"]["crawlervideo_list_local_path"]
-        self.crawlervideo_list_sever_path = config["HOT_Trends"]["crawlervideo_list_sever_path"]
+        self.crawlervideo_list_sever_path = config["HOT_Trends"]["crawlervideo_list_sever_path"] # 2022-11-02()\jmz\xxx_2.json
 
         self.crawler_video_local_path = config["HOT_Trends"]["crawler_video_local_path"]
-        self.crawler_video_sever_path = config["HOT_Trends"]["crawler_video_sever_path"]
+        self.crawler_video_sever_path = config["HOT_Trends"]["crawler_video_sever_path"] # 2022-11-02()\jmz\mp3_file
 
         self.ftp = self.ftp_connect()
         super(FTP_HOTTrends, self).__init__(config)

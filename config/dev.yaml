@@ -8,7 +8,7 @@ Log_Path:
   cron_log_path: "log/cron.log"
   sever_log_path: "log/sever.log"
 Douyin_Updata:
-  ftp_file_path: 'ftp'
+  ftp_file_path: 'f'
   localMP4file_path: 'data/ASR_data/DouyinMP4/'
   localASRfile_path: 'data/ASR_data/DouyinTxt/'
 HOT_Trends:
