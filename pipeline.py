@@ -18,14 +18,18 @@ def douyin_pipeline(env):
         # 抖音账号数据更新
         ftp_update = FTP_Updata(config)
         ftp_update.download_file()
+
         # 美芝老师热点数据更新
         ftp_hottrends = FTP_HOTTrends(config)
         ftp_hottrends.data_collect()
+
         # 数据ASR输出
         asr_request = RequestApi(config)
         upload_list = asr_request.upload_data()
+
         # 等待接收ASR返回，并存储到到对应位置
 
+        logger.info("*******************************ASR DataDownload Finish******************************************")
 
         # todo ZMY其他逻辑
 
@@ -36,7 +40,7 @@ def douyin_pipeline(env):
 
     del ftp_update, ftp_hottrends
     gc.collect()
-    logger.info("Pipeline Finish")
+    logger.info("******************************Pipeline Finish****************************************")
 
 if __name__ == "__main__":
     env = "dev"

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-config='test'
+environment='test'
 cron_log="log/cron.log"
 sever_log="log/sever.log"
 
@@ -21,12 +21,12 @@ echo "(2) Please wait restart..................."
 #source /mengyuan
 #cd /douyin/pipeline || exit
 echo "Run sever job................"
-nohup python -m sever.py $config >> $sever_log 2>&1 &
+nohup python -m sever.py $environment >> $sever_log 2>&1 &
 echo "Restart cron job................"
-nohup python -m cron.py $config >> $cron_log 2>&1 &
+nohup python -m cron.py $environment >> $cron_log 2>&1 &
 echo "restart successfully!"
 
 echo "(3) Run pipeline for check.........."
-nohup python -m pipeline.py $config >> $cron_log 2>&1 &
+nohup python -m pipeline.py $environment >> $cron_log 2>&1 &
 
 

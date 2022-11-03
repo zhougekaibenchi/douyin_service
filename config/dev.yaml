@@ -4,6 +4,9 @@ FTP_Sever:
   password: '1PASSWORD'
   buffer_size: 204800
   port: '21'
+Log_Path:
+  cron_log_path: "log/cron.log"
+  sever_log_path: "log/sever.log"
 Douyin_Updata:
   ftp_file_path: 'ftp'
   dst_file_path: 'test/local/'

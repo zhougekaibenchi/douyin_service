@@ -85,6 +85,7 @@ class FTP_Updata(FTP_OP):
             f.close()
             logger.info("文件下载成功：" + file_name)
         logger.info(time.strftime('%Y%m%d', time.localtime(time.time()))+"ftp数据下载完毕")
+        logger.info("******************************DouyinData ZMY Get Finish*****************************************")
         self.ftp.quit()
 
     def upload_file(self, local_path=None, sever_path=None):
@@ -192,6 +193,7 @@ class FTP_HOTTrends(FTP_OP):
         self.download_file(self.crawler_video_local_path, self.crawler_video_sever_path)     # 从爬虫端下载对应视频文案
         logger.info(time.strftime('%Y%m%d', time.localtime(time.time()))+"热点数据下载完毕")   #
         self.ftp.quit()
+        logger.info("******************************DouyinData JMZ Get Finish*****************************************")
 
 
 if __name__ == '__main__':

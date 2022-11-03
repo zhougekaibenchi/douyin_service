@@ -1,2 +1,15 @@
-D:\ProgramData\Anaconda3\python.exe: Error while finding module specification for 'health.py' (ModuleNotFoundError: __path__ attribute not found on 'health' while trying to find 'health.py')
-D:\ProgramData\Anaconda3\python.exe: Error while finding module specification for 'health.py' (ModuleNotFoundError: __path__ attribute not found on 'health' while trying to find 'health.py')
+2022-11-02 13:51:29,451 - INFO - server.py:57 - <module>() - 服务ASR数据接收服务启动..........
+2022-11-02 13:51:29,454 - INFO - server.py:58 - <module>() - 服务启动ip：0.0.0.0:8001
+2022-11-02 13:51:29,462 - DEBUG - proactor_events.py:623 - __init__() - Using proactor: IocpProactor
+2022-11-02 14:07:17,965 - INFO - server.py:57 - <module>() - 服务ASR数据接收服务启动..........
+2022-11-02 14:07:17,965 - INFO - server.py:58 - <module>() - 服务启动ip：0.0.0.0:8001
+2022-11-02 14:07:17,971 - DEBUG - proactor_events.py:623 - __init__() - Using proactor: IocpProactor
+2022-11-02 14:12:49,648 - INFO - server.py:57 - <module>() - 服务ASR数据接收服务启动..........
+2022-11-02 14:12:49,648 - INFO - server.py:58 - <module>() - 服务启动ip：0.0.0.0:8001
+2022-11-02 14:12:49,651 - DEBUG - proactor_events.py:623 - __init__() - Using proactor: IocpProactor
+2022-11-02 14:12:56,736 - INFO - server.py:57 - <module>() - 服务ASR数据接收服务启动..........
+2022-11-02 14:12:56,737 - INFO - server.py:58 - <module>() - 服务启动ip：0.0.0.0:8001
+2022-11-02 14:12:56,743 - DEBUG - proactor_events.py:623 - __init__() - Using proactor: IocpProactor
+2022-11-02 14:13:36,564 - INFO - server.py:57 - <module>() - 服务ASR数据接收服务启动..........
+2022-11-02 14:13:36,564 - INFO - server.py:58 - <module>() - 服务启动ip：0.0.0.0:8001
+2022-11-02 14:13:36,571 - DEBUG - proactor_events.py:623 - __init__() - Using proactor: IocpProactor

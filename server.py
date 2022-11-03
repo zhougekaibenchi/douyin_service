@@ -4,11 +4,11 @@
 # @Author  : stce
 
 import uvicorn
-import os
-import sys
-import logging.handlers
+from utils.utils import write_complete_list, read_complete_list
+from utils.read_config import Env
+from asr.xunfei_asr import RequestApi
 from fastapi import FastAPI
-from __init__ import *
+from utils.utils import server_log
 app = FastAPI()
 
 """
@@ -17,21 +17,23 @@ app = FastAPI()
 (3) /health 检查ASR接收服务是否正常
 """
 
-logger = logging.getLogger()
-logger.setLevel(logging.DEBUG)
-
 
 @app.get("/xunfei_lfasr")
-def xunfei_lfasr():
-    # todo
-
-
-
+def xunfei_lfasr(orderId, status, resultType=None):
+    #
+    if status == "1":
+        asr_download = RequestApi(config)
+        result = asr_download.download(orderId)
+        asr_download.post_process(result)
+        write_complete_list(orderId)
+    else:
+        logger.info("ASR数据接收错误")
     return {"status": "OK"}
 
 @app.get("/xunfei_lfasr_listener")
-def asr_listener():
-    pass
+def asr_listener(total_nums):
+    complete_nums = read_complete_list()
+    logger.info("总共数据量{}".format(len(complete_nums)/total_nums))
 
 
 
@@ -40,18 +42,10 @@ def health():
     return {"status": "UP"}
 
 
-
-
 if __name__ == '__main__':
-    filename = sys.argv[1]
-    os.makedirs(os.path.dirname(filename), exist_ok=True)
-    file_handler = logging.handlers.TimedRotatingFileHandler(filename, 'D', 1, 7, encoding='utf8')
-    file_handler.setLevel(logging.DEBUG)
-    formatter = logging.Formatter(
-        '%(asctime)s - %(levelname)s - %(filename)s:%(lineno)s - %(funcName)s() - %(message)s'
-    )
-    file_handler.setFormatter(formatter)
-    logger.addHandler(file_handler)
+    env = "dev" #sys.argv[1]
+    logger = server_log(env)
     logger.info("服务ASR数据接收服务启动..........")
     logger.info("服务启动ip：0.0.0.0:8001")
-    uvicorn.run(app, host='0.0.0.0', port=8001)
+    config = Env.get(env)
+    uvicorn.run(app, host='127.0.0.1', port=8001)
