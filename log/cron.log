@@ -184,3 +184,28 @@
 2022-11-07 16:22:30,984 - DEBUG - __init__.py:166 - initialize() - Prefix dict has been built successfully.
 2022-11-07 16:22:35,042 - INFO - read_config.py:13 - get() - 读取配置文件
 2022-11-07 16:22:38,918 - INFO - ftp_client.py:34 - ftp_connect() - 220 pyftpdlib 1.5.7 ready.
+2022-11-07 16:30:50,642 - DEBUG - __init__.py:113 - initialize() - Building prefix dict from the default dictionary ...
+2022-11-07 16:30:50,645 - DEBUG - __init__.py:132 - initialize() - Loading model from cache C:\Users\stce\AppData\Local\Temp\jieba.cache
+2022-11-07 16:30:51,543 - DEBUG - __init__.py:164 - initialize() - Loading model cost 0.901 seconds.
+2022-11-07 16:30:51,543 - DEBUG - __init__.py:166 - initialize() - Prefix dict has been built successfully.
+2022-11-07 16:30:55,767 - INFO - read_config.py:13 - get() - 读取配置文件
+2022-11-07 16:31:01,253 - INFO - ftp_client.py:34 - ftp_connect() - 220 pyftpdlib 1.5.7 ready.
+2022-11-07 16:31:28,005 - DEBUG - __init__.py:113 - initialize() - Building prefix dict from the default dictionary ...
+2022-11-07 16:31:28,008 - DEBUG - __init__.py:132 - initialize() - Loading model from cache C:\Users\stce\AppData\Local\Temp\jieba.cache
+2022-11-07 16:31:28,741 - DEBUG - __init__.py:164 - initialize() - Loading model cost 0.736 seconds.
+2022-11-07 16:31:28,741 - DEBUG - __init__.py:166 - initialize() - Prefix dict has been built successfully.
+2022-11-07 16:31:32,822 - INFO - read_config.py:13 - get() - 读取配置文件
+2022-11-07 16:31:36,332 - INFO - ftp_client.py:34 - ftp_connect() - 220 pyftpdlib 1.5.7 ready.
+2022-11-07 16:32:10,334 - DEBUG - __init__.py:113 - initialize() - Building prefix dict from the default dictionary ...
+2022-11-07 16:32:10,336 - DEBUG - __init__.py:132 - initialize() - Loading model from cache C:\Users\stce\AppData\Local\Temp\jieba.cache
+2022-11-07 16:32:10,932 - DEBUG - __init__.py:164 - initialize() - Loading model cost 0.598 seconds.
+2022-11-07 16:32:10,932 - DEBUG - __init__.py:166 - initialize() - Prefix dict has been built successfully.
+2022-11-07 16:32:14,972 - INFO - read_config.py:13 - get() - 读取配置文件
+2022-11-07 16:32:20,622 - INFO - ftp_client.py:34 - ftp_connect() - 220 pyftpdlib 1.5.7 ready.
+2022-11-07 16:49:21,551 - DEBUG - __init__.py:113 - initialize() - Building prefix dict from the default dictionary ...
+2022-11-07 16:49:21,554 - DEBUG - __init__.py:132 - initialize() - Loading model from cache C:\Users\stce\AppData\Local\Temp\jieba.cache
+2022-11-07 16:49:22,472 - DEBUG - __init__.py:164 - initialize() - Loading model cost 0.920 seconds.
+2022-11-07 16:49:22,472 - DEBUG - __init__.py:166 - initialize() - Prefix dict has been built successfully.
+2022-11-07 16:49:27,213 - INFO - read_config.py:13 - get() - 读取配置文件
+2022-11-07 16:49:31,346 - INFO - ftp_client.py:34 - ftp_connect() - 220 pyftpdlib 1.5.7 ready.
+2022-11-07 16:49:37,601 - INFO - ftp_client.py:156 - download_file() - ftp数据传输开始

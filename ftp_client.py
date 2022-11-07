@@ -30,11 +30,9 @@ class FTP_OP(object):
         ftp.set_debuglevel(1) # 调试模式设置
         ftp.connect(host=self.host, port=self.port)
         ftp.login(self.username, self.password)
-        ftp.set_pasv(False)  #主动模式，被动模式调整
+        ftp.set_pasv(True)  #主动模式，被动模式调整
         logger.info(ftp.getwelcome())
-        ftp.cwd("hot_tracking/")
-        RemoteNames = ftp.nlst()
-        print(RemoteNames)
+        ftp.cwd("2022-11-07")
         return ftp
 
     def download_file(self, local_path, sever_path):
@@ -60,6 +58,15 @@ class FTP_OP(object):
             logger.info(real_url)
         return filename
 
+
+
+
+
+
+
+
+
+# *************************************************  ZMY  **************************************************************
 
 class FTP_Updata(FTP_OP):
 
@@ -114,6 +121,17 @@ class FTP_Updata(FTP_OP):
         self.ftp.quit()
 
 
+
+
+
+
+
+
+
+
+
+
+# ****************************************************  JMZ  ***********************************************************
 class FTP_HOTTrends(FTP_OP):
     """
     美芝老师热点数据更新
@@ -153,10 +171,10 @@ class FTP_HOTTrends(FTP_OP):
 
     def download_file(self, local_path=None, sever_path=None):
         """
-        从ftp服务端，下载日常抖音数据增量文件
+        批量下载抖音数据
         """
+        file_list = self.ftp.nlst()
         logger.info("ftp数据传输开始")
-        file_list = self.ftp.nlst(local_path)
         logger.info(file_list)
         for file_name in file_list:
             ftp_file = os.path.join(local_path, file_name)
@@ -168,6 +186,13 @@ class FTP_HOTTrends(FTP_OP):
             f.close()
             logger.info("文件下载成功：" + file_name)
         logger.info(time.strftime('%Y%m%d', time.localtime(time.time()))+"ftp数据下载完毕")
+
+    def download_single_file(self, local_path=None, sever_path=None):
+        """
+        单个下载抖音数据
+        """
+        f = open(self.local_ftpfile_path, "wb")
+        self.ftp.retrbinary('RETR %s' % self.ftp_file_path, f.write, self.buffer_size)
 
     def upload_file(self, local_path=None, sever_path=None):
 
