@@ -14,7 +14,7 @@ from pyftpdlib.servers import FTPServer
 # 实例化DummyAuthorizer来创建ftp用户
 authorizer = DummyAuthorizer()
 # 参数：用户名，密码，目录，权限
-authorizer.add_user('username1', '1PASSWORD', r'D:/抖音数据传输分析/test', perm='elradfmwMT')
+authorizer.add_user('username1', '1PASSWORD', r'D:/抖音数据传输分析/douyin_service/douyin_service/data', perm='elradfmwMT')
 handler = FTPHandler
 handler.authorizer = authorizer
 # 参数：IP，端口，handler

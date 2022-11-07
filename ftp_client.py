@@ -7,6 +7,7 @@ from __init__ import *
 from ftplib import FTP
 import os
 import time
+import datetime
 from hot_tracking import hot_keyword_tracking, recall_process, data_parser
 from hot_tracking.config import Config
 
@@ -27,10 +28,13 @@ class FTP_OP(object):
     def ftp_connect(self):
         ftp = FTP()
         ftp.set_debuglevel(1) # 调试模式设置
-        ftp.connect(host='127.0.0.1', port=self.port)
+        ftp.connect(host=self.host, port=self.port)
         ftp.login(self.username, self.password)
         ftp.set_pasv(False)  #主动模式，被动模式调整
         logger.info(ftp.getwelcome())
+        ftp.cwd("hot_tracking/")
+        RemoteNames = ftp.nlst()
+        print(RemoteNames)
         return ftp
 
     def download_file(self, local_path, sever_path):
@@ -62,23 +66,32 @@ class FTP_Updata(FTP_OP):
     def __init__(self, config):
         """
         日常抖音账号的数据更新
-        :param ftp_file_path: ftp下载文件路径
+        :param ftp_file_path: ftp下载文本文件爬虫数据
+        :param severMP3file_path: ftp下载服务端爬虫数据
         :param localMP4file_path: 本地存放路径
         """
-        self.ftp_file_path = config["Douyin_Updata"]["ftp_file_path"] # todo 2022-10-31()/ZMY/mp3_file   2022-10-31()/ZMY/hudao_douyin.json
-        self.localMP4file_path = config["Douyin_Updata"]["localMP4file_path"]
+        self.current_time = datetime.date.today()
+        self.ftp_file_path = self.current_time + config["Douyin_Updata"]["ftp_file_path"]
+        self.local_ftpfile_path = self.current_time + config["Douyin_Updata"]["local_ftpfile_path"]
+        self.severMP3file_path = self.current_time + config["Douyin_Updata"]["severMP3file_path"]
+        self.localMP3file_path = config["Douyin_Updata"]["localMP4file_path"]
         super(FTP_Updata, self).__init__(config)
 
     def download_file(self, local_path=None, sever_path=None):
 
         logger.info("ftp数据传输开始")
         self.ftp = self.ftp_connect()
-        file_list = self.ftp.nlst(self.ftp_file_path)
+        # (1) 传输文本文件
+        f = open(self.local_ftpfile_path, "wb")
+        self.ftp.retrbinary('RETR %s' % self.ftp_file_path, f.write, self.buffer_size)
+
+        # (2) 传输音频文件
+        file_list = self.ftp.nlst(self.severMP3file_path)
         logger.info(file_list)
         for file_name in file_list:
-            ftp_file = os.path.join(self.ftp_file_path, file_name)
+            ftp_file = os.path.join(self.severMP3file_path, file_name)
             logger.info("服务端ftp_file读取路径: " + ftp_file)
-            local_file = os.path.join(self.localMP4file_path, file_name)
+            local_file = os.path.join(self.localMP3file_path, file_name)
             logger.info("客户端local_file存储路径: " + local_file)
             f = open(local_file, "wb")
             self.ftp.retrbinary('RETR %s'%ftp_file, f.write, self.buffer_size)
@@ -116,23 +129,27 @@ class FTP_HOTTrends(FTP_OP):
     :param crawler_video_sever_path: 下载ftp视频数据地址
     """
     def __init__(self, config):
-        self.hottrends_local_path = config["HOT_Trends"]["hottrends_local_path"]
-        self.hottrends_sever_path = config["HOT_Trends"]["hottrends_sever_path"] # 2022-11-02()\JMZ\deal_douyin_search.json
-
-        self.searchitem_local_path = config["HOT_Trends"]["searchitem_local_path"]
-        self.searchitem_sever_path = config["HOT_Trends"]["searchitem_sever_path"] # 2022-11-02()\JMZ\xxx.json
-
-        self.crawler_local_path = config["HOT_Trends"]["crawler_local_path"]
-        self.crawler_sever_path = config["HOT_Trends"]["crawler_sever_path"] # 2022-11-02()\JMZ\douyin_keyword_search.json
-
-        self.crawlervideo_list_local_path = config["HOT_Trends"]["crawlervideo_list_local_path"]
-        self.crawlervideo_list_sever_path = config["HOT_Trends"]["crawlervideo_list_sever_path"] # 2022-11-02()\jmz\xxx_2.json
-
-        self.crawler_video_local_path = config["HOT_Trends"]["crawler_video_local_path"]
-        self.crawler_video_sever_path = config["HOT_Trends"]["crawler_video_sever_path"] # 2022-11-02()\jmz\mp3_file
-
-        self.ftp = self.ftp_connect()
+        self.current_time = str(datetime.date.today())
+        self.base_path = config["HOT_Trends"]["base_path"]
+        self.base_asr_path = config["Douyin_Updata"]["base_asr_path"]
+        # 下载本地热榜数据
+        self.hottrends_local_path = self.base_path + self.current_time + config["HOT_Trends"]["hottrends_local_path"]
+        self.hottrends_sever_path = self.current_time + config["HOT_Trends"]["hottrends_sever_path"]
+        # 确定搜索词
+        self.searchitem_local_path = self.base_path + self.current_time + config["HOT_Trends"]["searchitem_local_path"]
+        self.searchitem_sever_path = self.current_time + config["HOT_Trends"]["searchitem_sever_path"]
+        # 下载视频文本数据
+        self.crawler_local_path = self.base_path + self.current_time + config["HOT_Trends"]["crawler_local_path"]
+        self.crawler_sever_path = self.current_time + config["HOT_Trends"]["crawler_sever_path"]
+        # 确定需要下载的视频列表
+        self.crawlervideo_list_local_path = self.base_path + self.current_time + config["HOT_Trends"]["crawlervideo_list_local_path"]
+        self.crawlervideo_list_sever_path = self.current_time + config["HOT_Trends"]["crawlervideo_list_sever_path"]
+        # 将音频数据拷贝到本地服务器
+        self.crawler_video_local_path = self.base_asr_path + self.current_time + config["HOT_Trends"]["crawler_video_local_path"]
+        self.crawler_video_sever_path = self.current_time + config["HOT_Trends"]["crawler_video_sever_path"]
         super(FTP_HOTTrends, self).__init__(config)
+        self.ftp = self.ftp_connect()
+
 
     def download_file(self, local_path=None, sever_path=None):
         """

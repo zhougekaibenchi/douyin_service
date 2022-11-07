@@ -1,5 +1,5 @@
 import pandas as pd
-import distance
+# import distance
 from collections import Counter
 import copy
 from .termsRecognition import TermsRecognition

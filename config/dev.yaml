@@ -1,5 +1,5 @@
 FTP_Sever:
-  host: '0.0.0.0' #'14.116.177.18'
+  host: '14.116.177.18'# 127.0.0.1   14.116.177.18
   username: 'username1'
   password: '1PASSWORD'
   buffer_size: 204800
@@ -8,25 +8,32 @@ Log_Path:
   cron_log_path: "log/cron.log"
   sever_log_path: "log/sever.log"
 Douyin_Updata:
-  ftp_file_path: 'f'
-  localMP4file_path: 'data/ASR_data/DouyinMP4/'
-  localASRfile_path: 'data/ASR_data/DouyinTxt/'
+  base_asr_path: 'result/asr_data'
+  # 爬虫文本数据
+  ftp_file_path: 'ZMY/douyin.json'
+  local_ftpfile_path: 'result/douyin_update'
+  # 爬虫音频数据
+  severMP3file_path: 'ZMY/mp3_file'
+  localMP3file_path: 'ZMY/audio'
+  # 准换后ASR数据
+  localASRfile_path: 'ZMY/asr'
 HOT_Trends:
+  base_path: 'result/hot_tracking/'
   # 本地热榜数据
-  hottrends_local_path: './data/hot_tracking/douyin_hot_top_1024.json'
-  hottrends_sever_path: ''
+  hottrends_local_path: 'douyin_hot_top_keytops.json'
+  hottrends_sever_path: '/JMZ/deal_douyin_search.json'
   # 本地热词搜索视频
-  searchitem_local_path: './data/hot_tracking/deal_douyin_search_1024.json'
-  searchitem_sever_path: ''
+  searchitem_local_path: '/deal_douyin_search.json'
+  searchitem_sever_path: '/JMZ/search_keywords.json'
   # 本地热榜搜索词数据
-  crawler_local_path: './result/hot_tracking/douyin_hot_tag_keywords_1024.xls'
-  crawler_sever_path: ''
+  crawler_local_path: 'douyin_hot_tag_keywords.xls'
+  crawler_sever_path: '/JMZ/douyin_keyword_search.json'
   # 本地热搜词视频数据
-  crawlervideo_list_local_path: './data/hot_tracking/result_hot_insurance_data_1024.json'
-  crawlervideo_list_sever_path: ''
-  # 本地视频文案数据
-  crawler_video_local_path: './result/hot_tracking/video_content'
-  crawler_video_sever_path: ''
+  crawlervideo_list_local_path: 'result_hot_insurance_data.json'
+  crawlervideo_list_sever_path: '/JMZ/video.json'
+  # 本地视频数据
+  crawler_video_local_path: 'JMZ/audio'
+  crawler_video_sever_path: '/JMZ/mp3_file'
 XunFei_ASR:
   Long_Form_ASR:
     appid: ""
