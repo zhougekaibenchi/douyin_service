@@ -8,15 +8,16 @@ Log_Path:
   cron_log_path: "log/cron.log"
   sever_log_path: "log/sever.log"
 Douyin_Updata:
+  # 存储ASR数据的路径
   base_asr_path: 'result/asr_data'
   # 爬虫文本数据
-  ftp_file_path: 'ZMY/douyin.json'
-  local_ftpfile_path: 'result/douyin_update'
+  server_txt_path: '/ZMY/douyin.json'
+  local_txt_path: '/result/douyin_update'
   # 爬虫音频数据
-  severMP3file_path: 'ZMY/mp3_file'
-  localMP3file_path: 'ZMY/audio'
+  severMP3file_path: '/ZMY/mp3_file'
+  localMP3file_path: '/ZMY/audio'
   # 准换后ASR数据
-  localASRfile_path: 'ZMY/asr'
+  localASRfile_path: '/ZMY/asr'
 HOT_Trends:
   base_path: 'result/hot_tracking/'
   # 本地热榜数据

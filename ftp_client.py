@@ -19,6 +19,7 @@ class FTP_OP(object):
         """
         :param config: 配置文件
         """
+        self.current_time = str(datetime.date.today())
         self.host = config["FTP_Sever"]["host"]
         self.username = config["FTP_Sever"]["username"]
         self.password = config["FTP_Sever"]["password"]
@@ -32,7 +33,7 @@ class FTP_OP(object):
         ftp.login(self.username, self.password)
         ftp.set_pasv(True)  #主动模式，被动模式调整
         logger.info(ftp.getwelcome())
-        ftp.cwd("2022-11-07")
+        ftp.cwd(self.current_time)
         return ftp
 
     def download_file(self, local_path, sever_path):
@@ -59,13 +60,6 @@ class FTP_OP(object):
         return filename
 
 
-
-
-
-
-
-
-
 # *************************************************  ZMY  **************************************************************
 
 class FTP_Updata(FTP_OP):
@@ -77,20 +71,20 @@ class FTP_Updata(FTP_OP):
         :param severMP3file_path: ftp下载服务端爬虫数据
         :param localMP4file_path: 本地存放路径
         """
-        self.current_time = datetime.date.today()
-        self.ftp_file_path = self.current_time + config["Douyin_Updata"]["ftp_file_path"]
-        self.local_ftpfile_path = self.current_time + config["Douyin_Updata"]["local_ftpfile_path"]
-        self.severMP3file_path = self.current_time + config["Douyin_Updata"]["severMP3file_path"]
-        self.localMP3file_path = config["Douyin_Updata"]["localMP4file_path"]
         super(FTP_Updata, self).__init__(config)
+        self.server_txt_path = self.current_time + config["Douyin_Updata"]["server_txt_path"]
+        self.local_txt_path = self.current_time + config["Douyin_Updata"]["local_txt_path"]
+        self.severMP3file_path = self.current_time + config["Douyin_Updata"]["severMP3file_path"]
+        self.localMP3file_path = config["Douyin_Updata"]["localMP3file_path"]
 
-    def download_file(self, local_path=None, sever_path=None):
+
+    def download_file(self):
 
         logger.info("ftp数据传输开始")
         self.ftp = self.ftp_connect()
         # (1) 传输文本文件
-        f = open(self.local_ftpfile_path, "wb")
-        self.ftp.retrbinary('RETR %s' % self.ftp_file_path, f.write, self.buffer_size)
+        f = open(self.local_txt_path, "wb")
+        self.ftp.retrbinary('RETR %s' % self.server_txt_path, f.write, self.buffer_size)
 
         # (2) 传输音频文件
         file_list = self.ftp.nlst(self.severMP3file_path)
@@ -108,7 +102,7 @@ class FTP_Updata(FTP_OP):
         logger.info("******************************DouyinData ZMY Get Finish*****************************************")
         self.ftp.quit()
 
-    def upload_file(self, local_path=None, sever_path=None):
+    def upload_file(self):
 
         self.ftp = self.ftp_connect()
         file_list = self.scaner_file(sever_path)

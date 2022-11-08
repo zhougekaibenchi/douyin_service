@@ -209,3 +209,42 @@
 2022-11-07 16:49:27,213 - INFO - read_config.py:13 - get() - 读取配置文件
 2022-11-07 16:49:31,346 - INFO - ftp_client.py:34 - ftp_connect() - 220 pyftpdlib 1.5.7 ready.
 2022-11-07 16:49:37,601 - INFO - ftp_client.py:156 - download_file() - ftp数据传输开始
+2022-11-07 17:10:55,241 - DEBUG - __init__.py:113 - initialize() - Building prefix dict from the default dictionary ...
+2022-11-07 17:10:55,244 - DEBUG - __init__.py:132 - initialize() - Loading model from cache C:\Users\stce\AppData\Local\Temp\jieba.cache
+2022-11-07 17:10:56,158 - DEBUG - __init__.py:164 - initialize() - Loading model cost 0.917 seconds.
+2022-11-07 17:10:56,159 - DEBUG - __init__.py:166 - initialize() - Prefix dict has been built successfully.
+2022-11-07 17:11:00,898 - INFO - read_config.py:13 - get() - 读取配置文件
+2022-11-07 17:11:07,974 - ERROR - pipeline.py:37 - douyin_pipeline() - pipeline出现错误
+2022-11-07 17:12:17,904 - DEBUG - __init__.py:113 - initialize() - Building prefix dict from the default dictionary ...
+2022-11-07 17:12:17,907 - DEBUG - __init__.py:132 - initialize() - Loading model from cache C:\Users\stce\AppData\Local\Temp\jieba.cache
+2022-11-07 17:12:18,814 - DEBUG - __init__.py:164 - initialize() - Loading model cost 0.910 seconds.
+2022-11-07 17:12:18,814 - DEBUG - __init__.py:166 - initialize() - Prefix dict has been built successfully.
+2022-11-07 17:12:23,543 - INFO - read_config.py:13 - get() - 读取配置文件
+2022-11-07 17:12:30,125 - ERROR - pipeline.py:37 - douyin_pipeline() - pipeline出现错误
+2022-11-07 17:12:59,677 - DEBUG - __init__.py:113 - initialize() - Building prefix dict from the default dictionary ...
+2022-11-07 17:12:59,680 - DEBUG - __init__.py:132 - initialize() - Loading model from cache C:\Users\stce\AppData\Local\Temp\jieba.cache
+2022-11-07 17:13:00,599 - DEBUG - __init__.py:164 - initialize() - Loading model cost 0.922 seconds.
+2022-11-07 17:13:00,600 - DEBUG - __init__.py:166 - initialize() - Prefix dict has been built successfully.
+2022-11-07 17:13:05,329 - INFO - read_config.py:13 - get() - 读取配置文件
+2022-11-07 17:13:15,350 - INFO - ftp_client.py:89 - download_file() - ftp数据传输开始
+2022-11-07 17:19:48,993 - DEBUG - __init__.py:113 - initialize() - Building prefix dict from the default dictionary ...
+2022-11-07 17:19:48,996 - DEBUG - __init__.py:132 - initialize() - Loading model from cache C:\Users\stce\AppData\Local\Temp\jieba.cache
+2022-11-07 17:19:49,918 - DEBUG - __init__.py:164 - initialize() - Loading model cost 0.924 seconds.
+2022-11-07 17:19:49,918 - DEBUG - __init__.py:166 - initialize() - Prefix dict has been built successfully.
+2022-11-07 17:19:54,399 - INFO - read_config.py:13 - get() - 读取配置文件
+2022-11-07 17:19:59,379 - INFO - ftp_client.py:101 - download_file() - ftp数据传输开始
+2022-11-07 17:19:59,545 - INFO - ftp_client.py:93 - ftp_connect() - 220 pyftpdlib 1.5.7 ready.
+2022-11-07 17:22:15,022 - ERROR - pipeline.py:37 - douyin_pipeline() - pipeline出现错误
+2022-11-07 17:28:11,881 - DEBUG - __init__.py:113 - initialize() - Building prefix dict from the default dictionary ...
+2022-11-07 17:28:11,883 - DEBUG - __init__.py:132 - initialize() - Loading model from cache C:\Users\stce\AppData\Local\Temp\jieba.cache
+2022-11-07 17:28:12,820 - DEBUG - __init__.py:164 - initialize() - Loading model cost 0.939 seconds.
+2022-11-07 17:28:12,820 - DEBUG - __init__.py:166 - initialize() - Prefix dict has been built successfully.
+2022-11-07 17:28:17,308 - INFO - read_config.py:13 - get() - 读取配置文件
+2022-11-07 17:28:26,954 - ERROR - pipeline.py:37 - douyin_pipeline() - pipeline出现错误
+2022-11-07 17:33:24,395 - DEBUG - __init__.py:113 - initialize() - Building prefix dict from the default dictionary ...
+2022-11-07 17:33:24,397 - DEBUG - __init__.py:132 - initialize() - Loading model from cache C:\Users\stce\AppData\Local\Temp\jieba.cache
+2022-11-07 17:33:25,308 - DEBUG - __init__.py:164 - initialize() - Loading model cost 0.913 seconds.
+2022-11-07 17:33:25,308 - DEBUG - __init__.py:166 - initialize() - Prefix dict has been built successfully.
+2022-11-07 17:33:29,747 - INFO - read_config.py:13 - get() - 读取配置文件
+2022-11-07 17:34:29,071 - INFO - ftp_client.py:90 - download_file() - ftp数据传输开始
+2022-11-07 17:34:37,068 - INFO - ftp_client.py:34 - ftp_connect() - 220 pyftpdlib 1.5.7 ready.

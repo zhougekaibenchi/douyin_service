@@ -16,12 +16,12 @@ def douyin_pipeline(env):
     try:
         config = Env.get(env)
         # 抖音账号数据更新
-        # ftp_update = FTP_Updata(config)
-        # ftp_update.download_file()
+        ftp_update = FTP_Updata(config)
+        ftp_update.download_file()
 
         # 美芝老师热点数据更新
-        ftp_hottrends = FTP_HOTTrends(config)
-        ftp_hottrends.data_collect()
+        # ftp_hottrends = FTP_HOTTrends(config)
+        # ftp_hottrends.data_collect()
 
         # 数据ASR输出
         asr_request = RequestApi(config)
