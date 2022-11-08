@@ -34,6 +34,8 @@ class FTP_OP(object):
         ftp.set_pasv(True)  #主动模式，被动模式调整
         logger.info(ftp.getwelcome())
         ftp.cwd(self.current_time)
+        file_list = ftp.nlst()
+        print(file_list)
         return ftp
 
     def download_file(self, local_path, sever_path):

@@ -1,0 +1,82 @@
+Index: asr/xunfei_asr.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>#!/usr/bin/env python\n# -*- coding:utf-8 -*-\n# @Time    : 2022/11/1 9:58\n# @Author  : stce\n\n# ******************************************** 讯飞转写接口——循环访问 ******************************************************\n\nimport hmac\nimport json\nimport time\nimport urllib\nimport base64\nimport hashlib\nimport requests\nfrom __init__ import *\n\n# lfasr_host = 'https://raasr.xfyun.cn/v2/api'\n# # 请求的接口名\n# api_upload = '/upload'\n# api_get_result = '/getResult'\n\nclass RequestApi(object):\n    def __init__(self, config):\n\n        # 账号，ID\n        self.appid = config[\"XunFei_ASR\"][\"Long_Form_ASR\"][\"appid\"]\n        self.secret_key = config[\"XunFei_ASR\"][\"Long_Form_ASR\"][\"secret_key\"]\n        # 接口地址\n        self.lfasr_host = config[\"XunFei_ASR\"][\"upload\"][\"lfasr_host\"]\n        self.api_upload = config[\"XunFei_ASR\"][\"upload\"][\"api_upload\"]\n        self.api_get_result = config[\"XunFei_ASR\"][\"upload\"][\"api_get_result\"]\n        # 参数配置\n        self.sysDicts = config[\"XunFei_ASR\"][\"upload\"][\"sysDicts\"]\n        self.duration = config[\"XunFei_ASR\"][\"upload\"][\"duration\"]\n        # 上传文件路径\n        self.upload_file_path_ZMY = self.get_upload_file_path(config[\"HOT_Trends\"][\"dst_file_path\"])\n        self.upload_file_path_JMZ = self.get_upload_file_path(config[\"HOT_Trends\"][\"crawler_video_local_path\"])\n        self.ts = str(int(time.time()))\n        self.signa = self.get_signa()\n\n    def get_upload_file_path(self, url):\n        \"遍历指定目下的所有文件\"\n        file = os.listdir(url)\n        filename = list()\n        for f in file:\n            real_url = os.path.join(url, f)\n            if os.path.isfile(real_url):\n                logger.info(os.path.abspath(real_url))\n                filename.append(os.path.abspath(real_url))\n            elif os.path.isdir(real_url):\n                self.get_upload_file_path(real_url)\n            else:\n                logger.info(\"Error: 文件遍历错误\")\n                pass\n            logger.info(real_url)\n        return filename\n\n    def get_signa(self):\n        # message加密\n        appid = self.appid\n        secret_key = self.secret_key\n        m2 = hashlib.md5()\n        m2.update((appid + self.ts).encode('utf-8'))\n        md5 = m2.hexdigest()\n        md5 = bytes(md5, encoding='utf-8')\n        # 以secret_key为key, 上面的md5为msg， 使用hashlib.sha1加密结果为signa\n        signa = hmac.new(secret_key.encode('utf-8'), md5, hashlib.sha1).digest()\n        signa = base64.b64encode(signa)\n        signa = str(signa, 'utf-8')\n        return signa\n\n    def upload_init(self, upload_file_path):\n        # 上传数据接口参数构建\n        upload_file_path = upload_file_path\n        file_len = os.path.getsize(upload_file_path)\n        file_name = os.path.basename(upload_file_path)\n        logger.info(\"文件upload路径：{}\".format(file_name))\n        param_dict = {}\n        param_dict['appId'] = self.appid\n        param_dict['signa'] = self.signa\n        param_dict['ts'] = self.ts\n        param_dict[\"fileSize\"] = file_len\n        param_dict[\"fileName\"] = file_name\n        param_dict[\"sysDicts\"] = \"advertisement\"\n        param_dict[\"duration\"] = \"200\"\n        logger.info(\"upload接口参数：\", param_dict)\n        data = open(upload_file_path, 'rb').read(file_len)\n        return param_dict, data\n\n    def upload(self, upload_file_path):\n        # 上传数据\n        param_dict, data = self.upload_init(upload_file_path)\n        response = requests.post(url=self.lfasr_host + self.api_upload+\"?\"+urllib.parse.urlencode(param_dict),\n                                 headers={\"Content-type\":\"application/json\"},\n                                 data=data)\n        logger.info(\"upload_url:\", response.request.url)\n        result = json.loads(response.text)\n        logger.info(\"upload resp:\", result)\n        return result\n\n    def download_init(self, uploadresp):\n        # 获取数据接口参数构建\n        orderId = uploadresp['content']['orderId']\n        logger.info(\"文件查询ID：{}\".format(orderId))\n        param_dict = {}\n        param_dict['appId'] = self.appid\n        param_dict['signa'] = self.signa\n        param_dict['ts'] = self.ts\n        param_dict['orderId'] = orderId\n        param_dict['resultType'] = \"transfer,predict\"\n        logger.info(\"查询部分：\")\n        logger.info(\"get result参数：\", param_dict)\n        return param_dict\n\n    def download(self, uploadresp):\n        # 下载数据\n        param_dict = self.get_upload_file_path(uploadresp)\n        response = requests.post(url=self.lfasr_host + self.api_get_result + \"?\" + urllib.parse.urlencode(param_dict),\n                                 headers={\"Content-type\": \"application/json\"})\n        logger.info(\"get_result_url:\",response.request.url)\n        result = json.loads(response.text)\n        logger.info(\"get_result resp:\", result)\n        return result\n\n    def get_result(self):\n        \"\"\"\n\n        \"\"\"\n\n\n\n\n\n\n\n\n    # def get_result(self):\n    #\n    #     uploadresp = self.upload()\n    #     orderId = uploadresp['content']['orderId']\n    #     param_dict = {}\n    #     param_dict['appId'] = self.appid\n    #     param_dict['signa'] = self.signa\n    #     param_dict['ts'] = self.ts\n    #     param_dict['orderId'] = orderId\n    #     param_dict['resultType'] = \"transfer,predict\"\n    #     print(\"\")\n    #     print(\"查询部分：\")\n    #     print(\"get result参数：\", param_dict)\n    #     status = 3\n    #     # 建议使用回调的方式查询结果，查询接口有请求频率限制\n    #     while status == 3:\n    #         response = requests.post(url=lfasr_host + api_get_result + \"?\" + urllib.parse.urlencode(param_dict),\n    #                                  headers={\"Content-type\": \"application/json\"})\n    #         # print(\"get_result_url:\",response.request.url)\n    #         print(\"查询中······\")\n    #         result = json.loads(response.text)\n    #         status = result['content']['orderInfo']['status']\n    #         time.sleep(5)\n    #     print(\"get_result resp:\", result)\n    #     return result\n\n\n\n\n# 输入讯飞开放平台的appid，secret_key和待转写的文件路径\nif __name__ == '__main__':\n    api = RequestApi(appid=\"xxxxx\",\n                     secret_key=\"xxxxx\",\n                     upload_file_path=r\"audio/lfasr_涉政.wav\")\n\n    api.get_result()\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/asr/xunfei_asr.py b/asr/xunfei_asr.py
+--- a/asr/xunfei_asr.py	(revision cc7ba9130c01d59c69ed85b2928bd258618c137a)
++++ b/asr/xunfei_asr.py	(date 1667286721917)
+@@ -160,9 +160,6 @@
+     #     print("get_result resp:", result)
+     #     return result
+ 
+-
+-
+-
+ # 输入讯飞开放平台的appid，secret_key和待转写的文件路径
+ if __name__ == '__main__':
+     api = RequestApi(appid="xxxxx",
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<project version=\"4\">\n  <component name=\"ChangeListManager\">\n    <list default=\"true\" id=\"24f17224-1609-409b-8376-efb4aab0b639\" name=\"默认变更列表\" comment=\"加入美芝老师修改的部分\">\n      <change afterPath=\"$PROJECT_DIR$/asr/xunfei_asr.py\" afterDir=\"false\" />\n      <change afterPath=\"$PROJECT_DIR$/asr/xunfei_asr_2.py\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/config/dev.yaml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/config/dev.yaml\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/health.py\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/server.py\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/pipeline.py\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/pipeline.py\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/start.sh\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/start.sh\" afterDir=\"false\" />\n    </list>\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\n  </component>\n  <component name=\"FileTemplateManagerImpl\">\n    <option name=\"RECENT_TEMPLATES\">\n      <list>\n        <option value=\"Python Script\" />\n      </list>\n    </option>\n  </component>\n  <component name=\"FlaskConsoleOptions\" custom-start-script=\"import sys&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;from flask.cli import ScriptInfo&#10;locals().update(ScriptInfo(create_app=None).load_app().make_shell_context())&#10;print(&quot;Python %s on %s\\nApp: %s [%s]\\nInstance: %s&quot; % (sys.version, sys.platform, app.import_name, app.env, app.instance_path))\">\n    <envs>\n      <env key=\"FLASK_APP\" value=\"app\" />\n    </envs>\n    <option name=\"myCustomStartScript\" value=\"import sys&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;from flask.cli import ScriptInfo&#10;locals().update(ScriptInfo(create_app=None).load_app().make_shell_context())&#10;print(&quot;Python %s on %s\\nApp: %s [%s]\\nInstance: %s&quot; % (sys.version, sys.platform, app.import_name, app.env, app.instance_path))\" />\n    <option name=\"myEnvs\">\n      <map>\n        <entry key=\"FLASK_APP\" value=\"app\" />\n      </map>\n    </option>\n  </component>\n  <component name=\"Git.Settings\">\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\n  </component>\n  <component name=\"ProjectId\" id=\"2GtiLsrpSpGlsYsbqsD53Lfy4J3\" />\n  <component name=\"ProjectViewState\">\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\n    <option name=\"showLibraryContents\" value=\"true\" />\n  </component>\n  <component name=\"PropertiesComponent\">\n    <property name=\"RunOnceActivity.OpenProjectViewOnStart\" value=\"true\" />\n    <property name=\"RunOnceActivity.ShowReadmeOnStart\" value=\"true\" />\n    <property name=\"SHARE_PROJECT_CONFIGURATION_FILES\" value=\"true\" />\n    <property name=\"WebServerToolWindowFactoryState\" value=\"false\" />\n    <property name=\"node.js.detected.package.eslint\" value=\"true\" />\n    <property name=\"node.js.selected.package.eslint\" value=\"(autodetect)\" />\n    <property name=\"settings.editor.selected.configurable\" value=\"com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable\" />\n  </component>\n  <component name=\"RecentsManager\">\n    <key name=\"MoveFile.RECENT_KEYS\">\n      <recent name=\"D:\\抖音数据传输分析\\douyin_service\\douyin_service\\asr\" />\n    </key>\n  </component>\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"应用程序级\" UseSingleDictionary=\"true\" transferred=\"true\" />\n  <component name=\"TaskManager\">\n    <task active=\"true\" id=\"Default\" summary=\"默认任务\">\n      <changelist id=\"24f17224-1609-409b-8376-efb4aab0b639\" name=\"默认变更列表\" comment=\"\" />\n      <created>1667214229190</created>\n      <option name=\"number\" value=\"Default\" />\n      <option name=\"presentableId\" value=\"Default\" />\n      <updated>1667214229190</updated>\n      <workItem from=\"1667214230996\" duration=\"14009000\" />\n    </task>\n    <task id=\"LOCAL-00001\" summary=\"加入美芝老师修改的部分\">\n      <created>1667214502982</created>\n      <option name=\"number\" value=\"00001\" />\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1667214502982</updated>\n    </task>\n    <task id=\"LOCAL-00002\" summary=\"加入美芝老师修改的部分\">\n      <created>1667214563005</created>\n      <option name=\"number\" value=\"00002\" />\n      <option name=\"presentableId\" value=\"LOCAL-00002\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1667214563005</updated>\n    </task>\n    <option name=\"localTasksCounter\" value=\"3\" />\n    <servers />\n  </component>\n  <component name=\"TypeScriptGeneratedFilesManager\">\n    <option name=\"version\" value=\"3\" />\n  </component>\n  <component name=\"Vcs.Log.Tabs.Properties\">\n    <option name=\"TAB_STATES\">\n      <map>\n        <entry key=\"MAIN\">\n          <value>\n            <State />\n          </value>\n        </entry>\n      </map>\n    </option>\n  </component>\n  <component name=\"VcsManagerConfiguration\">\n    <MESSAGE value=\"加入美芝老师修改的部分\" />\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"加入美芝老师修改的部分\" />\n  </component>\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision cc7ba9130c01d59c69ed85b2928bd258618c137a)
++++ b/.idea/workspace.xml	(date 1667288134754)
+@@ -1,14 +1,9 @@
+ <?xml version="1.0" encoding="UTF-8"?>
+ <project version="4">
+   <component name="ChangeListManager">
+-    <list default="true" id="24f17224-1609-409b-8376-efb4aab0b639" name="默认变更列表" comment="加入美芝老师修改的部分">
+-      <change afterPath="$PROJECT_DIR$/asr/xunfei_asr.py" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/asr/xunfei_asr_2.py" afterDir="false" />
++    <list default="true" id="24f17224-1609-409b-8376-efb4aab0b639" name="默认变更列表" comment="ASR讯飞接口代码">
+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/config/dev.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/dev.yaml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/health.py" beforeDir="false" afterPath="$PROJECT_DIR$/server.py" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/pipeline.py" beforeDir="false" afterPath="$PROJECT_DIR$/pipeline.py" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/start.sh" beforeDir="false" afterPath="$PROJECT_DIR$/start.sh" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/asr/xunfei_asr.py" beforeDir="false" afterPath="$PROJECT_DIR$/asr/xunfei_asr.py" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+@@ -63,7 +58,7 @@
+       <option name="number" value="Default" />
+       <option name="presentableId" value="Default" />
+       <updated>1667214229190</updated>
+-      <workItem from="1667214230996" duration="14009000" />
++      <workItem from="1667214230996" duration="15512000" />
+     </task>
+     <task id="LOCAL-00001" summary="加入美芝老师修改的部分">
+       <created>1667214502982</created>
+@@ -79,7 +74,14 @@
+       <option name="project" value="LOCAL" />
+       <updated>1667214563005</updated>
+     </task>
+-    <option name="localTasksCounter" value="3" />
++    <task id="LOCAL-00003" summary="ASR讯飞接口代码">
++      <created>1667286353191</created>
++      <option name="number" value="00003" />
++      <option name="presentableId" value="LOCAL-00003" />
++      <option name="project" value="LOCAL" />
++      <updated>1667286353191</updated>
++    </task>
++    <option name="localTasksCounter" value="4" />
+     <servers />
+   </component>
+   <component name="TypeScriptGeneratedFilesManager">
+@@ -98,6 +100,7 @@
+   </component>
+   <component name="VcsManagerConfiguration">
+     <MESSAGE value="加入美芝老师修改的部分" />
+-    <option name="LAST_COMMIT_MESSAGE" value="加入美芝老师修改的部分" />
++    <MESSAGE value="ASR讯飞接口代码" />
++    <option name="LAST_COMMIT_MESSAGE" value="ASR讯飞接口代码" />
+   </component>
+ </project>
+\ No newline at end of file
