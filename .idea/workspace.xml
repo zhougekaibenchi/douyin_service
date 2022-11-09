@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="24f17224-1609-409b-8376-efb4aab0b639" name="默认变更列表" comment="部分未用的代码删除">
-      <change afterPath="$PROJECT_DIR$/unitest/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/asr/xunfei_asr.py" beforeDir="false" afterPath="$PROJECT_DIR$/asr/xunfei_asr.py" afterDir="false" />
+    <list default="true" id="24f17224-1609-409b-8376-efb4aab0b639" name="默认变更列表" comment="代码修正">
       <change beforePath="$PROJECT_DIR$/utils/utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/utils.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -209,7 +206,7 @@
       <workItem from="1667983443374" duration="48000" />
       <workItem from="1667984210207" duration="3501000" />
       <workItem from="1667988002632" duration="356000" />
-      <workItem from="1667988593771" duration="1041000" />
+      <workItem from="1667988593771" duration="1480000" />
     </task>
     <task id="LOCAL-00001" summary="加入美芝老师修改的部分">
       <created>1667214502982</created>
@@ -386,7 +383,21 @@
       <option name="project" value="LOCAL" />
       <updated>1667989371440</updated>
     </task>
-    <option name="localTasksCounter" value="26" />
+    <task id="LOCAL-00026" summary="代码修正">
+      <created>1667989653420</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1667989653420</updated>
+    </task>
+    <task id="LOCAL-00027" summary="代码修正">
+      <created>1667989797776</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1667989797776</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -418,12 +429,12 @@
     <MESSAGE value="加入美芝老师修改的部分" />
     <MESSAGE value="增加回调端口" />
     <MESSAGE value="ASR接收" />
-    <MESSAGE value="代码修正" />
     <MESSAGE value="讯飞接口调通" />
     <MESSAGE value="调试代码删除" />
     <MESSAGE value="定时脚本bug修复" />
     <MESSAGE value="部分未用的代码删除" />
-    <option name="LAST_COMMIT_MESSAGE" value="部分未用的代码删除" />
+    <MESSAGE value="代码修正" />
+    <option name="LAST_COMMIT_MESSAGE" value="代码修正" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

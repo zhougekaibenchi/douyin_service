@@ -30,10 +30,10 @@ def write_complete_list(orderId):
         w.writelines(orderId + "\n")
         w.close()
 
-# def read_complete_list():
-#     with open("tmp.txt", "r", encoding="utf-8") as w:
-#         lines = w.readlines()
-#         w.close()
-#     return len(lines)
+def read_complete_list():
+    with open("tmp.txt", "r", encoding="utf-8") as w:
+        lines = w.readlines()
+        w.close()
+    return len(lines)
 
 
