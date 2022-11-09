@@ -2,13 +2,14 @@
 # -*- coding:utf-8 -*-
 # @Time    : 2022/10/26 14:15
 # @Author  : stce
-import datetime
+
 import sys
+import datetime
 from __init__ import *
 from pipeline import douyin_pipeline
+from apscheduler.triggers.cron import CronTrigger
 from apscheduler.schedulers.background import BlockingScheduler
 from apscheduler.events import EVENT_JOB_ERROR, EVENT_JOB_EXECUTED
-from apscheduler.triggers.cron import CronTrigger
 
 scheduler = BlockingScheduler()
 ftp_trigger = CronTrigger(hour=12, minute=0)

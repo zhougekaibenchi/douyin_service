@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="24f17224-1609-409b-8376-efb4aab0b639" name="默认变更列表" comment="代码修正">
-      <change beforePath="$PROJECT_DIR$/asr/xunfei_asr.py" beforeDir="false" afterPath="$PROJECT_DIR$/asr/xunfei_asr.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/dev.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/dev.yaml" afterDir="false" />
-    </list>
+    <list default="true" id="24f17224-1609-409b-8376-efb4aab0b639" name="默认变更列表" comment="讯飞接口调通" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -205,7 +202,7 @@
       <workItem from="1667916026472" duration="96000" />
       <workItem from="1667916377929" duration="13490000" />
       <workItem from="1667983443374" duration="48000" />
-      <workItem from="1667984210207" duration="3305000" />
+      <workItem from="1667984210207" duration="3501000" />
     </task>
     <task id="LOCAL-00001" summary="加入美芝老师修改的部分">
       <created>1667214502982</created>
@@ -312,7 +309,14 @@
       <option name="project" value="LOCAL" />
       <updated>1667987120538</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="讯飞接口调通">
+      <created>1667987617587</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1667987617587</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -345,7 +349,8 @@
     <MESSAGE value="增加回调端口" />
     <MESSAGE value="ASR接收" />
     <MESSAGE value="代码修正" />
-    <option name="LAST_COMMIT_MESSAGE" value="代码修正" />
+    <MESSAGE value="讯飞接口调通" />
+    <option name="LAST_COMMIT_MESSAGE" value="讯飞接口调通" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
