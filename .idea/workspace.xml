@@ -2,9 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="24f17224-1609-409b-8376-efb4aab0b639" name="默认变更列表" comment="代码修正">
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/_2022_11_1_15_37____.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/_2022_11_1_16_54____.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/在进行检出之前于_2022_11_1_15_37_取消提交了变更_[默认变更列表]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/在进行检出之前于_2022_11_1_16_54_取消提交了变更_[默认变更列表]/shelved.patch" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ftp_client.py" beforeDir="false" afterPath="$PROJECT_DIR$/ftp_client.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/log/cron.log" beforeDir="false" afterPath="$PROJECT_DIR$/log/cron.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/dev.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/dev.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -152,7 +155,9 @@
       <option name="presentableId" value="Default" />
       <updated>1667214229190</updated>
       <workItem from="1667214230996" duration="14009000" />
-      <workItem from="1667783790689" duration="25092000" />
+      <workItem from="1667783790689" duration="25578000" />
+      <workItem from="1667916026472" duration="96000" />
+      <workItem from="1667916377929" duration="2470000" />
     </task>
     <task id="LOCAL-00001" summary="加入美芝老师修改的部分">
       <created>1667214502982</created>
@@ -231,7 +236,14 @@
       <option name="project" value="LOCAL" />
       <updated>1667871435521</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="代码修正">
+      <created>1667905519496</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1667905519496</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

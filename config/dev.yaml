@@ -37,8 +37,9 @@ HOT_Trends:
   crawler_video_sever_path: '/JMZ/mp3_file'
 XunFei_ASR:
   Long_Form_ASR:
-    appid: ""
-    secret_key: ""
+    appid: "f5293126"
+    secret_key: "e45dd2b062d5062d4b5f380d8fac5d3a"
+    # APISecret：YTFmNDhhNWQ1Y2I5OWFkYThlMWQxYzFh
     # 上传数据接口
     upload:
       # 接口配置

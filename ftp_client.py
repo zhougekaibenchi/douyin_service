@@ -104,28 +104,6 @@ class FTP_Updata(FTP_OP):
         logger.info("******************************DouyinData ZMY Get Finish*****************************************")
         self.ftp.quit()
 
-    def upload_file(self):
-
-        self.ftp = self.ftp_connect()
-        file_list = self.scaner_file(sever_path)
-        for file_name in file_list:
-            f = open(file_name, "rb")
-            file_name = os.path.split(file_name)[-1]
-            self.ftp.storbinary('STOR %s' % file_name, f, self.buffer_size)
-            logger.info('成功上传文件： "%s"' % file_name)
-        logger.info(time.strftime('%Y%m%d', time.localtime(time.time()))+"文件全部上传完毕")
-        self.ftp.quit()
-
-
-
-
-
-
-
-
-
-
-
 
 # ****************************************************  JMZ  ***********************************************************
 class FTP_HOTTrends(FTP_OP):
