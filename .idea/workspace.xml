@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="24f17224-1609-409b-8376-efb4aab0b639" name="默认变更列表" comment="定时脚本bug修复">
-      <change beforePath="$PROJECT_DIR$/utils/read_config.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/read_config.py" afterDir="false" />
+    <list default="true" id="24f17224-1609-409b-8376-efb4aab0b639" name="默认变更列表" comment="部分未用的代码删除">
+      <change beforePath="$PROJECT_DIR$/asr/xunfei_asr.py" beforeDir="false" afterPath="$PROJECT_DIR$/asr/xunfei_asr.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -206,7 +206,7 @@
       <workItem from="1667983443374" duration="48000" />
       <workItem from="1667984210207" duration="3501000" />
       <workItem from="1667988002632" duration="356000" />
-      <workItem from="1667988593771" duration="387000" />
+      <workItem from="1667988593771" duration="710000" />
     </task>
     <task id="LOCAL-00001" summary="加入美芝老师修改的部分">
       <created>1667214502982</created>
@@ -355,7 +355,21 @@
       <option name="project" value="LOCAL" />
       <updated>1667988842101</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="定时脚本bug修复">
+      <created>1667988989592</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1667988989592</updated>
+    </task>
+    <task id="LOCAL-00023" summary="部分未用的代码删除">
+      <created>1667989220165</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1667989220165</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -391,7 +405,8 @@
     <MESSAGE value="讯飞接口调通" />
     <MESSAGE value="调试代码删除" />
     <MESSAGE value="定时脚本bug修复" />
-    <option name="LAST_COMMIT_MESSAGE" value="定时脚本bug修复" />
+    <MESSAGE value="部分未用的代码删除" />
+    <option name="LAST_COMMIT_MESSAGE" value="部分未用的代码删除" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

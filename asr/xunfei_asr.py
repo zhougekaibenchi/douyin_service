@@ -131,7 +131,7 @@ class RequestApi(object):
             response = requests.post(
                 url=self.lfasr_host + self.api_get_result + "?" + urllib.parse.urlencode(param_dict),
                 headers={"Content-type": "application/json"})
-            logger.info("查询中······")
+            logger.info("查询中········································································")
             result = json.loads(response.text)
             status = result['content']['orderInfo']['status']
             time.sleep(5)
