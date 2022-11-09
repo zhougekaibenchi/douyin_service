@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="24f17224-1609-409b-8376-efb4aab0b639" name="默认变更列表" comment="讯飞接口调通" />
+    <list default="true" id="24f17224-1609-409b-8376-efb4aab0b639" name="默认变更列表" comment="定时脚本bug修复" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
