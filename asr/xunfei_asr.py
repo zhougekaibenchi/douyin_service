@@ -92,7 +92,7 @@ class RequestApi(object):
         param_dict["fileName"] = file_name
         param_dict["sysDicts"] = "advertisement"
         param_dict["duration"] = "200"
-        # 采用轮询的方式访问接口，不再上传回调函数
+        # 采用轮询的方式访问接口，不再上传回调地址
         # param_dict["callbackUrl"] = self.callbackUrl
         logger.info("upload接口参数：", param_dict)
         data = open(upload_file_path, 'rb').read(file_len)
@@ -221,7 +221,6 @@ class RequestApi(object):
     #     logger.info("*******************************ASR DataDownload Finish******************************************")
 
 
-# 输入讯飞开放平台的appid，secret_key和待转写的文件路径
 if __name__ == '__main__':
     # env = "dev"  # sys.argv[1]
     # config = Env.get(env)
