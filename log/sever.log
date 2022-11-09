@@ -1,0 +1,6 @@
+2022-11-09 14:24:59,279 - INFO - server.py:44 - <module>() - 服务ASR数据接收服务启动..........
+2022-11-09 14:24:59,280 - INFO - server.py:45 - <module>() - 服务启动ip：0.0.0.0:8001
+2022-11-09 14:24:59,283 - DEBUG - proactor_events.py:623 - __init__() - Using proactor: IocpProactor
+2022-11-09 14:29:25,285 - INFO - server.py:44 - <module>() - 服务ASR数据接收服务启动..........
+2022-11-09 14:29:25,285 - INFO - server.py:45 - <module>() - 服务启动ip：0.0.0.0:8001
+2022-11-09 14:29:25,289 - DEBUG - proactor_events.py:623 - __init__() - Using proactor: IocpProactor

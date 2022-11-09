@@ -1,0 +1,141 @@
+2022-11-09 14:16:31,951 - INFO - read_config.py:13 - get() - 读取配置文件
+2022-11-09 14:16:32,011 - INFO - xunfei_asr.py:50 - get_upload_file_path() - D:\抖音数据传输分析\douyin_service\douyin_service\result\asr_data\2022-11-09\ZMY\audio\lfasr_涉政.wav
+2022-11-09 14:16:32,011 - INFO - xunfei_asr.py:57 - get_upload_file_path() - result/asr_data/2022-11-09/ZMY/audio\lfasr_涉政.wav
+2022-11-09 14:17:14,990 - INFO - read_config.py:13 - get() - 读取配置文件
+2022-11-09 14:17:15,049 - INFO - xunfei_asr.py:50 - get_upload_file_path() - D:\抖音数据传输分析\douyin_service\douyin_service\result\asr_data\2022-11-09\ZMY\audio\lfasr_涉政.wav
+2022-11-09 14:17:15,049 - INFO - xunfei_asr.py:57 - get_upload_file_path() - result/asr_data/2022-11-09/ZMY/audio\lfasr_涉政.wav
+2022-11-09 14:17:39,606 - INFO - read_config.py:13 - get() - 读取配置文件
+2022-11-09 14:17:39,665 - INFO - xunfei_asr.py:50 - get_upload_file_path() - D:\抖音数据传输分析\douyin_service\douyin_service\result\asr_data\2022-11-09\ZMY\audio\lfasr_涉政.wav
+2022-11-09 14:17:39,666 - INFO - xunfei_asr.py:57 - get_upload_file_path() - result/asr_data/2022-11-09/ZMY/audio\lfasr_涉政.wav
+2022-11-09 14:18:26,993 - INFO - read_config.py:13 - get() - 读取配置文件
+2022-11-09 14:18:27,051 - INFO - xunfei_asr.py:50 - get_upload_file_path() - D:\抖音数据传输分析\douyin_service\douyin_service\result\asr_data\2022-11-09\ZMY\audio\lfasr_涉政.wav
+2022-11-09 14:18:27,052 - INFO - xunfei_asr.py:57 - get_upload_file_path() - result/asr_data/2022-11-09/ZMY/audio\lfasr_涉政.wav
+2022-11-09 14:18:39,716 - INFO - read_config.py:13 - get() - 读取配置文件
+2022-11-09 14:18:39,774 - INFO - xunfei_asr.py:50 - get_upload_file_path() - D:\抖音数据传输分析\douyin_service\douyin_service\result\asr_data\2022-11-09\ZMY\audio\lfasr_涉政.wav
+2022-11-09 14:18:39,774 - INFO - xunfei_asr.py:57 - get_upload_file_path() - result/asr_data/2022-11-09/ZMY/audio\lfasr_涉政.wav
+2022-11-09 14:18:55,243 - INFO - read_config.py:13 - get() - 读取配置文件
+2022-11-09 14:18:55,301 - INFO - xunfei_asr.py:50 - get_upload_file_path() - D:\抖音数据传输分析\douyin_service\douyin_service\result\asr_data\2022-11-09\ZMY\audio\lfasr_涉政.wav
+2022-11-09 14:18:55,301 - INFO - xunfei_asr.py:57 - get_upload_file_path() - result/asr_data/2022-11-09/ZMY/audio\lfasr_涉政.wav
+2022-11-09 14:20:34,228 - INFO - read_config.py:13 - get() - 读取配置文件
+2022-11-09 14:21:06,197 - INFO - xunfei_asr.py:50 - get_upload_file_path() - D:\抖音数据传输分析\douyin_service\douyin_service\result\asr_data\2022-11-09\ZMY\audio\lfasr_涉政.wav
+2022-11-09 14:21:09,781 - INFO - xunfei_asr.py:57 - get_upload_file_path() - result/asr_data/2022-11-09/ZMY/audio\lfasr_涉政.wav
+2022-11-09 14:22:36,940 - INFO - read_config.py:13 - get() - 读取配置文件
+2022-11-09 14:22:40,176 - INFO - xunfei_asr.py:50 - get_upload_file_path() - D:\抖音数据传输分析\douyin_service\douyin_service\result\asr_data\2022-11-09\ZMY\audio\lfasr_涉政.wav
+2022-11-09 14:22:41,253 - INFO - xunfei_asr.py:57 - get_upload_file_path() - result/asr_data/2022-11-09/ZMY/audio\lfasr_涉政.wav
+2022-11-09 14:23:25,884 - INFO - read_config.py:13 - get() - 读取配置文件
+2022-11-09 14:23:35,478 - INFO - xunfei_asr.py:50 - get_upload_file_path() - D:\抖音数据传输分析\douyin_service\douyin_service\result\asr_data\2022-11-09\ZMY\audio\lfasr_涉政.wav
+2022-11-09 14:23:35,937 - INFO - xunfei_asr.py:57 - get_upload_file_path() - result/asr_data/2022-11-09/ZMY/audio\lfasr_涉政.wav
+2022-11-09 14:24:11,793 - INFO - xunfei_asr.py:79 - upload_init() - 文件upload路径：lfasr_涉政.wav
+2022-11-09 14:24:40,993 - INFO - xunfei_asr.py:88 - upload_init() - upload接口参数：
+2022-11-09 14:24:59,268 - INFO - read_config.py:13 - get() - 读取配置文件
+2022-11-09 14:24:59,279 - INFO - server.py:44 - <module>() - 服务ASR数据接收服务启动..........
+2022-11-09 14:24:59,280 - INFO - server.py:45 - <module>() - 服务启动ip：0.0.0.0:8001
+2022-11-09 14:24:59,283 - DEBUG - proactor_events.py:623 - __init__() - Using proactor: IocpProactor
+2022-11-09 14:25:38,081 - DEBUG - connectionpool.py:971 - _new_conn() - Starting new HTTPS connection (1): raasr.xfyun.cn:443
+2022-11-09 14:26:24,284 - DEBUG - connectionpool.py:452 - _make_request() - https://raasr.xfyun.cn:443 "POST /v2/api/upload?appId=f5293126&signa=hm%2F39%2BduphcG6v5x5xBJ1ZeKzLs%3D&ts=1667975018&fileSize=3136940&fileName=lfasr_%E6%B6%89%E6%94%BF.wav&sysDicts=advertisement&duration=200 HTTP/1.1" 200 None
+2022-11-09 14:29:25,274 - INFO - read_config.py:13 - get() - 读取配置文件
+2022-11-09 14:29:25,285 - INFO - server.py:44 - <module>() - 服务ASR数据接收服务启动..........
+2022-11-09 14:29:25,285 - INFO - server.py:45 - <module>() - 服务启动ip：0.0.0.0:8001
+2022-11-09 14:29:25,289 - DEBUG - proactor_events.py:623 - __init__() - Using proactor: IocpProactor
+2022-11-09 14:31:37,775 - INFO - read_config.py:13 - get() - 读取配置文件
+2022-11-09 14:31:37,792 - INFO - xunfei_asr.py:53 - get_upload_file_path() - D:\抖音数据传输分析\douyin_service\douyin_service\result\asr_data\2022-11-09\ZMY\audio\lfasr_涉政.wav
+2022-11-09 14:31:37,792 - INFO - xunfei_asr.py:60 - get_upload_file_path() - result/asr_data/2022-11-09/ZMY/audio\lfasr_涉政.wav
+2022-11-09 14:31:37,792 - INFO - xunfei_asr.py:82 - upload_init() - 文件upload路径：lfasr_涉政.wav
+2022-11-09 14:31:37,792 - INFO - xunfei_asr.py:92 - upload_init() - upload接口参数：
+2022-11-09 14:31:37,796 - DEBUG - connectionpool.py:971 - _new_conn() - Starting new HTTPS connection (1): raasr.xfyun.cn:443
+2022-11-09 14:31:53,926 - DEBUG - connectionpool.py:452 - _make_request() - https://raasr.xfyun.cn:443 "POST /v2/api/upload?appId=f5293126&signa=ydhCZoZzRmcvfn%2B9%2BrlofSqfRrY%3D&ts=1667975497&fileSize=3136940&fileName=lfasr_%E6%B6%89%E6%94%BF.wav&sysDicts=advertisement&duration=200&callbackUrl=http%3A%2F%2F127.0.0.1%3A8010 HTTP/1.1" 200 None
+2022-11-09 14:31:53,930 - INFO - xunfei_asr.py:104 - upload() - upload resp:
+2022-11-09 14:33:51,792 - INFO - read_config.py:13 - get() - 读取配置文件
+2022-11-09 14:33:55,572 - INFO - xunfei_asr.py:53 - get_upload_file_path() - D:\抖音数据传输分析\douyin_service\douyin_service\result\asr_data\2022-11-09\ZMY\audio\lfasr_涉政.wav
+2022-11-09 14:33:55,573 - INFO - xunfei_asr.py:60 - get_upload_file_path() - result/asr_data/2022-11-09/ZMY/audio\lfasr_涉政.wav
+2022-11-09 14:34:04,498 - INFO - xunfei_asr.py:82 - upload_init() - 文件upload路径：lfasr_涉政.wav
+2022-11-09 14:34:07,894 - INFO - xunfei_asr.py:92 - upload_init() - upload接口参数：
+2022-11-09 14:35:46,624 - INFO - read_config.py:13 - get() - 读取配置文件
+2022-11-09 14:35:48,927 - INFO - xunfei_asr.py:53 - get_upload_file_path() - D:\抖音数据传输分析\douyin_service\douyin_service\result\asr_data\2022-11-09\ZMY\audio\lfasr_涉政.wav
+2022-11-09 14:35:48,927 - INFO - xunfei_asr.py:60 - get_upload_file_path() - result/asr_data/2022-11-09/ZMY/audio\lfasr_涉政.wav
+2022-11-09 14:35:58,681 - INFO - xunfei_asr.py:82 - upload_init() - 文件upload路径：lfasr_涉政.wav
+2022-11-09 14:36:02,985 - INFO - xunfei_asr.py:92 - upload_init() - upload接口参数：
+2022-11-09 14:36:08,386 - DEBUG - connectionpool.py:971 - _new_conn() - Starting new HTTPS connection (1): raasr.xfyun.cn:443
+2022-11-09 14:36:21,873 - DEBUG - connectionpool.py:452 - _make_request() - https://raasr.xfyun.cn:443 "POST /v2/api/upload?appId=f5293126&signa=5NAqp72L6LwGkQdz0ME1odJLwXI%3D&ts=1667975748&fileSize=3136940&fileName=lfasr_%E6%B6%89%E6%94%BF.wav&sysDicts=advertisement&duration=200&callbackUrl=http%3A%2F%2F192.168.97.192%3A8010 HTTP/1.1" 200 None
+2022-11-09 14:39:02,174 - INFO - xunfei_asr.py:104 - upload() - upload resp:
+2022-11-09 14:54:51,201 - INFO - read_config.py:13 - get() - 读取配置文件
+2022-11-09 14:54:53,150 - INFO - xunfei_asr.py:53 - get_upload_file_path() - D:\抖音数据传输分析\douyin_service\douyin_service\result\asr_data\2022-11-09\ZMY\audio\lfasr_涉政.wav
+2022-11-09 14:54:53,150 - INFO - xunfei_asr.py:60 - get_upload_file_path() - result/asr_data/2022-11-09/ZMY/audio\lfasr_涉政.wav
+2022-11-09 14:54:53,150 - INFO - xunfei_asr.py:53 - get_upload_file_path() - D:\抖音数据传输分析\douyin_service\douyin_service\result\asr_data\2022-11-09\ZMY\audio\test.py
+2022-11-09 14:54:53,150 - INFO - xunfei_asr.py:60 - get_upload_file_path() - result/asr_data/2022-11-09/ZMY/audio\test.py
+2022-11-09 14:54:56,445 - INFO - xunfei_asr.py:82 - upload_init() - 文件upload路径：lfasr_涉政.wav
+2022-11-09 14:54:56,446 - INFO - xunfei_asr.py:92 - upload_init() - upload接口参数：
+2022-11-09 14:54:59,408 - DEBUG - connectionpool.py:971 - _new_conn() - Starting new HTTPS connection (1): raasr.xfyun.cn:443
+2022-11-09 14:55:14,505 - DEBUG - connectionpool.py:452 - _make_request() - https://raasr.xfyun.cn:443 "POST /v2/api/upload?appId=f5293126&signa=q5doko4MFV7q5KT0qZ2xw%2BTFsSk%3D&ts=1667976893&fileSize=3136940&fileName=lfasr_%E6%B6%89%E6%94%BF.wav&sysDicts=advertisement&duration=200&callbackUrl=http%3A%2F%2F192.168.97.192%3A8010 HTTP/1.1" 200 126
+2022-11-09 14:55:17,185 - INFO - xunfei_asr.py:102 - upload() - upload_url: https://raasr.xfyun.cn/v2/api/upload?appId=f5293126&signa=q5doko4MFV7q5KT0qZ2xw%2BTFsSk%3D&ts=1667976893&fileSize=3136940&fileName=lfasr_%E6%B6%89%E6%94%BF.wav&sysDicts=advertisement&duration=200&callbackUrl=http%3A%2F%2F192.168.97.192%3A8010
+2022-11-09 14:55:47,037 - INFO - xunfei_asr.py:104 - upload() - upload resp: {'code': '000000', 'descInfo': 'success', 'content': {'orderId': 'DKHJQ202211091422110914557D85A4C700023', 'taskEstimateTime': 28000}}
+2022-11-09 14:59:06,754 - INFO - read_config.py:13 - get() - 读取配置文件
+2022-11-09 14:59:10,578 - INFO - xunfei_asr.py:53 - get_upload_file_path() - D:\抖音数据传输分析\douyin_service\douyin_service\result\asr_data\2022-11-09\ZMY\audio\lfasr_涉政.wav
+2022-11-09 14:59:10,983 - INFO - xunfei_asr.py:60 - get_upload_file_path() - result/asr_data/2022-11-09/ZMY/audio\lfasr_涉政.wav
+2022-11-09 14:59:51,530 - INFO - xunfei_asr.py:82 - upload_init() - 文件upload路径：lfasr_涉政.wav
+2022-11-09 14:59:51,530 - INFO - xunfei_asr.py:92 - upload_init() - upload接口参数：
+2022-11-09 14:59:55,819 - DEBUG - connectionpool.py:971 - _new_conn() - Starting new HTTPS connection (1): raasr.xfyun.cn:443
+2022-11-09 15:00:09,720 - DEBUG - connectionpool.py:452 - _make_request() - https://raasr.xfyun.cn:443 "POST /v2/api/upload?appId=f5293126&signa=sI9XtanIfDVrkZX14GlcDmjBxg0%3D&ts=1667977187&fileSize=3136940&fileName=lfasr_%E6%B6%89%E6%94%BF.wav&sysDicts=advertisement&duration=200&callbackUrl=http%3A%2F%2F192.168.97.192%3A8010 HTTP/1.1" 200 126
+2022-11-09 15:00:20,190 - INFO - xunfei_asr.py:102 - upload() - upload_url: https://raasr.xfyun.cn/v2/api/upload?appId=f5293126&signa=sI9XtanIfDVrkZX14GlcDmjBxg0%3D&ts=1667977187&fileSize=3136940&fileName=lfasr_%E6%B6%89%E6%94%BF.wav&sysDicts=advertisement&duration=200&callbackUrl=http%3A%2F%2F192.168.97.192%3A8010
+2022-11-09 15:00:22,819 - INFO - xunfei_asr.py:104 - upload() - upload resp: {'code': '000000', 'descInfo': 'success', 'content': {'orderId': 'DKHJQ202211091522110915000F87D7D500016', 'taskEstimateTime': 28000}}
+2022-11-09 15:54:17,044 - INFO - read_config.py:13 - get() - 读取配置文件
+2022-11-09 15:54:19,027 - INFO - xunfei_asr.py:52 - get_upload_file_path() - D:\抖音数据传输分析\douyin_service\douyin_service\result\asr_data\2022-11-09\ZMY\audio\lfasr_涉政.wav
+2022-11-09 15:54:19,027 - INFO - xunfei_asr.py:59 - get_upload_file_path() - result/asr_data/2022-11-09/ZMY/audio\lfasr_涉政.wav
+2022-11-09 15:54:20,811 - INFO - xunfei_asr.py:81 - upload_init() - 文件upload路径：lfasr_涉政.wav
+2022-11-09 15:54:20,811 - INFO - xunfei_asr.py:92 - upload_init() - upload接口参数：
+2022-11-09 15:54:21,585 - DEBUG - connectionpool.py:971 - _new_conn() - Starting new HTTPS connection (1): raasr.xfyun.cn:443
+2022-11-09 15:54:47,318 - DEBUG - connectionpool.py:452 - _make_request() - https://raasr.xfyun.cn:443 "POST /v2/api/upload?appId=f5293126&signa=bnYrk0alnf%2Bl47hu4gJB4aJKOF4%3D&ts=1667980459&fileSize=3136940&fileName=lfasr_%E6%B6%89%E6%94%BF.wav&sysDicts=advertisement&duration=200 HTTP/1.1" 200 126
+2022-11-09 15:54:51,618 - INFO - xunfei_asr.py:102 - upload() - upload_url: https://raasr.xfyun.cn/v2/api/upload?appId=f5293126&signa=bnYrk0alnf%2Bl47hu4gJB4aJKOF4%3D&ts=1667980459&fileSize=3136940&fileName=lfasr_%E6%B6%89%E6%94%BF.wav&sysDicts=advertisement&duration=200
+2022-11-09 15:54:52,364 - INFO - xunfei_asr.py:104 - upload() - upload resp: {'code': '000000', 'descInfo': 'success', 'content': {'orderId': 'DKHJQ2022110915221109155457D6637E0005F', 'taskEstimateTime': 28000}}
+2022-11-09 15:56:34,649 - INFO - read_config.py:13 - get() - 读取配置文件
+2022-11-09 15:56:36,286 - INFO - xunfei_asr.py:52 - get_upload_file_path() - D:\抖音数据传输分析\douyin_service\douyin_service\result\asr_data\2022-11-09\ZMY\audio\lfasr_涉政.wav
+2022-11-09 15:56:36,287 - INFO - xunfei_asr.py:59 - get_upload_file_path() - result/asr_data/2022-11-09/ZMY/audio\lfasr_涉政.wav
+2022-11-09 15:56:37,500 - INFO - xunfei_asr.py:81 - upload_init() - 文件upload路径：lfasr_涉政.wav
+2022-11-09 15:56:37,501 - INFO - xunfei_asr.py:92 - upload_init() - upload接口参数：
+2022-11-09 15:56:38,549 - DEBUG - connectionpool.py:971 - _new_conn() - Starting new HTTPS connection (1): raasr.xfyun.cn:443
+2022-11-09 15:56:55,702 - DEBUG - connectionpool.py:452 - _make_request() - https://raasr.xfyun.cn:443 "POST /v2/api/upload?appId=f5293126&signa=REUtxdPvBK5bK%2BTGKHxmd%2BI%2FoxM%3D&ts=1667980596&fileSize=3136940&fileName=lfasr_%E6%B6%89%E6%94%BF.wav&sysDicts=advertisement&duration=200 HTTP/1.1" 200 126
+2022-11-09 15:56:58,532 - INFO - xunfei_asr.py:102 - upload() - upload_url: https://raasr.xfyun.cn/v2/api/upload?appId=f5293126&signa=REUtxdPvBK5bK%2BTGKHxmd%2BI%2FoxM%3D&ts=1667980596&fileSize=3136940&fileName=lfasr_%E6%B6%89%E6%94%BF.wav&sysDicts=advertisement&duration=200
+2022-11-09 15:56:58,532 - INFO - xunfei_asr.py:104 - upload() - upload resp: {'code': '000000', 'descInfo': 'success', 'content': {'orderId': 'DKHJQ202211091522110915567D85A4F300060', 'taskEstimateTime': 28000}}
+2022-11-09 16:00:26,982 - INFO - read_config.py:13 - get() - 读取配置文件
+2022-11-09 16:00:28,872 - INFO - xunfei_asr.py:52 - get_upload_file_path() - D:\抖音数据传输分析\douyin_service\douyin_service\result\asr_data\2022-11-09\ZMY\audio\lfasr_涉政.wav
+2022-11-09 16:00:28,872 - INFO - xunfei_asr.py:59 - get_upload_file_path() - result/asr_data/2022-11-09/ZMY/audio\lfasr_涉政.wav
+2022-11-09 16:00:30,240 - INFO - xunfei_asr.py:81 - upload_init() - 文件upload路径：lfasr_涉政.wav
+2022-11-09 16:00:30,240 - INFO - xunfei_asr.py:92 - upload_init() - upload接口参数：
+2022-11-09 16:00:30,702 - DEBUG - connectionpool.py:971 - _new_conn() - Starting new HTTPS connection (1): raasr.xfyun.cn:443
+2022-11-09 16:00:48,165 - DEBUG - connectionpool.py:452 - _make_request() - https://raasr.xfyun.cn:443 "POST /v2/api/upload?appId=f5293126&signa=Z%2FlauUXCL4gByTndmYnpWuCwHJQ%3D&ts=1667980829&fileSize=3136940&fileName=lfasr_%E6%B6%89%E6%94%BF.wav&sysDicts=advertisement&duration=200 HTTP/1.1" 200 126
+2022-11-09 16:00:53,168 - INFO - xunfei_asr.py:102 - upload() - upload_url: https://raasr.xfyun.cn/v2/api/upload?appId=f5293126&signa=Z%2FlauUXCL4gByTndmYnpWuCwHJQ%3D&ts=1667980829&fileSize=3136940&fileName=lfasr_%E6%B6%89%E6%94%BF.wav&sysDicts=advertisement&duration=200
+2022-11-09 16:00:54,168 - INFO - xunfei_asr.py:104 - upload() - upload resp: {'code': '000000', 'descInfo': 'success', 'content': {'orderId': 'DKHJQ202211091622110916007D85A5EB00084', 'taskEstimateTime': 28000}}
+2022-11-09 16:09:05,372 - INFO - read_config.py:13 - get() - 读取配置文件
+2022-11-09 16:09:08,400 - INFO - xunfei_asr.py:52 - get_upload_file_path() - D:\抖音数据传输分析\douyin_service\douyin_service\result\asr_data\2022-11-09\ZMY\audio\lfasr_涉政.wav
+2022-11-09 16:09:08,401 - INFO - xunfei_asr.py:59 - get_upload_file_path() - result/asr_data/2022-11-09/ZMY/audio\lfasr_涉政.wav
+2022-11-09 16:09:10,109 - INFO - xunfei_asr.py:81 - upload_init() - 文件upload路径：lfasr_涉政.wav
+2022-11-09 16:09:10,109 - INFO - xunfei_asr.py:92 - upload_init() - upload接口参数：
+2022-11-09 16:09:11,331 - DEBUG - connectionpool.py:971 - _new_conn() - Starting new HTTPS connection (1): raasr.xfyun.cn:443
+2022-11-09 16:09:29,311 - DEBUG - connectionpool.py:452 - _make_request() - https://raasr.xfyun.cn:443 "POST /v2/api/upload?appId=f5293126&signa=NEFConoRBrTHVLrQoEDYCUS1rls%3D&ts=1667981349&fileSize=3136940&fileName=lfasr_%E6%B6%89%E6%94%BF.wav&sysDicts=advertisement&duration=200 HTTP/1.1" 200 126
+2022-11-09 16:09:32,007 - INFO - xunfei_asr.py:102 - upload() - upload_url: https://raasr.xfyun.cn/v2/api/upload?appId=f5293126&signa=NEFConoRBrTHVLrQoEDYCUS1rls%3D&ts=1667981349&fileSize=3136940&fileName=lfasr_%E6%B6%89%E6%94%BF.wav&sysDicts=advertisement&duration=200
+2022-11-09 16:09:32,008 - INFO - xunfei_asr.py:104 - upload() - upload resp: {'code': '000000', 'descInfo': 'success', 'content': {'orderId': 'DKHJQ20221109162211091609098973D800038', 'taskEstimateTime': 28000}}
+2022-11-09 16:09:48,139 - INFO - xunfei_asr.py:110 - download_init() - 文件查询ID：DKHJQ20221109162211091609098973D800038
+2022-11-09 16:10:16,801 - INFO - xunfei_asr.py:117 - download_init() - 查询部分：
+2022-11-09 16:10:17,240 - INFO - xunfei_asr.py:118 - download_init() - get result参数：
+2022-11-09 16:10:32,798 - DEBUG - connectionpool.py:971 - _new_conn() - Starting new HTTPS connection (1): raasr.xfyun.cn:443
+2022-11-09 16:10:33,087 - DEBUG - connectionpool.py:452 - _make_request() - https://raasr.xfyun.cn:443 "POST /v2/api/getResult?appId=f5293126&signa=NEFConoRBrTHVLrQoEDYCUS1rls%3D&ts=1667981349&orderId=DKHJQ20221109162211091609098973D800038&resultType=transfer%2Cpredict HTTP/1.1" 200 None
+2022-11-09 16:15:58,783 - INFO - read_config.py:13 - get() - 读取配置文件
+2022-11-09 16:16:01,433 - INFO - xunfei_asr.py:52 - get_upload_file_path() - D:\抖音数据传输分析\douyin_service\douyin_service\result\asr_data\2022-11-09\ZMY\audio\lfasr_涉政.wav
+2022-11-09 16:16:01,433 - INFO - xunfei_asr.py:59 - get_upload_file_path() - result/asr_data/2022-11-09/ZMY/audio\lfasr_涉政.wav
+2022-11-09 16:16:08,338 - INFO - xunfei_asr.py:81 - upload_init() - 文件upload路径：lfasr_涉政.wav
+2022-11-09 16:16:08,338 - INFO - xunfei_asr.py:92 - upload_init() - upload接口参数：
+2022-11-09 16:16:08,346 - DEBUG - connectionpool.py:971 - _new_conn() - Starting new HTTPS connection (1): raasr.xfyun.cn:443
+2022-11-09 16:16:39,078 - DEBUG - connectionpool.py:452 - _make_request() - https://raasr.xfyun.cn:443 "POST /v2/api/upload?appId=f5293126&signa=OGpMNVeg6EgcZbTkAj5lO4RUE%2Fk%3D&ts=1667981763&fileSize=3136940&fileName=lfasr_%E6%B6%89%E6%94%BF.wav&sysDicts=advertisement&duration=200 HTTP/1.1" 200 126
+2022-11-09 16:16:39,081 - INFO - xunfei_asr.py:102 - upload() - upload_url: https://raasr.xfyun.cn/v2/api/upload?appId=f5293126&signa=OGpMNVeg6EgcZbTkAj5lO4RUE%2Fk%3D&ts=1667981763&fileSize=3136940&fileName=lfasr_%E6%B6%89%E6%94%BF.wav&sysDicts=advertisement&duration=200
+2022-11-09 16:16:39,081 - INFO - xunfei_asr.py:104 - upload() - upload resp: {'code': '000000', 'descInfo': 'success', 'content': {'orderId': 'DKHJQ20221109162211091616098973CB0004A', 'taskEstimateTime': 28000}}
+2022-11-09 16:19:00,158 - INFO - xunfei_asr.py:110 - download_init() - 文件查询ID：DKHJQ20221109162211091616098973CB0004A
+2022-11-09 16:19:00,158 - INFO - xunfei_asr.py:117 - download_init() - 查询部分：
+2022-11-09 16:19:00,159 - INFO - xunfei_asr.py:118 - download_init() - get result参数：
+2022-11-09 16:19:00,163 - DEBUG - connectionpool.py:971 - _new_conn() - Starting new HTTPS connection (1): raasr.xfyun.cn:443
+2022-11-09 16:19:00,468 - DEBUG - connectionpool.py:452 - _make_request() - https://raasr.xfyun.cn:443 "POST /v2/api/getResult?appId=f5293126&signa=OGpMNVeg6EgcZbTkAj5lO4RUE%2Fk%3D&ts=1667981763&orderId=DKHJQ20221109162211091616098973CB0004A&resultType=transfer%2Cpredict HTTP/1.1" 200 None
+2022-11-09 18:23:54,755 - INFO - read_config.py:13 - get() - 读取配置文件
+2022-11-09 18:23:54,813 - INFO - xunfei_asr.py:52 - get_upload_file_path() - D:\抖音数据传输分析\douyin_service\douyin_service\result\asr_data\2022-11-09\ZMY\audio\lfasr_涉政.wav
+2022-11-09 18:23:54,813 - INFO - xunfei_asr.py:59 - get_upload_file_path() - result/asr_data/2022-11-09/ZMY/audio\lfasr_涉政.wav
+2022-11-09 18:23:54,815 - INFO - xunfei_asr.py:81 - upload_init() - 文件upload路径：lfasr_涉政.wav
+2022-11-09 18:23:54,815 - INFO - xunfei_asr.py:92 - upload_init() - upload接口参数：
+2022-11-09 18:23:54,824 - DEBUG - connectionpool.py:971 - _new_conn() - Starting new HTTPS connection (1): raasr.xfyun.cn:443
