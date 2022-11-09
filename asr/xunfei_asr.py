@@ -167,7 +167,7 @@ class RequestApi(object):
         with open(save_path, "w", encoding="utf-8") as w:
             w.write(asr_txt)
             w.close()
-        logger.info("文件 {} 存储完毕。")
+        logger.info("文件 {} 存储完毕。".format(filename))
         write_complete_list(orderId)
 
     def post_process(self, content):
