@@ -24,8 +24,8 @@ logger.addHandler(file_handler)
 # 重定向到terminal, 日志输出
 cmd_handler = logging.StreamHandler()
 cmd_handler.setLevel(logging.DEBUG)
-formatter = logging.Formatter(
+formatter_cmd = logging.Formatter(
     '%(asctime)s - %(levelname)s - %(filename)s:%(lineno)s - %(funcName)s() - %(message)s'
 )
-file_handler.setFormatter(formatter)
-logger.setLevel(logging.DEBUG)
+cmd_handler.setFormatter(formatter_cmd)
+logger.addHandler(cmd_handler)
