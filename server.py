@@ -3,6 +3,7 @@
 # @Time    : 2022/10/27 9:35
 # @Author  : stce
 
+import sys
 import uvicorn
 from utils.read_config import Env
 from asr.xunfei_asr import RequestApi
@@ -41,7 +42,7 @@ def health():
 
 
 if __name__ == '__main__':
-    env = "dev" #sys.argv[1]
+    env = sys.argv[1] # dev
     config = Env.get(env)
     logger = server_log(config["Log_Path"]["sever_log_path"])
     logger.info("服务ASR数据接收服务启动..........")
