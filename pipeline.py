@@ -4,6 +4,7 @@
 # @Author  : stce
 
 import gc
+import sys
 import logger
 from __init__ import *
 from asr.xunfei_asr import RequestApi
@@ -39,5 +40,5 @@ def douyin_pipeline(env):
     logger.info("******************************Pipeline Finish****************************************")
 
 if __name__ == "__main__":
-    env = "dev"
+    env = sys.argv[1] #"dev"
     douyin_pipeline(env)

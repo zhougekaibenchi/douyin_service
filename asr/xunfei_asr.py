@@ -131,13 +131,11 @@ class RequestApi(object):
             response = requests.post(
                 url=self.lfasr_host + self.api_get_result + "?" + urllib.parse.urlencode(param_dict),
                 headers={"Content-type": "application/json"})
-            print("查询中······")
+            logger.info("查询中······")
             result = json.loads(response.text)
             status = result['content']['orderInfo']['status']
             time.sleep(5)
-        print("get_result resp:", result)
-        with open("text.txt", 'w') as file_obj:
-            json.dump(result, file_obj)
+        logger.info("get_result resp:", result)
         return result
 
     def get_result(self):
@@ -225,8 +223,9 @@ class RequestApi(object):
 
 # 输入讯飞开放平台的appid，secret_key和待转写的文件路径
 if __name__ == '__main__':
-    env = "dev"  # sys.argv[1]
-    config = Env.get(env)
-    asr_request = RequestApi(config)
-    asr_request.get_result()
-    # asr_request.listen_asr(len(upload_list))
+    # env = "dev"  # sys.argv[1]
+    # config = Env.get(env)
+    # asr_request = RequestApi(config)
+    # asr_request.get_result()
+    # # asr_request.listen_asr(len(upload_list))
+    pass
