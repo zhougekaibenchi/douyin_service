@@ -2,25 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="24f17224-1609-409b-8376-efb4aab0b639" name="默认变更列表" comment="代码修正">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/__init__.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/asr/xunfei_asr.py" beforeDir="false" afterPath="$PROJECT_DIR$/asr/xunfei_asr.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/config/dev.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/dev.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/hot_tracking/deal_douyin_search_1024.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/hot_tracking/douyin_hot_top_1024.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/hot_tracking/douyin_open_hot_video_1024.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/hot_tracking/insurance_vocab.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/hot_tracking/stopwords.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ftp_client.py" beforeDir="false" afterPath="$PROJECT_DIR$/ftp_client.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/log/cron.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/log/cron.log.2022-10-31" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/log/cron.log.2022-11-02" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/log/cron.log.2022-11-07" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/log/sever.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/log/sever.log.2022-10-31" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pipeline.py" beforeDir="false" afterPath="$PROJECT_DIR$/pipeline.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server.py" beforeDir="false" afterPath="$PROJECT_DIR$/server.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/read_config.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/read_config.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -222,7 +205,7 @@
       <workItem from="1667916026472" duration="96000" />
       <workItem from="1667916377929" duration="13490000" />
       <workItem from="1667983443374" duration="48000" />
-      <workItem from="1667984210207" duration="2819000" />
+      <workItem from="1667984210207" duration="3305000" />
     </task>
     <task id="LOCAL-00001" summary="加入美芝老师修改的部分">
       <created>1667214502982</created>
@@ -322,7 +305,14 @@
       <option name="project" value="LOCAL" />
       <updated>1667972892716</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="代码修正">
+      <created>1667987120538</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1667987120538</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -432,7 +422,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/asr/xunfei_asr.py</url>
-          <line>226</line>
+          <line>229</line>
           <option name="timeStamp" value="50" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">

@@ -33,7 +33,7 @@ HOT_Trends:
   crawlervideo_list_local_path: 'result_hot_insurance_data.json'
   crawlervideo_list_sever_path: '/JMZ/video.json'
   # 本地视频数据
-  crawler_video_local_path: 'JMZ/audio'
+  crawler_video_local_path: '/JMZ/audio'
   crawler_video_sever_path: '/JMZ/mp3_file'
   # 存储ASR的地址
   localASRfile_path: '/JMZ/asr'
