@@ -4,6 +4,7 @@
 # @Author  : stce
 
 import os
+import redis
 import logging.handlers
 
 logger = logging.getLogger()

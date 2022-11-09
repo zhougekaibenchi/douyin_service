@@ -3,13 +3,12 @@
 # @Time    : 2022/10/25 15:32
 # @Author  : stce
 
-from __init__ import *
-from ftplib import FTP
-import os
 import time
 import datetime
-from hot_tracking import hot_keyword_tracking, recall_process, data_parser
+from __init__ import *
+from ftplib import FTP
 from hot_tracking.config import Config
+from hot_tracking import hot_keyword_tracking, recall_process, data_parser
 
 class FTP_OP(object):
     """
@@ -28,14 +27,12 @@ class FTP_OP(object):
 
     def ftp_connect(self):
         ftp = FTP()
-        ftp.set_debuglevel(1) # 调试模式设置
+        ftp.set_debuglevel(1)
         ftp.connect(host=self.host, port=self.port)
         ftp.login(self.username, self.password)
-        ftp.set_pasv(True)  #主动模式，被动模式调整
+        ftp.set_pasv(True)
         logger.info(ftp.getwelcome())
         ftp.cwd(self.current_time)
-        file_list = ftp.nlst()
-        print(file_list)
         return ftp
 
     def download_file(self, local_path, sever_path):

@@ -13,7 +13,7 @@ class Env(object):
         logger.info("读取配置文件")
         yaml = YAML()
         if env == "dev":
-            with open('config/dev.yaml', 'r', encoding='utf-8') as f:
+            with open('D:/抖音数据传输分析/douyin_service/douyin_service/config/dev.yaml', 'r', encoding='utf-8') as f: # config/dev.yaml
                 config = yaml.load(f)
             return config
         elif env == "stg":
@@ -22,11 +22,6 @@ class Env(object):
             return config
         elif env == "prd":
             with open('config/prd.yaml', 'r', encoding='utf-8') as f:
-                config = yaml.load(f)
-            return config
-        elif env == "test":
-            # 本地测试使用
-            with open('config/test.yaml', 'r', encoding='utf-8') as f:
                 config = yaml.load(f)
             return config
         else:
