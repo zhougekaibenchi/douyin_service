@@ -41,8 +41,8 @@ def health():
 
 if __name__ == '__main__':
     env = "dev" #sys.argv[1]
-    logger = server_log(env)
+    config = Env.get(env)
+    logger = server_log(config["Log_Path"]["sever_log_path"])
     logger.info("服务ASR数据接收服务启动..........")
     logger.info("服务启动ip：0.0.0.0:8001")
-    config = Env.get(env)
     uvicorn.run(app, host='127.0.0.1', port=8001)

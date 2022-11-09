@@ -23,6 +23,8 @@ def server_log(filename):
     file_handler.setFormatter(formatter)
     logger.addHandler(file_handler)
 
+    return logger
+
 def write_complete_list(orderId):
     with open("tmp.txt" , "w", encoding="utf-8") as w:
         w.writelines(orderId + "\n")
