@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="24f17224-1609-409b-8376-efb4aab0b639" name="默认变更列表" comment="代码修正">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/log/cron.log" beforeDir="false" afterPath="$PROJECT_DIR$/log/cron.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/xunfei_asr_for_test.py" beforeDir="false" afterPath="$PROJECT_DIR$/xunfei_asr_for_test.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -209,7 +208,7 @@
       <workItem from="1667984210207" duration="3501000" />
       <workItem from="1667988002632" duration="356000" />
       <workItem from="1667988593771" duration="2324000" />
-      <workItem from="1668047544909" duration="2393000" />
+      <workItem from="1668047544909" duration="4091000" />
     </task>
     <task id="LOCAL-00001" summary="加入美芝老师修改的部分">
       <created>1667214502982</created>
@@ -414,7 +413,14 @@
       <option name="project" value="LOCAL" />
       <updated>1667990227390</updated>
     </task>
-    <option name="localTasksCounter" value="30" />
+    <task id="LOCAL-00030" summary="代码修正">
+      <created>1668058439790</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1668058439790</updated>
+    </task>
+    <option name="localTasksCounter" value="31" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -458,12 +464,12 @@
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/ftp_client.py</url>
-          <line>85</line>
+          <line>88</line>
           <option name="timeStamp" value="40" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/ftp_client.py</url>
-          <line>84</line>
+          <line>87</line>
           <option name="timeStamp" value="41" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
