@@ -188,29 +188,34 @@ class FTP_HOTTrends(FTP_OP):
         批量下载抖音数据（下载整个目录）
         """
         ftp = copy.copy(self.ftp)
-        ftp.cwd(sever_path)
-        file_list = self.ftp.nlst()
-        logger.info("ftp数据传输开始")
-        logger.info(file_list)
-        isBreak = False
-        while file_list:
-            for file_name in file_list:
-                ftp_file = os.path.join(sever_path, file_name)
-                logger.info("服务端ftp_file读取路径: " + ftp_file)
-                local_file = os.path.join(local_path, file_name)
-                logger.info("客户端local_file存储路径: " + local_file)
-                if not os.path.exists(local_path):
-                    os.makedirs(local_path)
-                f = open(local_file, "wb")
-                self.ftp.retrbinary('RETR %s'%ftp_file, f.write, self.buffer_size)
-                f.close()
-                logger.info("文件下载成功：" + file_name)
-            logger.info(time.strftime('%Y%m%d', time.localtime(time.time()))+"ftp数据下载完毕")
+        try:
+            ftp.cwd(sever_path)
+            file_list = self.ftp.nlst()
+            logger.info("ftp数据传输开始")
+            logger.info(file_list)
+            isBreak = False
+            while file_list:
+                for file_name in file_list:
+                    ftp_file = os.path.join(sever_path, file_name)
+                    logger.info("服务端ftp_file读取路径: " + ftp_file)
+                    local_file = os.path.join(local_path, file_name)
+                    logger.info("客户端local_file存储路径: " + local_file)
+                    if not os.path.exists(local_path):
+                        os.makedirs(local_path)
+                    f = open(local_file, "wb")
+                    self.ftp.retrbinary('RETR %s'%ftp_file, f.write, self.buffer_size)
+                    f.close()
+                    logger.info("文件下载成功：" + file_name)
+                logger.info(time.strftime('%Y%m%d', time.localtime(time.time()))+"ftp数据下载完毕")
 
-            isBreak = True
-            break
+                isBreak = True
+                break
 
-        if not isBreak:
+            if not isBreak:
+                time.sleep(5 * 60 * 1000)
+
+        except:
+            logger.error(sever_path + "路径不存在！")
             time.sleep(5 * 60 * 1000)
 
     def download_single_file(self, local_path=None, sever_path=None):
