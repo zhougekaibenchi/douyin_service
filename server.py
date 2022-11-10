@@ -3,8 +3,8 @@
 # @Time    : 2022/10/27 9:35
 # @Author  : stce
 
+import sys
 import uvicorn
-from utils.utils import write_complete_list, read_complete_list
 from utils.read_config import Env
 from asr.xunfei_asr import RequestApi
 from fastapi import FastAPI
@@ -16,22 +16,24 @@ app = FastAPI()
 (2) /health 检查ASR接收服务是否正常
 """
 
-
-@app.get("/xunfei_lfasr")
-def xunfei_lfasr(orderId, status, resultType=None):
-    """
-    (1) 下载ASR数据
-    (2) 数据后处理
-    (3) 数据保存
-    """
-    if status == "1":
-        asr_download = RequestApi(config)
-        result = asr_download.download(orderId)
-        asr_txt = asr_download.post_process(result)
-        asr_download.save_asrdata(asr_txt)
-    else:
-        logger.info("ASR数据接收错误")
-    return {"status": "OK"}
+# @app.get("/xunfei_lfasr")
+"""
+目前采用轮询的方式获取数据，没有采用回调函数获取
+"""
+# def xunfei_lfasr(orderId, status, resultType=None):
+#     """
+#     (1) 下载ASR数据
+#     (2) 数据后处理
+#     (3) 数据保存
+#     """
+#     if status == "1":
+#         asr_download = RequestApi(config)
+#         result = asr_download.download(orderId)
+#         asr_txt = asr_download.post_process(result)
+#         asr_download.save_asrdata(asr_txt)
+#     else:
+#         logger.info("ASR数据接收错误")
+#     return {"status": "OK"}
 
 
 @app.get("/health")
@@ -40,9 +42,9 @@ def health():
 
 
 if __name__ == '__main__':
-    env = "dev" #sys.argv[1]
-    logger = server_log(env)
+    env = sys.argv[1] # dev
+    config = Env.get(env)
+    logger = server_log(config["Log_Path"]["sever_log_path"])
     logger.info("服务ASR数据接收服务启动..........")
     logger.info("服务启动ip：0.0.0.0:8001")
-    config = Env.get(env)
-    uvicorn.run(app, host='127.0.0.1', port=8001)
+    uvicorn.run(app, host='127.0.0.1', port=8010)

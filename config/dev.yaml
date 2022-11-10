@@ -9,7 +9,7 @@ Log_Path:
   sever_log_path: "log/sever.log"
 Douyin_Updata:
   # 存储ASR数据的路径
-  base_asr_path: 'result/asr_data'
+  base_asr_path: 'result/asr_data/'
   # 爬虫文本数据
   server_txt_path: '/ZMY/douyin.json'
   local_txt_path: '/result/douyin_update'
@@ -42,8 +42,8 @@ HOT_Trends:
   hottracking_result_local_path: '/JMZ/hot_tracking/douyin_result_video/'
 XunFei_ASR:
   Long_Form_ASR:
-    appid: ""
-    secret_key: ""
+    appid: "f5293126"
+    secret_key: "d8089745806779226c538608d8bec698"
     # 上传数据接口
     upload:
       # 接口配置
@@ -53,5 +53,7 @@ XunFei_ASR:
       # upload参数配置
       sysDicts: "advertisement"
       duration: 200
-    download:
-      # 下载数据接口
+    # 回调数据接口
+    callbackUrl: "http://192.168.97.192:8010"
+
+

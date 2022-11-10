@@ -2,20 +2,21 @@
 # -*- coding:utf-8 -*-
 # @Time    : 2022/10/26 14:15
 # @Author  : stce
-import datetime
+
 import sys
+import datetime
 from __init__ import *
 from pipeline import douyin_pipeline
+from apscheduler.triggers.cron import CronTrigger
 from apscheduler.schedulers.background import BlockingScheduler
 from apscheduler.events import EVENT_JOB_ERROR, EVENT_JOB_EXECUTED
-from apscheduler.triggers.cron import CronTrigger
 
 scheduler = BlockingScheduler()
 ftp_trigger = CronTrigger(hour=12, minute=0)
 
 def main():
 
-    scheduler.add_job(func=douyin_pipeline, trigger=ftp_trigger, kwargs=[sys.argv[1]], #{'env':'test'}
+    scheduler.add_job(func=douyin_pipeline, trigger=ftp_trigger, kwargs={"env":sys.argv[1]}, #{'env':'test'}
                       name="数据同步", id='pipeline', max_instances=1, replace_existing=True)
     scheduler.add_listener(listener_event, EVENT_JOB_ERROR | EVENT_JOB_EXECUTED)
     try:
@@ -27,7 +28,7 @@ def main():
 
 def listener_event(event):
 
-    job = scheduler.get_job(event.job_id, trigger=ftp_trigger)
+    job = scheduler.get_job(event.job_id)
     if not event.exception:
         logger.info(f'{job.name}任务执行成功')
     else:

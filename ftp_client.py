@@ -35,8 +35,7 @@ class FTP_OP(object):
         ftp.login(self.username, self.password)
         ftp.set_pasv(True)  #主动模式，被动模式调整
         logger.info(ftp.getwelcome())
-        # ftp.cwd(self.current_time)
-        ftp.cwd("2022-11-09")
+        ftp.cwd(self.current_time)
         return ftp
 
     def download_file(self, local_path, sever_path):
@@ -79,7 +78,6 @@ class FTP_Updata(FTP_OP):
         self.local_txt_path = self.current_time + config["Douyin_Updata"]["local_txt_path"]
         self.severMP3file_path = self.current_time + config["Douyin_Updata"]["severMP3file_path"]
         self.localMP3file_path = config["Douyin_Updata"]["localMP3file_path"]
-
 
 
     def download_file(self):
