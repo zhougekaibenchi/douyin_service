@@ -139,3 +139,118 @@
 2022-11-09 18:23:54,815 - INFO - xunfei_asr.py:81 - upload_init() - 文件upload路径：lfasr_涉政.wav
 2022-11-09 18:23:54,815 - INFO - xunfei_asr.py:92 - upload_init() - upload接口参数：
 2022-11-09 18:23:54,824 - DEBUG - connectionpool.py:971 - _new_conn() - Starting new HTTPS connection (1): raasr.xfyun.cn:443
+2022-11-10 10:33:49,880 - INFO - read_config.py:13 - get() - 读取配置文件
+2022-11-10 10:35:43,149 - INFO - read_config.py:13 - get() - 读取配置文件
+2022-11-10 10:35:43,167 - INFO - xunfei_asr_for_test.py:52 - get_upload_file_path() - D:\抖音数据传输分析\douyin_service\douyin_service\result\asr_data\2022-11-10\ZMY\audio\lfasr_涉政.wav
+2022-11-10 10:35:43,167 - INFO - xunfei_asr_for_test.py:59 - get_upload_file_path() - result/asr_data/2022-11-10/ZMY/audio\lfasr_涉政.wav
+2022-11-10 10:35:43,168 - INFO - xunfei_asr_for_test.py:81 - upload_init() - 文件upload路径：lfasr_涉政.wav
+2022-11-10 10:35:43,168 - INFO - xunfei_asr_for_test.py:92 - upload_init() - upload接口参数：
+2022-11-10 10:35:43,174 - DEBUG - connectionpool.py:971 - _new_conn() - Starting new HTTPS connection (1): raasr.xfyun.cn:443
+2022-11-10 10:35:54,248 - INFO - read_config.py:13 - get() - 读取配置文件
+2022-11-10 10:35:54,265 - INFO - xunfei_asr_for_test.py:52 - get_upload_file_path() - D:\抖音数据传输分析\douyin_service\douyin_service\result\asr_data\2022-11-10\ZMY\audio\lfasr_涉政.wav
+2022-11-10 10:35:54,265 - INFO - xunfei_asr_for_test.py:59 - get_upload_file_path() - result/asr_data/2022-11-10/ZMY/audio\lfasr_涉政.wav
+2022-11-10 10:35:54,266 - INFO - xunfei_asr_for_test.py:81 - upload_init() - 文件upload路径：lfasr_涉政.wav
+2022-11-10 10:35:54,266 - INFO - xunfei_asr_for_test.py:92 - upload_init() - upload接口参数：
+2022-11-10 10:35:54,270 - DEBUG - connectionpool.py:971 - _new_conn() - Starting new HTTPS connection (1): raasr.xfyun.cn:443
+2022-11-10 10:36:00,723 - DEBUG - connectionpool.py:452 - _make_request() - https://raasr.xfyun.cn:443 "POST /v2/api/upload?appId=f5293126&signa=Ws58H8p1VHaTl%2FHE6b5M%2Ftr6FcI%3D&ts=1668047754&fileSize=3136940&fileName=lfasr_%E6%B6%89%E6%94%BF.wav&sysDicts=advertisement&duration=200 HTTP/1.1" 200 126
+2022-11-10 10:36:00,725 - INFO - xunfei_asr_for_test.py:102 - upload() - upload_url: https://raasr.xfyun.cn/v2/api/upload?appId=f5293126&signa=Ws58H8p1VHaTl%2FHE6b5M%2Ftr6FcI%3D&ts=1668047754&fileSize=3136940&fileName=lfasr_%E6%B6%89%E6%94%BF.wav&sysDicts=advertisement&duration=200
+2022-11-10 10:36:00,725 - INFO - xunfei_asr_for_test.py:104 - upload() - upload resp: {'code': '000000', 'descInfo': 'success', 'content': {'orderId': 'DKHJQ202211101022111010369E43BEE300000', 'taskEstimateTime': 28000}}
+2022-11-10 10:36:00,725 - INFO - xunfei_asr_for_test.py:110 - download_init() - 文件查询ID：DKHJQ202211101022111010369E43BEE300000
+2022-11-10 10:36:00,725 - INFO - xunfei_asr_for_test.py:117 - download_init() - 查询部分：
+2022-11-10 10:36:00,726 - INFO - xunfei_asr_for_test.py:118 - download_init() - get result参数：
+2022-11-10 10:36:00,727 - DEBUG - connectionpool.py:971 - _new_conn() - Starting new HTTPS connection (1): raasr.xfyun.cn:443
+2022-11-10 10:36:01,498 - DEBUG - connectionpool.py:452 - _make_request() - https://raasr.xfyun.cn:443 "POST /v2/api/getResult?appId=f5293126&signa=Ws58H8p1VHaTl%2FHE6b5M%2Ftr6FcI%3D&ts=1668047754&orderId=DKHJQ202211101022111010369E43BEE300000&resultType=transfer%2Cpredict HTTP/1.1" 200 204
+2022-11-10 10:36:06,515 - DEBUG - connectionpool.py:971 - _new_conn() - Starting new HTTPS connection (1): raasr.xfyun.cn:443
+2022-11-10 10:36:07,055 - DEBUG - connectionpool.py:452 - _make_request() - https://raasr.xfyun.cn:443 "POST /v2/api/getResult?appId=f5293126&signa=Ws58H8p1VHaTl%2FHE6b5M%2Ftr6FcI%3D&ts=1668047754&orderId=DKHJQ202211101022111010369E43BEE300000&resultType=transfer%2Cpredict HTTP/1.1" 200 204
+2022-11-10 10:36:12,067 - DEBUG - connectionpool.py:971 - _new_conn() - Starting new HTTPS connection (1): raasr.xfyun.cn:443
+2022-11-10 10:36:12,715 - DEBUG - connectionpool.py:452 - _make_request() - https://raasr.xfyun.cn:443 "POST /v2/api/getResult?appId=f5293126&signa=Ws58H8p1VHaTl%2FHE6b5M%2Ftr6FcI%3D&ts=1668047754&orderId=DKHJQ202211101022111010369E43BEE300000&resultType=transfer%2Cpredict HTTP/1.1" 200 None
+2022-11-10 10:36:17,821 - INFO - xunfei_asr_for_test.py:194 - post_process() - 顺滑ASR结果输出: 中心经委7月15日电国家统计局15日公布数据显示，今年以来国际环境更趋复杂严峻，国内疫情多，发散发不利，影响明显加大，经济发展极不寻常，超预期突发因素带来严重冲击。二季度经济下行压力明显增大，面对异常复杂困难局面，在以习近平同志为核心的党中央坚强领导下，各地区各部门深入贯彻落实党中央国务院决策部署，高校统筹疫情防控和经济社会发展，加大宏观政策调节力度，有效实施稳经济一揽子政策措施，疫情反弹得到有效控制。国民经济企稳回升，生产需求边际改善，市场价格基本平稳，民生保障有力有效，高质量发展态势持续，社会大局保持稳定。一二季度经济顶住压力实现正增长，4月份主要经济指标深度下跌，面对不断加大的新的下行压力，党中央国务院科学决策及时果断失策，坚持不搞大水漫灌，靠前实施中央经济工作会议和政府工作报告政策举措，按照已明确的总体思路政策取向，推出稳经济一揽子政策措施，召开全国电视电话会议，部署稳住经济大盘工作，政策效应较快显现。5月份主要经济指标降幅收窄，6月份经济企稳回升，二季度经济实现正增长。初步核算上半年国内生产总值562,642亿元，按不变价格计算，同比增长2.5%。
+2022-11-10 10:36:17,827 - INFO - xunfei_asr_for_test.py:207 - post_process() - 非顺滑ASR结果输出: 中心经委7月15日电国家统计局15日公布数据显示，今年以来国际环境更趋复杂严峻，国内疫情多发散发不利，影响明显加大，经济发展极不寻常，超预期突发因素带来严重冲击。二季度经济下行压力明显增大，面对异常复杂困难局面，在以习近平同志为核心的党中央坚强领导下，各地区各部门深入贯彻落实党中央国务院决策部署，高校统筹疫情防控和经济社会发展，加大宏观政策调节力度，有效实施稳经济一揽子政策措施，疫情反弹得到有效控制。国民经济企稳回升，生产需求边际改善，市场价格基本平稳，民生保障有力有效，高质量发展态势持续，社会大局保持稳定。一二季度经济顶住压力实现正增长，4月份主要经济指标深度下跌，面对不断加大的新的下行压力，党中央国务院科学决策及时果断失策，坚持不搞大水漫灌，靠前实施中央经济工作会议和政府工作报告政策举措，按照已明确的总体思路政策取向，推出稳经济一揽子政策措施，召开全国电视电话会议，部署稳住经济大盘工作，政策效应较快显现。5月份主要经济指标降幅收窄，6月份经济企稳回升，二季度经济实现正增长。初步核算上半年国内生产总值562,642亿元，按不变价格计算，同比增长2.5%。
+2022-11-10 10:38:00,313 - INFO - read_config.py:13 - get() - 读取配置文件
+2022-11-10 10:38:00,371 - INFO - xunfei_asr_for_test.py:52 - get_upload_file_path() - D:\抖音数据传输分析\douyin_service\douyin_service\result\asr_data\2022-11-10\ZMY\audio\lfasr_涉政.wav
+2022-11-10 10:38:00,371 - INFO - xunfei_asr_for_test.py:59 - get_upload_file_path() - result/asr_data/2022-11-10/ZMY/audio\lfasr_涉政.wav
+2022-11-10 10:38:00,372 - INFO - xunfei_asr_for_test.py:81 - upload_init() - 文件upload路径：lfasr_涉政.wav
+2022-11-10 10:38:00,373 - INFO - xunfei_asr_for_test.py:92 - upload_init() - upload接口参数：
+2022-11-10 10:38:00,384 - DEBUG - connectionpool.py:971 - _new_conn() - Starting new HTTPS connection (1): raasr.xfyun.cn:443
+2022-11-10 10:38:09,498 - DEBUG - connectionpool.py:452 - _make_request() - https://raasr.xfyun.cn:443 "POST /v2/api/upload?appId=f5293126&signa=EPRPTuentehQ9onks23wnlbjOZ8%3D&ts=1668047880&fileSize=3136940&fileName=lfasr_%E6%B6%89%E6%94%BF.wav&sysDicts=advertisement&duration=200 HTTP/1.1" 200 126
+2022-11-10 10:38:09,501 - INFO - xunfei_asr_for_test.py:102 - upload() - upload_url: https://raasr.xfyun.cn/v2/api/upload?appId=f5293126&signa=EPRPTuentehQ9onks23wnlbjOZ8%3D&ts=1668047880&fileSize=3136940&fileName=lfasr_%E6%B6%89%E6%94%BF.wav&sysDicts=advertisement&duration=200
+2022-11-10 10:38:09,501 - INFO - xunfei_asr_for_test.py:104 - upload() - upload resp: {'code': '000000', 'descInfo': 'success', 'content': {'orderId': 'DKHJQ2022111010221110103857D663E90000F', 'taskEstimateTime': 28000}}
+2022-11-10 10:38:09,502 - INFO - xunfei_asr_for_test.py:110 - download_init() - 文件查询ID：DKHJQ2022111010221110103857D663E90000F
+2022-11-10 10:38:09,502 - INFO - xunfei_asr_for_test.py:117 - download_init() - 查询部分：
+2022-11-10 10:38:09,502 - INFO - xunfei_asr_for_test.py:118 - download_init() - get result参数：
+2022-11-10 10:38:09,505 - DEBUG - connectionpool.py:971 - _new_conn() - Starting new HTTPS connection (1): raasr.xfyun.cn:443
+2022-11-10 10:38:10,002 - DEBUG - connectionpool.py:452 - _make_request() - https://raasr.xfyun.cn:443 "POST /v2/api/getResult?appId=f5293126&signa=EPRPTuentehQ9onks23wnlbjOZ8%3D&ts=1668047880&orderId=DKHJQ2022111010221110103857D663E90000F&resultType=transfer%2Cpredict HTTP/1.1" 200 204
+2022-11-10 10:38:15,023 - DEBUG - connectionpool.py:971 - _new_conn() - Starting new HTTPS connection (1): raasr.xfyun.cn:443
+2022-11-10 10:38:15,545 - DEBUG - connectionpool.py:452 - _make_request() - https://raasr.xfyun.cn:443 "POST /v2/api/getResult?appId=f5293126&signa=EPRPTuentehQ9onks23wnlbjOZ8%3D&ts=1668047880&orderId=DKHJQ2022111010221110103857D663E90000F&resultType=transfer%2Cpredict HTTP/1.1" 200 204
+2022-11-10 10:38:20,558 - DEBUG - connectionpool.py:971 - _new_conn() - Starting new HTTPS connection (1): raasr.xfyun.cn:443
+2022-11-10 10:38:21,436 - DEBUG - connectionpool.py:452 - _make_request() - https://raasr.xfyun.cn:443 "POST /v2/api/getResult?appId=f5293126&signa=EPRPTuentehQ9onks23wnlbjOZ8%3D&ts=1668047880&orderId=DKHJQ2022111010221110103857D663E90000F&resultType=transfer%2Cpredict HTTP/1.1" 200 None
+2022-11-10 10:38:26,973 - INFO - xunfei_asr_for_test.py:194 - post_process() - 顺滑ASR结果输出: 中心经委7月15日电国家统计局15日公布数据显示，今年以来国际环境更趋复杂严峻，国内疫情多，发散发不利，影响明显加大，经济发展极不寻常，超预期突发因素带来严重冲击。二季度经济下行压力明显增大，面对异常复杂困难局面，在以习近平同志为核心的党中央坚强领导下，各地区各部门深入贯彻落实党中央国务院决策部署，高校统筹疫情防控和经济社会发展，加大宏观政策调节力度，有效实施稳经济一揽子政策措施，疫情反弹得到有效控制。国民经济企稳回升，生产需求边际改善，市场价格基本平稳，民生保障有力有效，高质量发展态势持续，社会大局保持稳定。一二季度经济顶住压力实现正增长，4月份主要经济指标深度下跌，面对不断加大的新的下行压力，党中央国务院科学决策及时果断失策，坚持不搞大水漫灌，靠前实施中央经济工作会议和政府工作报告政策举措，按照已明确的总体思路政策取向，推出稳经济一揽子政策措施，召开全国电视电话会议，部署稳住经济大盘工作，政策效应较快显现。5月份主要经济指标降幅收窄，6月份经济企稳回升，二季度经济实现正增长。初步核算上半年国内生产总值562,642亿元，按不变价格计算，同比增长2.5%。
+2022-11-10 10:38:26,980 - INFO - xunfei_asr_for_test.py:207 - post_process() - 非顺滑ASR结果输出: 中心经委7月15日电国家统计局15日公布数据显示，今年以来国际环境更趋复杂严峻，国内疫情多发散发不利，影响明显加大，经济发展极不寻常，超预期突发因素带来严重冲击。二季度经济下行压力明显增大，面对异常复杂困难局面，在以习近平同志为核心的党中央坚强领导下，各地区各部门深入贯彻落实党中央国务院决策部署，高校统筹疫情防控和经济社会发展，加大宏观政策调节力度，有效实施稳经济一揽子政策措施，疫情反弹得到有效控制。国民经济企稳回升，生产需求边际改善，市场价格基本平稳，民生保障有力有效，高质量发展态势持续，社会大局保持稳定。一二季度经济顶住压力实现正增长，4月份主要经济指标深度下跌，面对不断加大的新的下行压力，党中央国务院科学决策及时果断失策，坚持不搞大水漫灌，靠前实施中央经济工作会议和政府工作报告政策举措，按照已明确的总体思路政策取向，推出稳经济一揽子政策措施，召开全国电视电话会议，部署稳住经济大盘工作，政策效应较快显现。5月份主要经济指标降幅收窄，6月份经济企稳回升，二季度经济实现正增长。初步核算上半年国内生产总值562,642亿元，按不变价格计算，同比增长2.5%。
+2022-11-10 10:38:47,136 - INFO - read_config.py:13 - get() - 读取配置文件
+2022-11-10 10:38:47,194 - INFO - xunfei_asr_for_test.py:52 - get_upload_file_path() - D:\抖音数据传输分析\douyin_service\douyin_service\result\asr_data\2022-11-10\ZMY\audio\lfasr_涉政.wav
+2022-11-10 10:38:47,194 - INFO - xunfei_asr_for_test.py:59 - get_upload_file_path() - result/asr_data/2022-11-10/ZMY/audio\lfasr_涉政.wav
+2022-11-10 10:38:47,197 - INFO - xunfei_asr_for_test.py:81 - upload_init() - 文件upload路径：lfasr_涉政.wav
+2022-11-10 10:38:47,197 - INFO - xunfei_asr_for_test.py:92 - upload_init() - upload接口参数：
+2022-11-10 10:38:47,204 - DEBUG - connectionpool.py:971 - _new_conn() - Starting new HTTPS connection (1): raasr.xfyun.cn:443
+2022-11-10 10:38:52,835 - DEBUG - connectionpool.py:452 - _make_request() - https://raasr.xfyun.cn:443 "POST /v2/api/upload?appId=f5293126&signa=CJpUyTU4NJCEo5AgcqkcwGnL18k%3D&ts=1668047927&fileSize=3136940&fileName=lfasr_%E6%B6%89%E6%94%BF.wav&sysDicts=advertisement&duration=200 HTTP/1.1" 200 126
+2022-11-10 10:38:52,837 - INFO - xunfei_asr_for_test.py:102 - upload() - upload_url: https://raasr.xfyun.cn/v2/api/upload?appId=f5293126&signa=CJpUyTU4NJCEo5AgcqkcwGnL18k%3D&ts=1668047927&fileSize=3136940&fileName=lfasr_%E6%B6%89%E6%94%BF.wav&sysDicts=advertisement&duration=200
+2022-11-10 10:38:52,838 - INFO - xunfei_asr_for_test.py:104 - upload() - upload resp: {'code': '000000', 'descInfo': 'success', 'content': {'orderId': 'DKHJQ20221110102211101038098973FC00063', 'taskEstimateTime': 28000}}
+2022-11-10 10:38:52,839 - INFO - xunfei_asr_for_test.py:110 - download_init() - 文件查询ID：DKHJQ20221110102211101038098973FC00063
+2022-11-10 10:38:52,839 - INFO - xunfei_asr_for_test.py:117 - download_init() - 查询部分：
+2022-11-10 10:38:52,839 - INFO - xunfei_asr_for_test.py:118 - download_init() - get result参数：
+2022-11-10 10:38:52,843 - DEBUG - connectionpool.py:971 - _new_conn() - Starting new HTTPS connection (1): raasr.xfyun.cn:443
+2022-11-10 10:38:53,369 - DEBUG - connectionpool.py:452 - _make_request() - https://raasr.xfyun.cn:443 "POST /v2/api/getResult?appId=f5293126&signa=CJpUyTU4NJCEo5AgcqkcwGnL18k%3D&ts=1668047927&orderId=DKHJQ20221110102211101038098973FC00063&resultType=transfer%2Cpredict HTTP/1.1" 200 204
+2022-11-10 10:38:58,381 - DEBUG - connectionpool.py:971 - _new_conn() - Starting new HTTPS connection (1): raasr.xfyun.cn:443
+2022-11-10 10:38:59,133 - DEBUG - connectionpool.py:452 - _make_request() - https://raasr.xfyun.cn:443 "POST /v2/api/getResult?appId=f5293126&signa=CJpUyTU4NJCEo5AgcqkcwGnL18k%3D&ts=1668047927&orderId=DKHJQ20221110102211101038098973FC00063&resultType=transfer%2Cpredict HTTP/1.1" 200 204
+2022-11-10 10:39:04,151 - DEBUG - connectionpool.py:971 - _new_conn() - Starting new HTTPS connection (1): raasr.xfyun.cn:443
+2022-11-10 10:39:04,874 - DEBUG - connectionpool.py:452 - _make_request() - https://raasr.xfyun.cn:443 "POST /v2/api/getResult?appId=f5293126&signa=CJpUyTU4NJCEo5AgcqkcwGnL18k%3D&ts=1668047927&orderId=DKHJQ20221110102211101038098973FC00063&resultType=transfer%2Cpredict HTTP/1.1" 200 None
+2022-11-10 10:39:09,987 - INFO - xunfei_asr_for_test.py:194 - post_process() - 顺滑ASR结果输出: 中心经委7月15日电国家统计局15日公布数据显示，今年以来国际环境更趋复杂严峻，国内疫情多，发散发不利，影响明显加大，经济发展极不寻常，超预期突发因素带来严重冲击。二季度经济下行压力明显增大，面对异常复杂困难局面，在以习近平同志为核心的党中央坚强领导下，各地区各部门深入贯彻落实党中央国务院决策部署，高校统筹疫情防控和经济社会发展，加大宏观政策调节力度，有效实施稳经济一揽子政策措施，疫情反弹得到有效控制。国民经济企稳回升，生产需求边际改善，市场价格基本平稳，民生保障有力有效，高质量发展态势持续，社会大局保持稳定。一二季度经济顶住压力实现正增长，4月份主要经济指标深度下跌，面对不断加大的新的下行压力，党中央国务院科学决策及时果断失策，坚持不搞大水漫灌，靠前实施中央经济工作会议和政府工作报告政策举措，按照已明确的总体思路政策取向，推出稳经济一揽子政策措施，召开全国电视电话会议，部署稳住经济大盘工作，政策效应较快显现。5月份主要经济指标降幅收窄，6月份经济企稳回升，二季度经济实现正增长。初步核算上半年国内生产总值562,642亿元，按不变价格计算，同比增长2.5%。
+2022-11-10 10:39:09,994 - INFO - xunfei_asr_for_test.py:207 - post_process() - 非顺滑ASR结果输出: 中心经委7月15日电国家统计局15日公布数据显示，今年以来国际环境更趋复杂严峻，国内疫情多发散发不利，影响明显加大，经济发展极不寻常，超预期突发因素带来严重冲击。二季度经济下行压力明显增大，面对异常复杂困难局面，在以习近平同志为核心的党中央坚强领导下，各地区各部门深入贯彻落实党中央国务院决策部署，高校统筹疫情防控和经济社会发展，加大宏观政策调节力度，有效实施稳经济一揽子政策措施，疫情反弹得到有效控制。国民经济企稳回升，生产需求边际改善，市场价格基本平稳，民生保障有力有效，高质量发展态势持续，社会大局保持稳定。一二季度经济顶住压力实现正增长，4月份主要经济指标深度下跌，面对不断加大的新的下行压力，党中央国务院科学决策及时果断失策，坚持不搞大水漫灌，靠前实施中央经济工作会议和政府工作报告政策举措，按照已明确的总体思路政策取向，推出稳经济一揽子政策措施，召开全国电视电话会议，部署稳住经济大盘工作，政策效应较快显现。5月份主要经济指标降幅收窄，6月份经济企稳回升，二季度经济实现正增长。初步核算上半年国内生产总值562,642亿元，按不变价格计算，同比增长2.5%。
+2022-11-10 10:39:34,237 - INFO - read_config.py:13 - get() - 读取配置文件
+2022-11-10 10:39:34,296 - INFO - xunfei_asr_for_test.py:52 - get_upload_file_path() - D:\抖音数据传输分析\douyin_service\douyin_service\result\asr_data\2022-11-10\ZMY\audio\lfasr_涉政.wav
+2022-11-10 10:39:34,296 - INFO - xunfei_asr_for_test.py:59 - get_upload_file_path() - result/asr_data/2022-11-10/ZMY/audio\lfasr_涉政.wav
+2022-11-10 10:39:34,297 - INFO - xunfei_asr_for_test.py:81 - upload_init() - 文件upload路径：lfasr_涉政.wav
+2022-11-10 10:39:34,298 - INFO - xunfei_asr_for_test.py:92 - upload_init() - upload接口参数：
+2022-11-10 10:39:34,305 - DEBUG - connectionpool.py:971 - _new_conn() - Starting new HTTPS connection (1): raasr.xfyun.cn:443
+2022-11-10 10:39:39,389 - DEBUG - connectionpool.py:452 - _make_request() - https://raasr.xfyun.cn:443 "POST /v2/api/upload?appId=f5293126&signa=PcFmI1HvS5xdtkrZyMQFjecfq0o%3D&ts=1668047974&fileSize=3136940&fileName=lfasr_%E6%B6%89%E6%94%BF.wav&sysDicts=advertisement&duration=200 HTTP/1.1" 200 126
+2022-11-10 10:39:39,393 - INFO - xunfei_asr_for_test.py:102 - upload() - upload_url: https://raasr.xfyun.cn/v2/api/upload?appId=f5293126&signa=PcFmI1HvS5xdtkrZyMQFjecfq0o%3D&ts=1668047974&fileSize=3136940&fileName=lfasr_%E6%B6%89%E6%94%BF.wav&sysDicts=advertisement&duration=200
+2022-11-10 10:39:39,394 - INFO - xunfei_asr_for_test.py:104 - upload() - upload resp: {'code': '000000', 'descInfo': 'success', 'content': {'orderId': 'DKHJQ20221110102211101039621B9BE30004A', 'taskEstimateTime': 28000}}
+2022-11-10 10:39:39,395 - INFO - xunfei_asr_for_test.py:110 - download_init() - 文件查询ID：DKHJQ20221110102211101039621B9BE30004A
+2022-11-10 10:39:39,395 - INFO - xunfei_asr_for_test.py:117 - download_init() - 查询部分：
+2022-11-10 10:39:39,395 - INFO - xunfei_asr_for_test.py:118 - download_init() - get result参数：
+2022-11-10 10:39:39,401 - DEBUG - connectionpool.py:971 - _new_conn() - Starting new HTTPS connection (1): raasr.xfyun.cn:443
+2022-11-10 10:39:39,855 - DEBUG - connectionpool.py:452 - _make_request() - https://raasr.xfyun.cn:443 "POST /v2/api/getResult?appId=f5293126&signa=PcFmI1HvS5xdtkrZyMQFjecfq0o%3D&ts=1668047974&orderId=DKHJQ20221110102211101039621B9BE30004A&resultType=transfer%2Cpredict HTTP/1.1" 200 204
+2022-11-10 10:39:44,867 - DEBUG - connectionpool.py:971 - _new_conn() - Starting new HTTPS connection (1): raasr.xfyun.cn:443
+2022-11-10 10:39:45,698 - DEBUG - connectionpool.py:452 - _make_request() - https://raasr.xfyun.cn:443 "POST /v2/api/getResult?appId=f5293126&signa=PcFmI1HvS5xdtkrZyMQFjecfq0o%3D&ts=1668047974&orderId=DKHJQ20221110102211101039621B9BE30004A&resultType=transfer%2Cpredict HTTP/1.1" 200 204
+2022-11-10 10:39:50,707 - DEBUG - connectionpool.py:971 - _new_conn() - Starting new HTTPS connection (1): raasr.xfyun.cn:443
+2022-11-10 10:39:51,132 - DEBUG - connectionpool.py:452 - _make_request() - https://raasr.xfyun.cn:443 "POST /v2/api/getResult?appId=f5293126&signa=PcFmI1HvS5xdtkrZyMQFjecfq0o%3D&ts=1668047974&orderId=DKHJQ20221110102211101039621B9BE30004A&resultType=transfer%2Cpredict HTTP/1.1" 200 204
+2022-11-10 10:39:56,140 - DEBUG - connectionpool.py:971 - _new_conn() - Starting new HTTPS connection (1): raasr.xfyun.cn:443
+2022-11-10 10:39:56,798 - DEBUG - connectionpool.py:452 - _make_request() - https://raasr.xfyun.cn:443 "POST /v2/api/getResult?appId=f5293126&signa=PcFmI1HvS5xdtkrZyMQFjecfq0o%3D&ts=1668047974&orderId=DKHJQ20221110102211101039621B9BE30004A&resultType=transfer%2Cpredict HTTP/1.1" 200 None
+2022-11-10 10:40:01,896 - DEBUG - connectionpool.py:971 - _new_conn() - Starting new HTTPS connection (1): raasr.xfyun.cn:443
+2022-11-10 10:40:02,413 - DEBUG - connectionpool.py:452 - _make_request() - https://raasr.xfyun.cn:443 "POST /v2/api/getResult?appId=f5293126&signa=PcFmI1HvS5xdtkrZyMQFjecfq0o%3D&ts=1668047974&orderId=DKHJQ20221110102211101039621B9BE30004A&resultType=transfer%2Cpredict HTTP/1.1" 200 None
+2022-11-10 10:40:07,497 - INFO - xunfei_asr_for_test.py:194 - post_process() - 顺滑ASR结果输出: 中心经委7月15日电国家统计局15日公布数据显示，今年以来国际环境更趋复杂严峻，国内疫情多，发散发不利，影响明显加大，经济发展极不寻常，超预期突发因素带来严重冲击。二季度经济下行压力明显增大，面对异常复杂困难局面，在以习近平同志为核心的党中央坚强领导下，各地区各部门深入贯彻落实党中央国务院决策部署，高校统筹疫情防控和经济社会发展，加大宏观政策调节力度，有效实施稳经济一揽子政策措施，疫情反弹得到有效控制。国民经济企稳回升，生产需求边际改善，市场价格基本平稳，民生保障有力有效，高质量发展态势持续，社会大局保持稳定。一二季度经济顶住压力实现正增长，4月份主要经济指标深度下跌，面对不断加大的新的下行压力，党中央国务院科学决策及时果断失策，坚持不搞大水漫灌，靠前实施中央经济工作会议和政府工作报告政策举措，按照已明确的总体思路政策取向，推出稳经济一揽子政策措施，召开全国电视电话会议，部署稳住经济大盘工作，政策效应较快显现。5月份主要经济指标降幅收窄，6月份经济企稳回升，二季度经济实现正增长。初步核算上半年国内生产总值562,642亿元，按不变价格计算，同比增长2.5%。
+2022-11-10 10:40:07,503 - INFO - xunfei_asr_for_test.py:207 - post_process() - 非顺滑ASR结果输出: 中心经委7月15日电国家统计局15日公布数据显示，今年以来国际环境更趋复杂严峻，国内疫情多发散发不利，影响明显加大，经济发展极不寻常，超预期突发因素带来严重冲击。二季度经济下行压力明显增大，面对异常复杂困难局面，在以习近平同志为核心的党中央坚强领导下，各地区各部门深入贯彻落实党中央国务院决策部署，高校统筹疫情防控和经济社会发展，加大宏观政策调节力度，有效实施稳经济一揽子政策措施，疫情反弹得到有效控制。国民经济企稳回升，生产需求边际改善，市场价格基本平稳，民生保障有力有效，高质量发展态势持续，社会大局保持稳定。一二季度经济顶住压力实现正增长，4月份主要经济指标深度下跌，面对不断加大的新的下行压力，党中央国务院科学决策及时果断失策，坚持不搞大水漫灌，靠前实施中央经济工作会议和政府工作报告政策举措，按照已明确的总体思路政策取向，推出稳经济一揽子政策措施，召开全国电视电话会议，部署稳住经济大盘工作，政策效应较快显现。5月份主要经济指标降幅收窄，6月份经济企稳回升，二季度经济实现正增长。初步核算上半年国内生产总值562,642亿元，按不变价格计算，同比增长2.5%。
+2022-11-10 10:41:01,379 - INFO - read_config.py:13 - get() - 读取配置文件
+2022-11-10 10:41:01,437 - INFO - xunfei_asr_for_test.py:52 - get_upload_file_path() - D:\抖音数据传输分析\douyin_service\douyin_service\result\asr_data\2022-11-10\ZMY\audio\lfasr_涉政.wav
+2022-11-10 10:41:01,437 - INFO - xunfei_asr_for_test.py:59 - get_upload_file_path() - result/asr_data/2022-11-10/ZMY/audio\lfasr_涉政.wav
+2022-11-10 10:41:01,439 - INFO - xunfei_asr_for_test.py:81 - upload_init() - 文件upload路径：lfasr_涉政.wav
+2022-11-10 10:41:01,439 - INFO - xunfei_asr_for_test.py:92 - upload_init() - upload接口参数：
+2022-11-10 10:41:01,447 - DEBUG - connectionpool.py:971 - _new_conn() - Starting new HTTPS connection (1): raasr.xfyun.cn:443
+2022-11-10 10:41:06,844 - DEBUG - connectionpool.py:452 - _make_request() - https://raasr.xfyun.cn:443 "POST /v2/api/upload?appId=f5293126&signa=wQGUutm8lJBHnrc0zQj7Pgs440A%3D&ts=1668048061&fileSize=3136940&fileName=lfasr_%E6%B6%89%E6%94%BF.wav&sysDicts=advertisement&duration=200 HTTP/1.1" 200 126
+2022-11-10 10:41:06,850 - INFO - xunfei_asr_for_test.py:102 - upload() - upload_url: https://raasr.xfyun.cn/v2/api/upload?appId=f5293126&signa=wQGUutm8lJBHnrc0zQj7Pgs440A%3D&ts=1668048061&fileSize=3136940&fileName=lfasr_%E6%B6%89%E6%94%BF.wav&sysDicts=advertisement&duration=200
+2022-11-10 10:41:06,851 - INFO - xunfei_asr_for_test.py:104 - upload() - upload resp: {'code': '000000', 'descInfo': 'success', 'content': {'orderId': 'DKHJQ202211101022111010417D85A7E50000E', 'taskEstimateTime': 28000}}
+2022-11-10 10:41:06,852 - INFO - xunfei_asr_for_test.py:110 - download_init() - 文件查询ID：DKHJQ202211101022111010417D85A7E50000E
+2022-11-10 10:41:06,852 - INFO - xunfei_asr_for_test.py:117 - download_init() - 查询部分：
+2022-11-10 10:41:06,853 - INFO - xunfei_asr_for_test.py:118 - download_init() - get result参数：
+2022-11-10 10:41:06,857 - DEBUG - connectionpool.py:971 - _new_conn() - Starting new HTTPS connection (1): raasr.xfyun.cn:443
+2022-11-10 10:41:07,301 - DEBUG - connectionpool.py:452 - _make_request() - https://raasr.xfyun.cn:443 "POST /v2/api/getResult?appId=f5293126&signa=wQGUutm8lJBHnrc0zQj7Pgs440A%3D&ts=1668048061&orderId=DKHJQ202211101022111010417D85A7E50000E&resultType=transfer%2Cpredict HTTP/1.1" 200 204
+2022-11-10 10:41:12,316 - DEBUG - connectionpool.py:971 - _new_conn() - Starting new HTTPS connection (1): raasr.xfyun.cn:443
+2022-11-10 10:41:12,871 - DEBUG - connectionpool.py:452 - _make_request() - https://raasr.xfyun.cn:443 "POST /v2/api/getResult?appId=f5293126&signa=wQGUutm8lJBHnrc0zQj7Pgs440A%3D&ts=1668048061&orderId=DKHJQ202211101022111010417D85A7E50000E&resultType=transfer%2Cpredict HTTP/1.1" 200 204
+2022-11-10 10:41:17,882 - DEBUG - connectionpool.py:971 - _new_conn() - Starting new HTTPS connection (1): raasr.xfyun.cn:443
+2022-11-10 10:41:18,442 - DEBUG - connectionpool.py:452 - _make_request() - https://raasr.xfyun.cn:443 "POST /v2/api/getResult?appId=f5293126&signa=wQGUutm8lJBHnrc0zQj7Pgs440A%3D&ts=1668048061&orderId=DKHJQ202211101022111010417D85A7E50000E&resultType=transfer%2Cpredict HTTP/1.1" 200 204
+2022-11-10 10:41:23,454 - DEBUG - connectionpool.py:971 - _new_conn() - Starting new HTTPS connection (1): raasr.xfyun.cn:443
+2022-11-10 10:41:24,009 - DEBUG - connectionpool.py:452 - _make_request() - https://raasr.xfyun.cn:443 "POST /v2/api/getResult?appId=f5293126&signa=wQGUutm8lJBHnrc0zQj7Pgs440A%3D&ts=1668048061&orderId=DKHJQ202211101022111010417D85A7E50000E&resultType=transfer%2Cpredict HTTP/1.1" 200 None
+2022-11-10 10:41:29,101 - INFO - xunfei_asr_for_test.py:194 - post_process() - 顺滑ASR结果输出: 中心经委7月15日电国家统计局15日公布数据显示，今年以来国际环境更趋复杂严峻，国内疫情多，发散发不利，影响明显加大，经济发展极不寻常，超预期突发因素带来严重冲击。二季度经济下行压力明显增大，面对异常复杂困难局面，在以习近平同志为核心的党中央坚强领导下，各地区各部门深入贯彻落实党中央国务院决策部署，高校统筹疫情防控和经济社会发展，加大宏观政策调节力度，有效实施稳经济一揽子政策措施，疫情反弹得到有效控制。国民经济企稳回升，生产需求边际改善，市场价格基本平稳，民生保障有力有效，高质量发展态势持续，社会大局保持稳定。一二季度经济顶住压力实现正增长，4月份主要经济指标深度下跌，面对不断加大的新的下行压力，党中央国务院科学决策及时果断失策，坚持不搞大水漫灌，靠前实施中央经济工作会议和政府工作报告政策举措，按照已明确的总体思路政策取向，推出稳经济一揽子政策措施，召开全国电视电话会议，部署稳住经济大盘工作，政策效应较快显现。5月份主要经济指标降幅收窄，6月份经济企稳回升，二季度经济实现正增长。初步核算上半年国内生产总值562,642亿元，按不变价格计算，同比增长2.5%。
+2022-11-10 10:41:29,108 - INFO - xunfei_asr_for_test.py:207 - post_process() - 非顺滑ASR结果输出: 中心经委7月15日电国家统计局15日公布数据显示，今年以来国际环境更趋复杂严峻，国内疫情多发散发不利，影响明显加大，经济发展极不寻常，超预期突发因素带来严重冲击。二季度经济下行压力明显增大，面对异常复杂困难局面，在以习近平同志为核心的党中央坚强领导下，各地区各部门深入贯彻落实党中央国务院决策部署，高校统筹疫情防控和经济社会发展，加大宏观政策调节力度，有效实施稳经济一揽子政策措施，疫情反弹得到有效控制。国民经济企稳回升，生产需求边际改善，市场价格基本平稳，民生保障有力有效，高质量发展态势持续，社会大局保持稳定。一二季度经济顶住压力实现正增长，4月份主要经济指标深度下跌，面对不断加大的新的下行压力，党中央国务院科学决策及时果断失策，坚持不搞大水漫灌，靠前实施中央经济工作会议和政府工作报告政策举措，按照已明确的总体思路政策取向，推出稳经济一揽子政策措施，召开全国电视电话会议，部署稳住经济大盘工作，政策效应较快显现。5月份主要经济指标降幅收窄，6月份经济企稳回升，二季度经济实现正增长。初步核算上半年国内生产总值562,642亿元，按不变价格计算，同比增长2.5%。
+2022-11-10 10:41:40,296 - INFO - xunfei_asr_for_test.py:171 - save_asrdata() - 文件 lfasr_涉政.wav 存储完毕。
+2022-11-10 10:41:43,884 - INFO - xunfei_asr_for_test.py:151 - get_result() - ZMY 抖音数据完成
