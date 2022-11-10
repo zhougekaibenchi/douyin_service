@@ -230,7 +230,7 @@ class FTP_HOTTrends(FTP_OP):
         ftp = copy.copy(self.ftp)
         try:
             ftp.cwd(sever_path)
-        except error_perm:
+        except:
             ftp.mkd(sever_path)
             ftp.cwd(sever_path)
         file_list = self.scaner_file(local_path)
