@@ -20,23 +20,26 @@ Douyin_Updata:
   localASRfile_path: '/ZMY/asr'
 HOT_Trends:
   base_path: 'result/hot_tracking/'
+  sever_base_path: '/'
   # 本地热榜数据
-  hottrends_local_path: 'douyin_hot_top_keytops.json'
-  hottrends_sever_path: '/JMZ/deal_douyin_search.json'
-  # 本地热词搜索视频
-  searchitem_local_path: '/deal_douyin_search.json'
-  searchitem_sever_path: '/JMZ/search_keywords.json'
+  hotvideo_local_path: '/JMZ/hot_tracking/douyin_hot_video/'
+  hotvideo_sever_path: '/JMZ/hot_tracking/douyin_hot_video/'
   # 本地热榜搜索词数据
-  crawler_local_path: 'douyin_hot_tag_keywords.xls'
-  crawler_sever_path: '/JMZ/douyin_keyword_search.json'
+  hotkeywords_local_path: '/JMZ/hot_tracking/douyin_hot_keywords/'
+  hotkeywords_sever_path: '/JMZ/hot_tracking/douyin_hot_keywords/'
+  # 本地热词搜索视频
+  searchvideo_local_path: '/JMZ/hot_tracking/douyin_search_video/'
+  searchvideo_sever_path: '/JMZ/hot_tracking/douyin_search_video/'
   # 本地热搜词视频数据
-  crawlervideo_list_local_path: 'result_hot_insurance_data.json'
-  crawlervideo_list_sever_path: '/JMZ/video.json'
+  recallvideo_local_path: '/JMZ/hot_tracking/douyin_recall_video/'
+  recallvideo_sever_path: '/JMZ/hot_tracking/douyin_recall_video/'
   # 本地视频数据
   crawler_video_local_path: '/JMZ/audio'
   crawler_video_sever_path: '/JMZ/mp3_file'
-  # 存储ASR的地址
-  localASRfile_path: '/JMZ/asr'
+  # 热门关键短语中间文件路径
+  hotkeywords_tmp_local_path: '/JMZ/hot_tracking/douyin_hot_keywords_tmp/'
+  # 最终输入结果文件路径
+  hottracking_result_local_path: '/JMZ/hot_tracking/douyin_result_video/'
 XunFei_ASR:
   Long_Form_ASR:
     appid: "f5293126"

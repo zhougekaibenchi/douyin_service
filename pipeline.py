@@ -20,7 +20,7 @@ def douyin_pipeline(env):
         ftp_update = FTP_Updata(config)
         ftp_update.download_file()
 
-        # 美芝老师热点数据更新 todo JMZ
+        # 美芝老师热点数据更新
         ftp_hottrends = FTP_HOTTrends(config)
         ftp_hottrends.data_collect()
 
@@ -29,6 +29,7 @@ def douyin_pipeline(env):
         asr_request.get_result()
 
         # todo ZMY其他逻辑
+        ftp_hottrends.data_collect_by_content()    # 基于视频文案进行过滤，并输出最终结果
 
 
     except Exception as ex:

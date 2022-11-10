@@ -1,0 +1,6 @@
+douyin_hot_video---->热门数据和热榜数据
+douyin_hot_keywords---->热门关键词及短语
+douyin_hot_keywords_tmp---->挖掘热门关键词或短语中间文件（爬虫老师不用管）
+douyin_search_video---->根据热门短语检索的视频数据
+douyin_recall_video---->初筛后的视频数据（未拿视频文案的数据）
+douyin_result_video---->最终输出视频结果（爬虫老师不用管）

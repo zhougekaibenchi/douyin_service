@@ -3,12 +3,15 @@
 # @Time    : 2022/10/25 15:32
 # @Author  : stce
 
+from __init__ import *
+from ftplib import FTP, error_perm
+import os
 import time
 import datetime
-from __init__ import *
-from ftplib import FTP
-from hot_tracking.config import Config
+import json
+import copy
 from hot_tracking import hot_keyword_tracking, recall_process, data_parser
+from hot_tracking.config import Config
 
 class FTP_OP(object):
     """
@@ -27,10 +30,10 @@ class FTP_OP(object):
 
     def ftp_connect(self):
         ftp = FTP()
-        ftp.set_debuglevel(1)
+        ftp.set_debuglevel(1) # 调试模式设置
         ftp.connect(host=self.host, port=self.port)
         ftp.login(self.username, self.password)
-        ftp.set_pasv(True)
+        ftp.set_pasv(True)  #主动模式，被动模式调整
         logger.info(ftp.getwelcome())
         ftp.cwd(self.current_time)
         return ftp
@@ -101,6 +104,28 @@ class FTP_Updata(FTP_OP):
         logger.info("******************************DouyinData ZMY Get Finish*****************************************")
         self.ftp.quit()
 
+    def upload_file(self):
+
+        self.ftp = self.ftp_connect()
+        file_list = self.scaner_file(sever_path)
+        for file_name in file_list:
+            f = open(file_name, "rb")
+            file_name = os.path.split(file_name)[-1]
+            self.ftp.storbinary('STOR %s' % file_name, f, self.buffer_size)
+            logger.info('成功上传文件： "%s"' % file_name)
+        logger.info(time.strftime('%Y%m%d', time.localtime(time.time()))+"文件全部上传完毕")
+        self.ftp.quit()
+
+
+
+
+
+
+
+
+
+
+
 
 # ****************************************************  JMZ  ***********************************************************
 class FTP_HOTTrends(FTP_OP):
@@ -118,61 +143,106 @@ class FTP_HOTTrends(FTP_OP):
     :param crawler_video_sever_path: 下载ftp视频数据地址
     """
     def __init__(self, config):
-        self.current_time = str(datetime.date.today())
+        super(FTP_HOTTrends, self).__init__(config)
+
+        # self.current_time = str(datetime.date.today())
+        self.current_time = '2022-11-09'
         self.base_path = config["HOT_Trends"]["base_path"]
         self.base_asr_path = config["Douyin_Updata"]["base_asr_path"]
+        self.sever_base_path = config["HOT_Trends"]["sever_base_path"]
         # 下载本地热榜数据
-        self.hottrends_local_path = self.base_path + self.current_time + config["HOT_Trends"]["hottrends_local_path"]
-        self.hottrends_sever_path = self.current_time + config["HOT_Trends"]["hottrends_sever_path"]
+        self.hotvideo_local_path = self.base_path + self.current_time + config["HOT_Trends"]["hotvideo_local_path"]
+        self.hotvideo_sever_path = self.sever_base_path + self.current_time + config["HOT_Trends"]["hotvideo_sever_path"]
         # 确定搜索词
-        self.searchitem_local_path = self.base_path + self.current_time + config["HOT_Trends"]["searchitem_local_path"]
-        self.searchitem_sever_path = self.current_time + config["HOT_Trends"]["searchitem_sever_path"]
+        self.hotkeywords_local_path = self.base_path + self.current_time + config["HOT_Trends"]["hotkeywords_local_path"]
+        self.hotkeywords_sever_path = self.sever_base_path + self.current_time + config["HOT_Trends"]["hotkeywords_sever_path"]
         # 下载视频文本数据
-        self.crawler_local_path = self.base_path + self.current_time + config["HOT_Trends"]["crawler_local_path"]
-        self.crawler_sever_path = self.current_time + config["HOT_Trends"]["crawler_sever_path"]
+        self.searchvideo_local_path = self.base_path + self.current_time + config["HOT_Trends"]["searchvideo_local_path"]
+        self.searchvideo_sever_path = self.sever_base_path + self.current_time + config["HOT_Trends"]["searchvideo_sever_path"]
         # 确定需要下载的视频列表
-        self.crawlervideo_list_local_path = self.base_path + self.current_time + config["HOT_Trends"]["crawlervideo_list_local_path"]
-        self.crawlervideo_list_sever_path = self.current_time + config["HOT_Trends"]["crawlervideo_list_sever_path"]
+        self.recallvideo_local_path = self.base_path + self.current_time + config["HOT_Trends"]["recallvideo_local_path"]
+        self.recallvideo_sever_path = self.sever_base_path + self.current_time + config["HOT_Trends"]["recallvideo_sever_path"]
         # 将音频数据拷贝到本地服务器
         self.crawler_video_local_path = self.base_asr_path + self.current_time + config["HOT_Trends"]["crawler_video_local_path"]
-        self.crawler_video_sever_path = self.current_time + config["HOT_Trends"]["crawler_video_sever_path"]
-        super(FTP_HOTTrends, self).__init__(config)
+        self.crawler_video_sever_path = self.sever_base_path + self.current_time + config["HOT_Trends"]["crawler_video_sever_path"]
+
+        # 热门短语中间文件路径
+        self.hotkeywords_tmp_local_path = self.base_path + self.current_time + config["HOT_Trends"]["hotkeywords_tmp_local_path"]
+        # 最终输入视频文件路径
+        self.hottracking_result_local_path = self.base_path + self.current_time + config["HOT_Trends"]["hottracking_result_local_path"]
+
+        self.hotConfig = Config(self.hotvideo_local_path,           # 热榜数据路径
+                                self.hotkeywords_local_path,        # 挖掘热门词数据路径
+                                self.hotkeywords_tmp_local_path,    # 挖掘热门词中间文件
+                                self.searchvideo_local_path,        # 搜索词检索视频数据路径
+                                self.recallvideo_local_path,        # 视频召回数据路径
+                                self.hottracking_result_local_path) # 最终输入路径
+
         self.ftp = self.ftp_connect()
 
 
     def download_file(self, local_path=None, sever_path=None):
         """
-        批量下载抖音数据
+        批量下载抖音数据（下载整个目录）
         """
-        file_list = self.ftp.nlst()
-        logger.info("ftp数据传输开始")
-        logger.info(file_list)
-        for file_name in file_list:
-            ftp_file = os.path.join(local_path, file_name)
-            logger.info("服务端ftp_file读取路径: " + ftp_file)
-            local_file = os.path.join(sever_path, file_name)
-            logger.info("客户端local_file存储路径: " + local_file)
-            f = open(local_file, "wb")
-            self.ftp.retrbinary('RETR %s'%ftp_file, f.write, self.buffer_size)
-            f.close()
-            logger.info("文件下载成功：" + file_name)
-        logger.info(time.strftime('%Y%m%d', time.localtime(time.time()))+"ftp数据下载完毕")
+        ftp = copy.copy(self.ftp)
+        try:
+            ftp.cwd(sever_path)
+            file_list = self.ftp.nlst()
+            logger.info("ftp数据传输开始")
+            logger.info(file_list)
+            isBreak = False
+            while file_list:
+                for file_name in file_list:
+                    ftp_file = os.path.join(sever_path, file_name)
+                    logger.info("服务端ftp_file读取路径: " + ftp_file)
+                    local_file = os.path.join(local_path, file_name)
+                    logger.info("客户端local_file存储路径: " + local_file)
+                    if not os.path.exists(local_path):
+                        os.makedirs(local_path)
+                    f = open(local_file, "wb")
+                    self.ftp.retrbinary('RETR %s'%ftp_file, f.write, self.buffer_size)
+                    f.close()
+                    logger.info("文件下载成功：" + file_name)
+                logger.info(time.strftime('%Y%m%d', time.localtime(time.time()))+"ftp数据下载完毕")
+
+                isBreak = True
+                break
+
+            if not isBreak:
+                time.sleep(5 * 60 * 1000)
+
+        except:
+            logger.error(sever_path + "路径不存在！")
+            time.sleep(5 * 60 * 1000)
 
     def download_single_file(self, local_path=None, sever_path=None):
         """
-        单个下载抖音数据
+        单个下载抖音数据（下载单个文件夹）
         """
-        f = open(self.local_ftpfile_path, "wb")
-        self.ftp.retrbinary('RETR %s' % self.ftp_file_path, f.write, self.buffer_size)
+        f = open(local_path, "wb")
+        self.ftp.retrbinary('RETR %s' % sever_path, f.write, self.buffer_size)
 
     def upload_file(self, local_path=None, sever_path=None):
-
+        '''
+        批量上传文件（上传整个文件夹）
+        :param local_path:
+        :param sever_path:
+        :return:
+        '''
+        ftp = copy.copy(self.ftp)
+        try:
+            ftp.cwd(sever_path)
+        except:
+            ftp.mkd(sever_path)
+            ftp.cwd(sever_path)
         file_list = self.scaner_file(local_path)
         for file_name in file_list:
             f = open(file_name, "rb")
             file_name = os.path.split(file_name)[-1]
-            self.ftp.storbinary('STOR %s' % file_name, f, self.buffer_size)
-            logger.info('成功上传文件： "%s"' % file_name)
+            ftp_file = os.path.join(sever_path, file_name)
+            ftp.storbinary('STOR %s' % file_name, f, self.buffer_size)
+            logger.info('成功上传文件： "%s"' % ftp_file)
         logger.info(time.strftime('%Y%m%d', time.localtime(time.time()))+"文件全部上传完毕")
 
     def data_collect(self):
@@ -184,29 +254,41 @@ class FTP_HOTTrends(FTP_OP):
         （5）上传爬虫数据列表
         （6）下载视频数据
         """
-        self.download_file(self.hottrends_local_path, self.hottrends_sever_path) # 取热榜数据
+        # 下载热榜数据
+        self.download_file(self.hotvideo_local_path, self.hotvideo_sever_path) # 取热榜数据
 
         # 生成热搜词
-        config = Config()
-        douyinDataset = data_parser.DouyinDataset(config)
+        douyinDataset = data_parser.DouyinDataset(self.hotConfig)
         douyinDataset.merge_dataset()    # 将json格式转换成xls
 
-        keywordMining = hot_keyword_tracking.KeywordMiningByTags(config)
+        keywordMining = hot_keyword_tracking.KeywordMiningByTags(self.hotConfig)
         keywordMining.merge_keywords()  # 是否使用热门视频关键短语数据
 
-        self.upload_file(self.searchitem_local_path, self.searchitem_sever_path)    # 将热搜词传送给爬虫端
-        self.download_file(self.crawler_local_path, self.crawler_sever_path)       # 从爬虫端下载搜索热词视频数据
+        # 将热搜词传送给爬虫端，从爬虫端下载搜索热词视频数据
+        self.upload_file(self.hotkeywords_local_path, self.hotkeywords_sever_path)    # 将热搜词传送给爬虫端
+        self.download_file(self.searchvideo_local_path, self.searchvideo_sever_path)       # 从爬虫端下载搜索热词视频数据
 
         # 召回、排序热搜词相关视频
-        recall = recall_process.RecallSearchDataset(config)
+        recall = recall_process.RecallSearchDataset(self.hotConfig)
         recallDataset = recall.recall_dataset_by_insurances()   # 召回
         recall.rank_dataset_by_count(recallDataset)  # 排序
 
-        self.upload_file(self.crawlervideo_list_local_path, self.crawlervideo_list_sever_path)    # 将整理结果数据传送给爬虫端
+        self.upload_file(self.recallvideo_local_path, self.recallvideo_sever_path)    # 将整理结果数据传送给爬虫端
+
         self.download_file(self.crawler_video_local_path, self.crawler_video_sever_path)     # 从爬虫端下载对应视频文案
+
         logger.info(time.strftime('%Y%m%d', time.localtime(time.time()))+"热点数据下载完毕")   #
         self.ftp.quit()
         logger.info("******************************DouyinData JMZ Get Finish*****************************************")
+
+
+    def data_collect_by_content(self):
+        '''根据视频文案进行过滤，并排序'''
+
+        recall = recall_process.RecallSearchDataset(self.hotConfig)
+        recall.merge_video_content()
+        logger.info("******************************Filter By Video Content Finished*****************************************")
+
 
 
 if __name__ == '__main__':

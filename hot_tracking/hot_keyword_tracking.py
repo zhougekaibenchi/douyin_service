@@ -1,5 +1,5 @@
 import pandas as pd
-# import distance
+import distance
 from collections import Counter
 import copy
 from .termsRecognition import TermsRecognition
@@ -9,14 +9,14 @@ from .config import Config
 import numpy as np
 
 
-jieba.load_userdict('./data/hot_tracking/insurance_vocab.txt')
-
-
 class KeywordMiningByTags(object):
     '''基于热榜视频现有关键字进行挖掘'''
     def __init__(self, config):
 
         self.config = config
+
+        # jieba分词加载词典
+        jieba.load_userdict(self.config.insurance_vocab_file)
 
         # 加载热榜及热门视频
         self.df = pd.read_excel(config.douyin_data_file)

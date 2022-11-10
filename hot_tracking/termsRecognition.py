@@ -11,7 +11,8 @@ import math
 import pandas as pd
 import jieba
 from tqdm import tqdm
-jieba.load_userdict('./data/hot_tracking/insurance_vocab.txt')
+
+jieba.load_userdict('./hot_tracking/data/insurance_vocab.txt')
 
 
 class TermsRecognition(object):
@@ -42,6 +43,7 @@ class TermsRecognition(object):
 			get_entropy计算左、右熵值，填充result
 
 		'''
+
 		self.content = content
 		self.jieba_content = ''
 		self.tuple_content = []  # 多项式文本
@@ -357,7 +359,7 @@ if __name__ == '__main__':
 	result_file = '../result/douyin_keywords.xls'
 
 	data = pd.read_excel(douyin_data_file)
-	# data = data[data['hot_title'] == '巴萨3比3国米']
+	# JMZ = JMZ[JMZ['hot_title'] == '巴萨3比3国米']
 	data['title'] = data['title'].astype(str)
 
 	# ----------- 未分词 -----------
@@ -373,7 +375,7 @@ if __name__ == '__main__':
     #     return obj == obj
     #
     # keywords = []
-    # for word in tqdm(data.new_keyword):
+    # for word in tqdm(JMZ.new_keyword):
     #     if not_nan(word):
     #         keywords.append(word.split(','))
     #
