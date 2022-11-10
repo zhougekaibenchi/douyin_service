@@ -29,7 +29,7 @@ class DouyinDataset(object):
 
     def parser_douyin_hot_top_data(self):
         '''抖音热榜数据处理'''
-        jsonData = json.load(open(self.douyin_hot_top_file, 'r', encoding='utf-8'))
+        jsonData = json.loads(open(self.douyin_hot_top_file, 'r', encoding='utf-8').read())
         records = jsonData['RECORDS']
         contents = []
         for record in records:
@@ -42,16 +42,16 @@ class DouyinDataset(object):
                 content['hot_score'] = record['hot_score']
                 content['hot_title'] = record['hot_title']
 
-                content['title'] = video['视频标题']
-                content['like_count'] = video['点赞数']['$numberInt']
-                content['comment_count'] = video['评论数']['$numberInt']
-                content['share_count'] = video['分享数']['$numberInt']
-                content['save_count'] = video['收藏数']['$numberInt']
+                content['title'] = video['title']
+                content['like_count'] = video['digg_count']
+                content['comment_count'] = video['comment_count']
+                content['share_count'] = video['share_count']
+                content['save_count'] = video['collect_count']
                 content['item_id'] = video['item_id']
-                content['tags'] = video['类别标签'].split(',')
+                content['tags'] = video['topics'].strip(',').split(',')
 
-                atWords = self.extract_tags(video['视频标题'], '@')
-                tagWords = self.extract_tags(video['视频标题'], '#')
+                atWords = self.extract_tags(video['title'], '@')
+                tagWords = self.extract_tags(video['title'], '#')
                 words = atWords + tagWords
                 for tag in words:
                     content['title'] = content['title'].replace(tag, "")
@@ -80,7 +80,7 @@ class DouyinDataset(object):
             content['key_words'] = record['key_words']
             content['share_count'] = record['share_count']
             # tags = record['title'].split('#')[1:]
-            content['tags'] = record['topics'].split(',')
+            content['tags'] = record['topics'].strip(',').split(',')
 
             atWords = self.extract_tags(record['title'], '@')
             tagWords = self.extract_tags(record['title'], '#')

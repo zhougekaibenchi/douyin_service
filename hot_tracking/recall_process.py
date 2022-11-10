@@ -1,11 +1,11 @@
 import json
+import datetime
 import pandas as pd
 from .config import Config
 import re
 import jieba
 import jieba.posseg as pseg
 import os
-jieba.load_userdict('./data/hot_tracking/insurance_vocab.txt')
 
 
 
@@ -14,6 +14,8 @@ class RecallSearchDataset(object):
     def __init__(self, config):
 
         self.config = config
+
+        jieba.load_userdict(self.config.insurance_vocab_file)
 
         # 保险词典
         self.insurances = self.load_insurance_vocab(freq=1)
@@ -145,10 +147,12 @@ class RecallSearchDataset(object):
         recallDataset['share_rate'] = recallDataset['share_count'] / (recallDataset['play_count'] + 1)
 
         recallDataset['score'] = recallDataset['like_rate'] + recallDataset['comment_rate'] + recallDataset['collect_rate'] + recallDataset['share_rate']
-        # if recallDataset['duration'] <= 7:
-        #     recallDataset['score'] /= recallDataset['duration']
-        # else:
-        #     recallDataset['score'] /= 8
+
+        # 获取视频发布天数
+        recallDataset['days'] = recallDataset['createTime'].apply(func=lambda x: self.diff_time(x))
+
+        # 根据发布时间调整分值
+        recallDataset['score'] = recallDataset.apply(self.rank_score_by_time, axis=1)
 
 
         rankDataset = recallDataset.sort_values(by='score', ascending=False)
@@ -158,6 +162,26 @@ class RecallSearchDataset(object):
         print('排序后的视频数量：', len(rankDataset))
 
         return rankDataset
+
+
+    def rank_score_by_time(self, df):
+        '''根据发布时间调整分值'''
+        if df['days'] <= 7:
+            df['score'] /= df['days']
+
+        elif df['days'] <= 14:
+            df['score'] /= 10
+
+        elif df['days'] <= 21:
+            df['score'] /= 12
+
+        elif df['days'] <= 28:
+            df['score'] /= 14
+
+        else:
+            df['score'] /= 16
+
+        return df['score']
 
 
     # def filter_insurance_vocab(self):
@@ -186,19 +210,59 @@ class RecallSearchDataset(object):
             with open(file, 'r', encoding='utf-8') as fr:
                 content = fr.read().strip()
                 if content:
+                    # 根据中文长度占比进行过滤
+                    if not self.filter_english_video_content(content):
+                        continue
+
+                    # 根据视频文案长度进行过滤
+                    if not self.filter_video_content_by_length(content):
+                        continue
+
                     videoContent[videoFileName.replace(".txt", "")] = content
 
         return videoContent
+
+    def filter_english_video_content(self, text, rate=0.8):
+        """过滤掉视频文案内容为英文的数据"""
+        # 提取字符串中的中文内容
+        chText = re.sub("[A-Za-z0-9\,\。]", "", text)
+
+        # 若中文占字符串长度的80%，则保存，否则被删除
+        if len(chText) / len(text) >= rate:
+            return True
+
+        return False
+
+    def filter_video_content_by_length(self, text, minLength=100):
+        '''根据长度过滤视频文案内容'''
+        if len(text) >= minLength:
+            return True
+
+        return False
+
+
+    def diff_time(self, createTime):
+        '''获取发布时间时长'''
+        if createTime != "":
+            currTime = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+            d1 = datetime.datetime.strptime(createTime, "%Y-%m-%d %H:%M:%S")
+            d2 = datetime.datetime.strptime(currTime, "%Y-%m-%d %H:%M:%S")
+            days = (d2 - d1).days
+            return days
+
+        return 0
+
 
     def merge_video_content(self):
         '''将视频内容整合到召回数据中'''
         textContent = pd.read_excel(self.config.douyin_search_hot_video_file)
         videoContent = self.load_video_content()
         textContent['item_id'] = textContent['item_id'].astype(str)
-        contents = textContent['item_id'].apply(func=lambda x: videoContent.get(x, ""))
-        textContent['content'] = contents
+        textContent['content'] = textContent['item_id'].apply(func=lambda x: videoContent.get(x, ""))
+        textContent = textContent[textContent['content'] != ""]
         textContent.dropna(subset=['content'], inplace=True)
         textContent.to_excel(self.config.douyin_output_file, index=False)
+        print("视频文案过滤后的数量：", len(textContent))
         print('视频内容整合到文本数据中完成！')
 
 

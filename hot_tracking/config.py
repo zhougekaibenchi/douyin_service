@@ -1,32 +1,58 @@
-
+import os
 
 class Config(object):
-    def __init__(self):
-        # 源数据路径
-        self.douyin_hot_top_file = "./data/hot_tracking/douyin_hot_top_1024.json"     # 抖音热榜数据
-        self.douyin_hot_video_file = "./data/hot_tracking/douyin_open_hot_video_1024.json"    # 抖音热门数据
-        self.douyin_search_data_json_file = './data/hot_tracking/deal_douyin_search_1024.json'    # 抖音搜索视频数据
+    def __init__(self, hotvideo_path, hotkeywords_path, hotkeywords_tmp_path, searchvideo_path, recallvideo_path, hottracking_result_path):
 
+        # 判断目录文件是否存在， 不存在则创建
+        if not os.path.exists(hotvideo_path):
+            os.makedirs(hotvideo_path)
 
-        # 中间结果路径
-        self.douyin_data_file = "./result/hot_tracking/douyin_dataset_1024.xls"   # 抖音热榜及热门整理后的数据
-        self.douyin_hot_top_tag_file = './result/hot_tracking/douyin_hot_top_keytops_1024.xls'   # 抖音热榜关键主题
-        self.douyin_hot_video_tag_file = './result/hot_tracking/douyin_hot_video_keytops_1024.xls'    # 抖音热门是哦关键主题
-        self.douyin_hot_top_keyword_file = './result/hot_tracking/douyin_hot_top_keywords_1024.xls'   # 抖音热榜关键短语
-        self.douyin_hot_video_keyword_file = './result/hot_tracking/douyin_hot_video_keywords_1024.xls'   # 抖音热门视频关键短语
-        self.douyin_search_data_xls_file = './result/hot_tracking/douyin_search_data_1024.xls'    # 整理后的抖音搜索视频数据
-        self.douyin_search_video_content_file = './result/hot_tracking/video_content/'    # 抖音召回视频内容文案数据路径
+        if not os.path.exists(hotkeywords_path):
+            os.makedirs(hotkeywords_path)
 
+        if not os.path.exists(hotkeywords_tmp_path):
+            os.makedirs(hotkeywords_tmp_path)
 
-        # 最终结果路径
-        self.douyin_hot_tag_keyword_file = './result/hot_tracking/douyin_hot_tag_keywords_1024.xls'     # 最终输入热点关键标签或短语
-        self.douyin_search_hot_video_file = './result/hot_tracking/result_hot_insurance_data_1024.xls'  # 最终挖掘热点视频
-        self.douyin_output_file = './result/hot_tracking/result_output_file_1024.xls'   # 抖音最终输出文件（包含视频文案）
+        if not os.path.exists(searchvideo_path):
+            os.makedirs(searchvideo_path)
+
+        if not os.path.exists(recallvideo_path):
+            os.makedirs(recallvideo_path)
+
+        if not os.path.exists(hottracking_result_path):
+            os.makedirs(hottracking_result_path)
+
+        # 热榜数据
+        self.douyin_hot_top_file = hotvideo_path + "/douyin_hot_top.json"     # 抖音热榜数据
+        self.douyin_hot_video_file = hotvideo_path + "/douyin_open_hot_video.json"    # 抖音热门数据
+
+        # 热门短语数据
+        self.douyin_hot_tag_keyword_file = hotkeywords_path + '/douyin_hot_tag_keywords.xls'  # 最终输入热点关键标签或短语
+
+        # 热门短语中间文件
+        self.douyin_data_file = hotkeywords_tmp_path + "/douyin_dataset.xls"  # 抖音热榜及热门整理后的数据
+        self.douyin_hot_top_tag_file = hotkeywords_tmp_path + '/douyin_hot_top_keytops.xls'  # 抖音热榜关键主题
+        self.douyin_hot_video_tag_file = hotkeywords_tmp_path + '/douyin_hot_video_keytops.xls'  # 抖音热门是哦关键主题
+        self.douyin_hot_top_keyword_file = hotkeywords_tmp_path + '/douyin_hot_top_keywords.xls'  # 抖音热榜关键短语
+        self.douyin_hot_video_keyword_file = hotkeywords_tmp_path + '/douyin_hot_video_keywords.xls'  # 抖音热门视频关键短语
+
+        # 检索词视频数据
+        self.douyin_search_data_json_file = searchvideo_path + '/deal_douyin_search.json'    # 抖音搜索视频数据
+
+        # 检索词视频中间文件
+        self.douyin_search_data_xls_file = hotkeywords_tmp_path + '/douyin_search_data.xls'    # 整理后的抖音搜索视频数据
+        self.douyin_search_video_content_file = './JMZ/hot_tracking/video_content/'    # 抖音召回视频内容文案数据路径
+
+        # 召回视频数据
+        self.douyin_search_hot_video_file = recallvideo_path + '/result_hot_insurance_data.xls'  # 最终挖掘热点视频
+
+        # 最终输入数据
+        self.douyin_output_file = hottracking_result_path + '/result_output_file.xls'   # 抖音最终输出文件（包含视频文案）
 
 
         # 其他辅助文件
-        self.stopwords_file = './data/hot_tracking/stopwords.txt'      # 停用词
-        self.insurance_vocab_file = './data/hot_tracking/insurance_vocab.txt'     # 保险相关词向量
+        self.stopwords_file = './hot_tracking/data/stopwords.txt'      # 停用词
+        self.insurance_vocab_file = './hot_tracking/data/insurance_vocab.txt'     # 保险相关词向量
 
 
         # 热门关键短语挖掘相关配置

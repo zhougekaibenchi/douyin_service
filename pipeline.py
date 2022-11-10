@@ -20,8 +20,8 @@ def douyin_pipeline(env):
         ftp_update.download_file()
 
         # 美芝老师热点数据更新
-        # ftp_hottrends = FTP_HOTTrends(config)
-        # ftp_hottrends.data_collect()
+        ftp_hottrends = FTP_HOTTrends(config)
+        ftp_hottrends.data_collect()
 
         # 数据ASR输出
         asr_request = RequestApi(config)
@@ -31,13 +31,14 @@ def douyin_pipeline(env):
         asr_request.listen_asr(len(upload_list))
 
         # todo ZMY其他逻辑
+        ftp_hottrends.data_collect_by_content()    # 基于视频文案进行过滤，并输出最终结果
 
 
     except Exception as ex:
         logger.error("pipeline出现错误")
         raise ex
 
-    # del ftp_update, ftp_hottrends
+    del ftp_update, ftp_hottrends
     gc.collect()
     logger.info("******************************Pipeline Finish****************************************")
 
