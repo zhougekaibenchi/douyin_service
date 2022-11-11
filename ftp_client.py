@@ -145,8 +145,8 @@ class FTP_HOTTrends(FTP_OP):
     def __init__(self, config):
         super(FTP_HOTTrends, self).__init__(config)
 
-        # self.current_time = str(datetime.date.today())
-        self.current_time = '2022-11-09'
+        self.current_time = str(datetime.date.today())
+        # self.current_time = '2022-11-09'
         self.base_path = config["HOT_Trends"]["base_path"]
         self.base_asr_path = config["Douyin_Updata"]["base_asr_path"]
         self.sever_base_path = config["HOT_Trends"]["sever_base_path"]
