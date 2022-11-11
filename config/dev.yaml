@@ -1,5 +1,5 @@
 FTP_Sever:
-  host: '14.116.177.18'# 127.0.0.1   14.116.177.18
+  host: '14.116.177.18'# 127.0.0.1
   username: 'username1'
   password: '1PASSWORD'
   buffer_size: 204800
@@ -36,6 +36,8 @@ HOT_Trends:
   # 本地视频数据
   crawler_video_local_path: '/JMZ/audio'
   crawler_video_sever_path: '/JMZ/mp3_file'
+
+  base_asr_path: 'result/asr_data/'
   # 热门关键短语中间文件路径
   hotkeywords_tmp_local_path: '/JMZ/hot_tracking/douyin_hot_keywords_tmp/'
   # 最终输入结果文件路径

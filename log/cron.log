@@ -254,3 +254,16 @@
 2022-11-10 10:41:29,108 - INFO - xunfei_asr_for_test.py:207 - post_process() - 非顺滑ASR结果输出: 中心经委7月15日电国家统计局15日公布数据显示，今年以来国际环境更趋复杂严峻，国内疫情多发散发不利，影响明显加大，经济发展极不寻常，超预期突发因素带来严重冲击。二季度经济下行压力明显增大，面对异常复杂困难局面，在以习近平同志为核心的党中央坚强领导下，各地区各部门深入贯彻落实党中央国务院决策部署，高校统筹疫情防控和经济社会发展，加大宏观政策调节力度，有效实施稳经济一揽子政策措施，疫情反弹得到有效控制。国民经济企稳回升，生产需求边际改善，市场价格基本平稳，民生保障有力有效，高质量发展态势持续，社会大局保持稳定。一二季度经济顶住压力实现正增长，4月份主要经济指标深度下跌，面对不断加大的新的下行压力，党中央国务院科学决策及时果断失策，坚持不搞大水漫灌，靠前实施中央经济工作会议和政府工作报告政策举措，按照已明确的总体思路政策取向，推出稳经济一揽子政策措施，召开全国电视电话会议，部署稳住经济大盘工作，政策效应较快显现。5月份主要经济指标降幅收窄，6月份经济企稳回升，二季度经济实现正增长。初步核算上半年国内生产总值562,642亿元，按不变价格计算，同比增长2.5%。
 2022-11-10 10:41:40,296 - INFO - xunfei_asr_for_test.py:171 - save_asrdata() - 文件 lfasr_涉政.wav 存储完毕。
 2022-11-10 10:41:43,884 - INFO - xunfei_asr_for_test.py:151 - get_result() - ZMY 抖音数据完成
+2022-11-11 10:12:05,928 - INFO - read_config.py:13 - get() - 读取配置文件
+2022-11-11 10:13:14,341 - INFO - read_config.py:13 - get() - 读取配置文件
+2022-11-11 10:13:14,400 - INFO - xunfei_asr_for_test.py:57 - get_upload_file_path() - D:\抖音数据传输分析\douyin_service\douyin_service\result\asr_data\2022-11-10\ZMY\audio\lfasr_涉政.wav
+2022-11-11 10:13:14,401 - INFO - xunfei_asr_for_test.py:64 - get_upload_file_path() - result/asr_data/2022-11-10/ZMY/audio\lfasr_涉政.wav
+2022-11-11 10:15:00,416 - INFO - read_config.py:13 - get() - 读取配置文件
+2022-11-11 10:15:00,477 - INFO - xunfei_asr_for_test.py:57 - get_upload_file_path() - D:\抖音数据传输分析\douyin_service\douyin_service\result\asr_data\2022-11-10\ZMY\audio\lfasr_涉政.wav
+2022-11-11 10:15:00,478 - INFO - xunfei_asr_for_test.py:64 - get_upload_file_path() - result/asr_data/2022-11-10/ZMY/audio\lfasr_涉政.wav
+2022-11-11 10:15:20,714 - INFO - read_config.py:13 - get() - 读取配置文件
+2022-11-11 10:15:20,775 - INFO - xunfei_asr_for_test.py:57 - get_upload_file_path() - D:\抖音数据传输分析\douyin_service\douyin_service\result\asr_data\2022-11-10\ZMY\audio\lfasr_涉政.wav
+2022-11-11 10:15:20,775 - INFO - xunfei_asr_for_test.py:64 - get_upload_file_path() - result/asr_data/2022-11-10/ZMY/audio\lfasr_涉政.wav
+2022-11-11 10:15:36,638 - INFO - read_config.py:13 - get() - 读取配置文件
+2022-11-11 10:15:45,329 - INFO - xunfei_asr_for_test.py:57 - get_upload_file_path() - D:\抖音数据传输分析\douyin_service\douyin_service\result\asr_data\2022-11-10\ZMY\audio\lfasr_涉政.wav
+2022-11-11 10:15:45,330 - INFO - xunfei_asr_for_test.py:64 - get_upload_file_path() - result/asr_data/2022-11-10/ZMY/audio\lfasr_涉政.wav
