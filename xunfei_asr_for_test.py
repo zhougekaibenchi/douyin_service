@@ -21,7 +21,7 @@ from utils.utils import write_complete_list, read_complete_list
 class RequestApi(object):
     def __init__(self, config):
         # 当前时间
-        self.current_time = str("2022-11-10") #str(datetime.date.today())
+        self.current_time = str("2022-11-09") #str(datetime.date.today())
         # 账号，ID
         self.appid = config["XunFei_ASR"]["Long_Form_ASR"]["appid"]
         self.secret_key = config["XunFei_ASR"]["Long_Form_ASR"]["secret_key"]
@@ -37,12 +37,12 @@ class RequestApi(object):
             config["Douyin_Updata"]["base_asr_path"] + self.current_time + config["Douyin_Updata"]["localMP3file_path"])
 
         self.upload_file_path_JMZ = self.get_upload_file_path(
-            self.get_upload_file_path(config["HOT_Trends"]["base_asr_path"] + self.current_time + config["HOT_Trends"]["crawler_video_local_path"]))
-        # ASR最终存储路径
+            self.get_upload_file_path(config["Douyin_Updata"]["base_asr_path"] + self.current_time + config["HOT_Trends"]["crawler_video_local_path"]))
+        # # ASR最终存储路径
         self.fianalasr_savepath_ZMY = config["Douyin_Updata"]["base_asr_path"] + self.current_time + \
                                       config["Douyin_Updata"]["localASRfile_path"]
 
-        self.fianalasr_savepath_JMZ = config["HOT_Trends"]["base_path"] + self.current_time + \
+        self.fianalasr_savepath_JMZ = config["Douyin_Updata"]["base_asr_path"] + self.current_time + \
                                       config["HOT_Trends"]["localASRfile_path"]
         # 回调函数url
         self.callbackUrl = config["XunFei_ASR"]["Long_Form_ASR"]["callbackUrl"]
@@ -142,29 +142,29 @@ class RequestApi(object):
 
         # 采用轮询的方式获取ASR结果，一条条上传等待
         # todo ASR时间不够，这部分停止跑
-        # for item in self.upload_file_path_ZMY:
-        #     self.ts = str(int(time.time()))
-        #     self.signa = self.get_signa()
-        #     uploadresp = self.upload(item)
-        #     orderId = uploadresp['content']['orderId']
-        #     result = self.download(uploadresp)
-        #     asr_txt = self.post_process(result)
-        #     self.save_asrdata(item.split("//")[-1], orderId, asr_txt, self.fianalasr_savepath_ZMY)
-        # logger.info("ZMY 抖音数据完成")
-
-        for item in self.upload_file_path_JMZ:
+        for item in self.upload_file_path_ZMY:
             self.ts = str(int(time.time()))
             self.signa = self.get_signa()
             uploadresp = self.upload(item)
             orderId = uploadresp['content']['orderId']
             result = self.download(uploadresp)
             asr_txt = self.post_process(result)
-            self.save_asrdata(item.split("//")[-1], orderId, asr_txt, self.fianalasr_savepath_JMZ)
-        logger.info("JMZ 抖音数据完成")
+            self.save_asrdata(item.split("\\")[-1], orderId, asr_txt, self.fianalasr_savepath_ZMY)
+        logger.info("ZMY 抖音数据完成")
+
+        # for item in self.upload_file_path_JMZ:
+        #     self.ts = str(int(time.time()))
+        #     self.signa = self.get_signa()
+        #     uploadresp = self.upload(item)
+        #     orderId = uploadresp['content']['orderId']
+        #     result = self.download(uploadresp)
+        #     asr_txt = self.post_process(result)
+        #     self.save_asrdata(item.split("//")[-1], orderId, asr_txt, self.fianalasr_savepath_JMZ)
+        # logger.info("JMZ 抖音数据完成")
 
     def save_asrdata(self, filename, orderId, asr_txt, fianalasr_savepath):
 
-        save_path = fianalasr_savepath + "/" + filename
+        save_path = fianalasr_savepath + "/" + filename.split(".")[0] + ".txt"
         with open(save_path, "w", encoding="utf-8") as w:
             w.write(asr_txt)
             w.close()

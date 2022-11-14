@@ -7,6 +7,7 @@ from __init__ import *
 from ftplib import FTP, error_perm
 import os
 import time
+import tqdm
 import datetime
 import json
 import copy
@@ -21,7 +22,8 @@ class FTP_OP(object):
         """
         :param config: 配置文件
         """
-        self.current_time = str(datetime.date.today())
+        #self.current_time = str(datetime.date.today())
+        self.current_time = str("2022-11-10")
         self.host = config["FTP_Sever"]["host"]
         self.username = config["FTP_Sever"]["username"]
         self.password = config["FTP_Sever"]["password"]
@@ -74,10 +76,22 @@ class FTP_Updata(FTP_OP):
         :param localMP4file_path: 本地存放路径
         """
         super(FTP_Updata, self).__init__(config)
-        self.server_txt_path = self.current_time + config["Douyin_Updata"]["server_txt_path"]
-        self.local_txt_path = self.current_time + config["Douyin_Updata"]["local_txt_path"]
-        self.severMP3file_path = self.current_time + config["Douyin_Updata"]["severMP3file_path"]
-        self.localMP3file_path = config["Douyin_Updata"]["localMP3file_path"]
+        self.server_txt_path = config["Douyin_Updata"]["server_txt_path"]
+        self.local_txt_path = config["Douyin_Updata"]["base_asr_path"] + self.current_time + config["Douyin_Updata"]["local_txt_path"]
+        self.severMP3file_path = config["Douyin_Updata"]["severMP3file_path"]
+        self.localMP3file_path = config["Douyin_Updata"]["base_asr_path"] + self.current_time + config["Douyin_Updata"]["localMP3file_path"]
+
+
+    def check(self, file_list):
+        """
+        当中断后重启检查当前目录下的文件
+        """
+        file_list_c = self.scaner_file(self.localMP3file_path)
+        file_list_c = [item.split("\\")[-1] for item in file_list_c]
+        for item in file_list_c:
+            if item in file_list:
+                file_list.remove(item)
+        return file_list
 
 
     def download_file(self):
@@ -85,13 +99,14 @@ class FTP_Updata(FTP_OP):
         logger.info("ftp数据传输开始")
         self.ftp = self.ftp_connect()
         # (1) 传输文本文件
-        f = open(self.local_txt_path, "wb")
-        self.ftp.retrbinary('RETR %s' % self.server_txt_path, f.write, self.buffer_size)
+        # f = open(self.local_txt_path, "wb")
+        # self.ftp.retrbinary('RETR %s' % self.server_txt_path, f.write, self.buffer_size)
+        # f.close()
 
         # (2) 传输音频文件
         file_list = self.ftp.nlst(self.severMP3file_path)
-        logger.info(file_list)
-        for file_name in file_list:
+        file_list = self.check(file_list)
+        for file_name in tqdm.tqdm(file_list):
             ftp_file = os.path.join(self.severMP3file_path, file_name)
             logger.info("服务端ftp_file读取路径: " + ftp_file)
             local_file = os.path.join(self.localMP3file_path, file_name)
@@ -103,29 +118,6 @@ class FTP_Updata(FTP_OP):
         logger.info(time.strftime('%Y%m%d', time.localtime(time.time()))+"ftp数据下载完毕")
         logger.info("******************************DouyinData ZMY Get Finish*****************************************")
         self.ftp.quit()
-
-    def upload_file(self):
-
-        self.ftp = self.ftp_connect()
-        file_list = self.scaner_file(sever_path)
-        for file_name in file_list:
-            f = open(file_name, "rb")
-            file_name = os.path.split(file_name)[-1]
-            self.ftp.storbinary('STOR %s' % file_name, f, self.buffer_size)
-            logger.info('成功上传文件： "%s"' % file_name)
-        logger.info(time.strftime('%Y%m%d', time.localtime(time.time()))+"文件全部上传完毕")
-        self.ftp.quit()
-
-
-
-
-
-
-
-
-
-
-
 
 # ****************************************************  JMZ  ***********************************************************
 class FTP_HOTTrends(FTP_OP):

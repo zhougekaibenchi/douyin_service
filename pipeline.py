@@ -17,8 +17,8 @@ def douyin_pipeline(env):
     try:
         config = Env.get(env)
         # 抖音账号数据更新
-        # ftp_update = FTP_Updata(config)
-        # ftp_update.download_file()
+        ftp_update = FTP_Updata(config)
+        ftp_update.download_file()
 
         # 美芝老师热点数据更新
         ftp_hottrends = FTP_HOTTrends(config)
@@ -41,5 +41,5 @@ def douyin_pipeline(env):
     logger.info("******************************Pipeline Finish****************************************")
 
 if __name__ == "__main__":
-    env = sys.argv[1] #"dev"
+    env = "dev"  #sys.argv[1]
     douyin_pipeline(env)
