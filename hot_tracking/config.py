@@ -67,6 +67,8 @@ class Config(object):
         self.num_hot_top_keywords = 5  # 每个热榜主题提取多少个关键短语信息
         self.num_hot_video_tags = 5  # 热门视频提取多少个标签信息
         self.num_hot_video_keywords = 10  # 热门视频提取多少个关键短语信息
+        self.tag_rate = 0.3
+
 
 
         # 搜索相关热门视频配置
