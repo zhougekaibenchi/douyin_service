@@ -87,7 +87,7 @@ class FTP_Updata(FTP_OP):
         当中断后重启检查当前目录下的文件
         """
         file_list_c = self.scaner_file(self.localMP3file_path)
-        file_list_c = [item.split("\\")[-1] for item in file_list_c]
+        file_list_c = [item.split("\\")[-1] for item in file_list_c] # linux为/
         for item in file_list_c:
             if item in file_list:
                 file_list.remove(item)
