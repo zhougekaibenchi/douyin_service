@@ -14,7 +14,7 @@ class DouyinDataset(object):
         self.douyin_hot_video_file = config.douyin_hot_video_file
         self.douyin_data_file = config.douyin_data_file
         # 数据来源、热榜主题、id、标题、创作者、热度值、播放量、点赞量、评论量、转发量、收藏量、类别、标签、关键字
-        self.columns = ['source', 'hot_title', 'item_id', 'title', 'author_name', 'hot_score', 'play_count', 'like_count', 'comment_count', 'share_count', 'save_count', 'category', 'tags', 'key_words']
+        self.columns = ['source', 'hot_title', 'flag_score', 'item_id', 'title', 'author_name', 'hot_score', 'play_count', 'like_count', 'comment_count', 'share_count', 'save_count', 'category', 'tags', 'key_words']
 
     def extract_tags(self, text, symbol):
         tags = []
@@ -41,6 +41,7 @@ class DouyinDataset(object):
                 content['category'] = record['category']
                 content['hot_score'] = record['hot_score']
                 content['hot_title'] = record['hot_title']
+                content['flag_score'] = record['flag_score']
 
                 content['title'] = video['title']
                 content['like_count'] = video['digg_count']
@@ -71,6 +72,7 @@ class DouyinDataset(object):
             content = {}
             content['source'] = 'hot_video'
             content['title'] = record['title']
+            content['flag_score'] = record.get('flag_score', 1)
             content['item_id'] = record['item_id']
             content['author_name'] = record['author_name']
             content['comment_count'] = record['comment_count']
