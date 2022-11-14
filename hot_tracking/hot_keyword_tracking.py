@@ -58,10 +58,25 @@ class KeywordMiningByTags(object):
             for tag in tags:
                 tagList.extend(eval(tag))
 
+            # 统计每个标签出现的次数
             newTabList = [x.strip() for x in tagList if x.strip()]
-            tagFreq = dict(Counter(newTabList).most_common(self.config.num_hot_top_tags))
+            tagFreq = dict(Counter(newTabList))
 
-            keyTags.append(tagFreq)
+            # 统计每个标签出现的概率
+            tagRate = {}
+            for tag, freq in tagFreq.items():
+                rate = freq / len(top_data)
+                if rate >= self.config.tag_rate:
+                    tagRate[tag] = freq / len(top_data)
+
+            # 按照概率值进行排序
+            sortTagRate = sorted(tagRate.items(), key=lambda x: x[1], reverse=True)
+
+            # 取前n个tag
+            sortTagRate = dict(sortTagRate[:self.config.num_hot_top_tags])
+
+
+            keyTags.append(sortTagRate)
             tagTops.append(top)
 
         # 整理所有热榜主题标签，统计每个标签出现频次以及出现热榜主题 {tag: [freq, tops]}
