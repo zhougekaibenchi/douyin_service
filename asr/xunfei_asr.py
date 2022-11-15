@@ -21,7 +21,7 @@ from utils.utils import write_complete_list, read_complete_list
 class RequestApi(object):
     def __init__(self, config):
         # 当前时间
-        self.current_time = str(datetime.date.today())
+        self.current_time = str("2022-11-09") #str(datetime.date.today())
         # 账号，ID
         self.appid = config["XunFei_ASR"]["Long_Form_ASR"]["appid"]
         self.secret_key = config["XunFei_ASR"]["Long_Form_ASR"]["secret_key"]
@@ -142,29 +142,32 @@ class RequestApi(object):
 
         # 采用轮询的方式获取ASR结果，一条条上传等待
         # todo ASR时间不够，这部分停止跑
-        # for item in self.upload_file_path_ZMY:
+        for item in self.upload_file_path_ZMY:
+            self.ts = str(int(time.time()))
+            self.signa = self.get_signa()
+            uploadresp = self.upload(item)
+            try:
+                orderId = uploadresp['content']['orderId']
+                result = self.download(uploadresp)
+                asr_txt = self.post_process(result)
+                self.save_asrdata(item.split("\\")[-1], orderId, asr_txt, self.fianalasr_savepath_ZMY)
+            except:
+                logger.info("无法转换音频数据文件，请检查{}".format(item))
+        logger.info("ZMY 抖音数据完成")
+
+        # for item in self.upload_file_path_JMZ:
         #     self.ts = str(int(time.time()))
         #     self.signa = self.get_signa()
         #     uploadresp = self.upload(item)
         #     orderId = uploadresp['content']['orderId']
         #     result = self.download(uploadresp)
         #     asr_txt = self.post_process(result)
-        #     self.save_asrdata(item.split("//")[-1], orderId, asr_txt, self.fianalasr_savepath_ZMY)
-        # logger.info("ZMY 抖音数据完成")
-
-        for item in self.upload_file_path_JMZ:
-            self.ts = str(int(time.time()))
-            self.signa = self.get_signa()
-            uploadresp = self.upload(item)
-            orderId = uploadresp['content']['orderId']
-            result = self.download(uploadresp)
-            asr_txt = self.post_process(result)
-            self.save_asrdata(item.split("//")[-1], orderId, asr_txt, self.fianalasr_savepath_JMZ)
-        logger.info("JMZ 抖音数据完成")
+        #     self.save_asrdata(item.split("//")[-1], orderId, asr_txt, self.fianalasr_savepath_JMZ)
+        # logger.info("JMZ 抖音数据完成")
 
     def save_asrdata(self, filename, orderId, asr_txt, fianalasr_savepath):
 
-        save_path = fianalasr_savepath + "/" + filename
+        save_path = fianalasr_savepath + "/" + filename.split(".")[0] + ".txt"
         with open(save_path, "w", encoding="utf-8") as w:
             w.write(asr_txt)
             w.close()
@@ -220,12 +223,10 @@ class RequestApi(object):
     #             logger.info("ASR全量数据获取失败，获取数据比例{}".format(len(complete_nums) / total_nums))
     #             break
     #     logger.info("*******************************ASR DataDownload Finish******************************************")
-
-
+# 输入讯飞开放平台的appid，secret_key和待转写的文件路径
 if __name__ == '__main__':
-    # env = "dev"  # sys.argv[1]
-    # config = Env.get(env)
-    # asr_request = RequestApi(config)
-    # asr_request.get_result()
-    # # asr_request.listen_asr(len(upload_list))
-    pass
+    env = "dev"  # sys.argv[1]
+    config = Env.get(env)
+    asr_request = RequestApi(config)
+    asr_request.get_result()
+    #asr_request.listen_asr(len(upload_list))
