@@ -69,23 +69,17 @@ class TermsRecognition(object):
 				self.jieba_content = sum(self.content,[])
 		else:
 			if isinstance (self.content,str):  
-				self.jieba_content = list(jieba.cut(self.content))
+				self.jieba_content = list(jieba.cut(self.content.replace(' ', '')))
 				self.jieba_content = list(map( lambda s: ''.join(filter(lambda x: x not in self.punct, s))  , self.jieba_content  ))
 				self.jieba_content = list(pd.Series(self.jieba_content) [  [i !='' for i in self.jieba_content]  ].values)   # 清除''
 			else:
-				self.jieba_content = [list(jieba.cut(i)) for i in self.content]
+				self.jieba_content = [list(jieba.cut(i.replace(' ', ''))) for i in self.content]
 				self.diction = self.get_idf(self.jieba_content)  # 只有多行的才能计算IDF
 				self.jieba_content = list(map( lambda s: ''.join(filter(lambda x: x not in self.punct, s))  , sum(self.jieba_content,[]) ))
 				self.jieba_content = list(pd.Series(self.jieba_content) [  [i !=' ' for i in self.jieba_content]  ].values)  # 清除''
 		print('Calculate tuple words ...')
 		for t_mode in self.mode:
 			self.tuple_content.extend( self.wordsGenerator( self.jieba_content,t_mode)  )
-
-
-	# def word_get_tfidf(self):
-	# 	'''获取tf-idf'''
-	# 	print ('Calculate tf-idf for each possible words')
-	# 	reg = [i[1] for i in self.tuple_content]
 
 
 
@@ -97,11 +91,11 @@ class TermsRecognition(object):
 		for r in reg:
 			if r in self.result:
 				self.result[r]['freq'] += 1
-				self.result[r]['idf'] = self.idf_diction[r]
+				self.result[r]['tf_idf'] = self.idf_diction[r]
 			else:
 				self.result[r] = {'left':[], 'right':[]}
 				self.result[r]['freq'] = 1
-				self.result[r]['idf']  = self.idf_diction[r]
+				self.result[r]['tf_idf']  = self.idf_diction[r]
 
 
 	def docs(self,w, D):
@@ -145,7 +139,7 @@ class TermsRecognition(object):
 		diction['tf'] = list(map(lambda x : self.docs(x,jieba_content)  , diction['words'] ))
 		n = len(jieba_content)
 		diction['idf'] = [math.log(i) for i in n*1.0 / (diction['tf'] + 1 ) ]
-		# diction['tf_idf'] = diction['wtf'] * diction['idf']
+		diction['tf_idf'] = diction['tf'] * diction['idf']
 		return diction
 
 	def get_doa(self, base=2):
@@ -208,23 +202,23 @@ class TermsRecognition(object):
 				base_word.append((base_text[i-1] , base_text[i] , base_text[i+1]))
 				# 计算idf
 				#print('word generator mode 1 ,Round at %s ...' %i)
-				self.idf_diction[base_text[i]] = (self.diction[ (self.diction['words']==base_text[i])  ]['idf'].values)
+				self.idf_diction[base_text[i]] = (self.diction[ (self.diction['words']==base_text[i])  ]['tf_idf'].values)
 		
 		if mode == 1 :
 			for i in  tqdm(range(1,len(base_text)-3)):
 				base_word.append((base_text[i-1] , base_text[i] + base_text[i+1] , base_text[i+2]))
 				# 计算idf
 				#print('word generator mode 1 ,Round at %s ...' %i)
-				self.idf_diction[base_text[i] + base_text[i+1]] = np.hstack((self.diction[ (self.diction['words']==base_text[i])  ]['idf'].values,\
-					self.diction[ (self.diction['words']==base_text[i+1])  ]['idf'].values)).mean()
+				self.idf_diction[base_text[i] + base_text[i+1]] = np.hstack((self.diction[ (self.diction['words']==base_text[i])  ]['tf_idf'].values,\
+					self.diction[ (self.diction['words']==base_text[i+1])  ]['tf_idf'].values)).mean()
 		if mode == 2 :
 			for i in tqdm(range(1,len(base_text)-4)):
 				base_word.append((base_text[i-1] , base_text[i] + base_text[i+1] + base_text[i+2] , base_text[i+3]))
     				# 计算idf
 				#print('word generator mode 2 ,Round %s ... ' %i)
-				self.idf_diction[ base_text[i] + base_text[i+1] + base_text[i+2]] = np.hstack((self.diction[ (self.diction['words']==base_text[i])  ]['idf'].values,\
-					self.diction[ (self.diction['words']==base_text[i+1])  ]['idf'].values,\
-					self.diction[ (self.diction['words']==base_text[i+2])  ]['idf'].values)).mean()
+				self.idf_diction[ base_text[i] + base_text[i+1] + base_text[i+2]] = np.hstack((self.diction[ (self.diction['words']==base_text[i])  ]['tf_idf'].values,\
+					self.diction[ (self.diction['words']==base_text[i+1])  ]['tf_idf'].values,\
+					self.diction[ (self.diction['words']==base_text[i+2])  ]['tf_idf'].values)).mean()
 
 		if mode == 3:
 			for i in  tqdm(range(1,len(base_text)-3)):
@@ -232,10 +226,10 @@ class TermsRecognition(object):
 				base_word.append(( base_text[i-1] ,  base_text[i] + base_text[i+1][0], base_text[i+1] ))
     				# 计算idf
 				#print('word generator mode 3 ,Round at %s ...' %i)
-				self.idf_diction[base_text[i-1][-1] + base_text[i]] = np.hstack((self.diction[ (self.diction['words']==base_text[i])  ]['idf'].values,\
-					self.diction[ (self.diction['words']==base_text[i-1])  ]['idf'].values)).mean()
-				self.idf_diction[base_text[i] + base_text[i+1][0]] = np.hstack((self.diction[ (self.diction['words']==base_text[i])  ]['idf'].values,\
-					self.diction[ (self.diction['words']==base_text[i+1])  ]['idf'].values)).mean()
+				self.idf_diction[base_text[i-1][-1] + base_text[i]] = np.hstack((self.diction[ (self.diction['words']==base_text[i])  ]['tf_idf'].values,\
+					self.diction[ (self.diction['words']==base_text[i-1])  ]['tf_idf'].values)).mean()
+				self.idf_diction[base_text[i] + base_text[i+1][0]] = np.hstack((self.diction[ (self.diction['words']==base_text[i])  ]['tf_idf'].values,\
+					self.diction[ (self.diction['words']==base_text[i+1])  ]['tf_idf'].values)).mean()
 
 		if mode == 4 :
 			for i in  tqdm(range(1,len(base_text)-5)):
@@ -243,10 +237,10 @@ class TermsRecognition(object):
     				# 计算idf
 				#print('word generator mode 4 ,Round at %s ...' %i)
 				self.idf_diction[base_text[i] + base_text[i+1] + base_text[i+2] + base_text[i+3]] = \
-					np.hstack((self.diction[ (self.diction['words']==base_text[i])  ]['idf'].values,\
-					self.diction[ (self.diction['words']==base_text[i+1])  ]['idf'].values,\
-					self.diction[ (self.diction['words']==base_text[i+2])  ]['idf'].values,\
-					self.diction[ (self.diction['words']==base_text[i+3])  ]['idf'].values)).mean()
+					np.hstack((self.diction[ (self.diction['words']==base_text[i])  ]['tf_idf'].values,\
+					self.diction[ (self.diction['words']==base_text[i+1])  ]['tf_idf'].values,\
+					self.diction[ (self.diction['words']==base_text[i+2])  ]['tf_idf'].values,\
+					self.diction[ (self.diction['words']==base_text[i+3])  ]['tf_idf'].values)).mean()
 
 		return base_word
 
@@ -301,7 +295,10 @@ class TermsRecognition(object):
 			if value['freq'] <= self.tfreq or value['doa'] <= self.tDOA or value['dof'] <= self.tDOF:
 				self.result[key]['score'] = 0
 			else:	
-				self.result[key]['score'] = value['freq'] * value['doa'] * value['dof'] * value['idf']
+				self.result[key]['score'] = value['freq'] * value['doa'] * value['dof'] * value['tf_idf']
+
+		if '' in self.result:
+			del self.result['']
 
 
 	def generate_word(self, sortKey):
@@ -326,10 +323,10 @@ class TermsRecognition(object):
 		for values in result:
 			word = values[0]
 			dct = values[1]
-			contents.append([word, dct['dof'], dct['doa'], dct['freq'] , dct['score'] ,dct['idf']])
+			contents.append([word, dct['dof'], dct['doa'], dct['freq'] , dct['score'] ,dct['tf_idf']])
 
 		if len(contents) != 0:
-			return pd.DataFrame(contents, columns=['key', 'dof', 'doa', 'freq', 'score', 'idf'])
+			return pd.DataFrame(contents, columns=['key', 'dof', 'doa', 'freq', 'score', 'tf_idf'])
 
 
 	def get_result(self):

@@ -40,6 +40,8 @@ HOT_Trends:
   hotkeywords_tmp_local_path: '/JMZ/hot_tracking/douyin_hot_keywords_tmp/'
   # 最终输入结果文件路径
   hottracking_result_local_path: '/JMZ/hot_tracking/douyin_result_video/'
+  # 需要改写的视频数据
+  rewriter_local_path: '/JMZ/hot_tracking/douyin_rewriter_result/'
 XunFei_ASR:
   Long_Form_ASR:
     appid: "f5293126"
