@@ -2,9 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="24f17224-1609-409b-8376-efb4aab0b639" name="默认变更列表" comment="代码修正">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ftp_client.py" beforeDir="false" afterPath="$PROJECT_DIR$/ftp_client.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/log/cron.log" beforeDir="false" afterPath="$PROJECT_DIR$/log/cron.log" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/result/asr_data/2022-11-10/ZMY/audio/6735671146458434829.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/result/asr_data/2022-11-10/ZMY/audio/6735731005451144451.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/result/asr_data/2022-11-10/ZMY/audio/6735732552184646926.mp3" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,11 +50,15 @@
     <setting file="file://$PROJECT_DIR$/pipeline.py" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="ProjectId" id="2GtiLsrpSpGlsYsbqsD53Lfy4J3" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
@@ -210,7 +214,7 @@
       <workItem from="1667988002632" duration="356000" />
       <workItem from="1667988593771" duration="2324000" />
       <workItem from="1668047544909" duration="23831000" />
-      <workItem from="1668395708784" duration="4803000" />
+      <workItem from="1668395708784" duration="7640000" />
     </task>
     <task id="LOCAL-00001" summary="加入美芝老师修改的部分">
       <created>1667214502982</created>
@@ -450,7 +454,21 @@
       <option name="project" value="LOCAL" />
       <updated>1668391927394</updated>
     </task>
-    <option name="localTasksCounter" value="35" />
+    <task id="LOCAL-00035" summary="代码修正">
+      <created>1668411363377</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1668411363377</updated>
+    </task>
+    <task id="LOCAL-00036" summary="代码修正">
+      <created>1668411481421</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1668411481421</updated>
+    </task>
+    <option name="localTasksCounter" value="37" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -479,6 +497,7 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="加入美芝老师修改的部分" />
     <MESSAGE value="增加回调端口" />
     <MESSAGE value="ASR接收" />

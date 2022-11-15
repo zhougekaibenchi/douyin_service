@@ -37,12 +37,12 @@ class RequestApi(object):
             config["Douyin_Updata"]["base_asr_path"] + self.current_time + config["Douyin_Updata"]["localMP3file_path"])
 
         self.upload_file_path_JMZ = self.get_upload_file_path(
-            self.get_upload_file_path(config["HOT_Trends"]["base_path"] + self.current_time + config["HOT_Trends"]["crawler_video_local_path"]))
-        # ASR最终存储路径
+            self.get_upload_file_path(config["Douyin_Updata"]["base_asr_path"] + self.current_time + config["HOT_Trends"]["crawler_video_local_path"]))
+        # # ASR最终存储路径
         self.fianalasr_savepath_ZMY = config["Douyin_Updata"]["base_asr_path"] + self.current_time + \
                                       config["Douyin_Updata"]["localASRfile_path"]
 
-        self.fianalasr_savepath_JMZ = config["HOT_Trends"]["base_path"] + self.current_time + \
+        self.fianalasr_savepath_JMZ = config["Douyin_Updata"]["base_asr_path"] + self.current_time + \
                                       config["HOT_Trends"]["localASRfile_path"]
         # 回调函数url
         self.callbackUrl = config["XunFei_ASR"]["Long_Form_ASR"]["callbackUrl"]
