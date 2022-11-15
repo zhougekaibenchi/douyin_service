@@ -1815,3 +1815,11 @@
 2022-11-14 15:02:09,855 - INFO - ftp_client.py:63 - scaner_file() - result/asr_data/2022-11-10/ZMY/audio\6735732552184646926.mp3
 2022-11-14 15:02:09,855 - INFO - ftp_client.py:56 - scaner_file() - D:\抖音数据传输分析\douyin_service\douyin_service\result\asr_data\2022-11-10\ZMY\audio\lfasr_涉政.wav
 2022-11-14 15:02:09,855 - INFO - ftp_client.py:63 - scaner_file() - result/asr_data/2022-11-10/ZMY/audio\lfasr_涉政.wav
+2022-11-15 14:28:52,571 - DEBUG - __init__.py:113 - initialize() - Building prefix dict from the default dictionary ...
+2022-11-15 14:28:52,574 - DEBUG - __init__.py:132 - initialize() - Loading model from cache C:\Users\stce\AppData\Local\Temp\jieba.cache
+2022-11-15 14:28:53,135 - DEBUG - __init__.py:164 - initialize() - Loading model cost 0.563 seconds.
+2022-11-15 14:28:53,135 - DEBUG - __init__.py:166 - initialize() - Prefix dict has been built successfully.
+2022-11-15 14:28:56,992 - INFO - read_config.py:13 - get() - 读取配置文件
+2022-11-15 14:28:57,055 - INFO - ftp_client.py:92 - make_dir() - 创建目录成功： result/asr_data/2022-11-15/ZMY/audio
+2022-11-15 14:39:44,239 - INFO - ftp_client.py:110 - download_file() - ftp数据传输开始
+2022-11-15 14:39:44,404 - INFO - ftp_client.py:39 - ftp_connect() - 220 pyftpdlib 1.5.7 ready.
