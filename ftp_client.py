@@ -9,6 +9,8 @@ import os
 import time
 import datetime
 import json
+import pandas as pd
+import requests
 import copy
 from hot_tracking import hot_keyword_tracking, recall_process, data_parser
 from hot_tracking.config import Config
@@ -35,7 +37,8 @@ class FTP_OP(object):
         ftp.login(self.username, self.password)
         ftp.set_pasv(True)  #主动模式，被动模式调整
         logger.info(ftp.getwelcome())
-        ftp.cwd(self.current_time)
+        ftp.cwd("2022-11-14")
+        # ftp.cwd(self.current_time)
         return ftp
 
     def download_file(self, local_path, sever_path):
@@ -145,8 +148,8 @@ class FTP_HOTTrends(FTP_OP):
     def __init__(self, config):
         super(FTP_HOTTrends, self).__init__(config)
 
-        self.current_time = str(datetime.date.today())
-        # self.current_time = '2022-11-09'
+        # self.current_time = str(datetime.date.today())
+        self.current_time = '2022-11-14'
         self.base_path = config["HOT_Trends"]["base_path"]
         self.base_asr_path = config["Douyin_Updata"]["base_asr_path"]
         self.sever_base_path = config["HOT_Trends"]["sever_base_path"]
@@ -170,13 +173,17 @@ class FTP_HOTTrends(FTP_OP):
         self.hotkeywords_tmp_local_path = self.base_path + self.current_time + config["HOT_Trends"]["hotkeywords_tmp_local_path"]
         # 最终输入视频文件路径
         self.hottracking_result_local_path = self.base_path + self.current_time + config["HOT_Trends"]["hottracking_result_local_path"]
+        # 视频文案改写文件路径
+        self.rewriter_local_path = self.base_path + self.current_time + config['HOT_Trends']['rewriter_local_path']
+
 
         self.hotConfig = Config(self.hotvideo_local_path,           # 热榜数据路径
                                 self.hotkeywords_local_path,        # 挖掘热门词数据路径
                                 self.hotkeywords_tmp_local_path,    # 挖掘热门词中间文件
                                 self.searchvideo_local_path,        # 搜索词检索视频数据路径
                                 self.recallvideo_local_path,        # 视频召回数据路径
-                                self.hottracking_result_local_path) # 最终输入路径
+                                self.hottracking_result_local_path,
+                                self.rewriter_local_path) # 最终输入路径
 
         self.ftp = self.ftp_connect()
 
@@ -255,7 +262,7 @@ class FTP_HOTTrends(FTP_OP):
         （6）下载视频数据
         """
         # 下载热榜数据
-        self.download_file(self.hotvideo_local_path, self.hotvideo_sever_path) # 取热榜数据
+        # self.download_file(self.hotvideo_local_path, self.hotvideo_sever_path) # 取热榜数据
 
         # 生成热搜词
         douyinDataset = data_parser.DouyinDataset(self.hotConfig)
@@ -263,9 +270,9 @@ class FTP_HOTTrends(FTP_OP):
 
         keywordMining = hot_keyword_tracking.KeywordMiningByTags(self.hotConfig)
         keywordMining.merge_keywords()  # 是否使用热门视频关键短语数据
-
-        # 将热搜词传送给爬虫端，从爬虫端下载搜索热词视频数据
-        self.upload_file(self.hotkeywords_local_path, self.hotkeywords_sever_path)    # 将热搜词传送给爬虫端
+        #
+        # # 将热搜词传送给爬虫端，从爬虫端下载搜索热词视频数据
+        # self.upload_file(self.hotkeywords_local_path, self.hotkeywords_sever_path)    # 将热搜词传送给爬虫端
         self.download_file(self.searchvideo_local_path, self.searchvideo_sever_path)       # 从爬虫端下载搜索热词视频数据
 
         # 召回、排序热搜词相关视频
@@ -288,6 +295,41 @@ class FTP_HOTTrends(FTP_OP):
         recall = recall_process.RecallSearchDataset(self.hotConfig)
         recall.merge_video_content()
         logger.info("******************************Filter By Video Content Finished*****************************************")
+
+
+    def api_rewriter(self, text):
+        '''调用改写接口提取改写文案'''
+        self.hotConfig.rewriter_params['text'] = text
+        rewriterText = requests.post(self.hotConfig.rewriter_url, data=json.dumps(self.hotConfig.rewriter_params), headers=self.hotConfig.headers)
+        return rewriterText.json()
+
+
+    def video_content_rewrite(self):
+        '''对视频文案进行改写'''
+
+        logger.info("API视频文案改写开始")
+        isBreak = False
+        rewriterDataset = pd.DataFrame([])
+        while isBreak:
+            file_list = os.listdir(self.rewriter_local_path)
+            if self.hotConfig.douyin_rewriter_file.split('\\')[-1] in file_list:
+                df = pd.read_excel(self.hotConfig.douyin_rewriter_file)
+                for row in self.df.iterrows():
+                    content = self.api_rewriter(row[1]['content'])
+                    row[1]['rewriter'] = content
+                    rewriterDataset = rewriterDataset.append(row[1], ignore_index=True)
+
+
+                rewriterDataset.to_excel(self.hotConfig.douyin_rewriter_result_file, index=False)
+
+                logger.info("视频文案改写完成！")
+
+                isBreak = True
+
+        if not isBreak:
+            time.sleep(5 * 60 * 1000)
+
+
 
 
 
