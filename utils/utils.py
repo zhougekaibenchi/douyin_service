@@ -9,7 +9,6 @@ def memory_recycling(event):
     for i in range(event):
         del event
 
-
 def server_log(filename):
 
     logger = logging.getLogger()
@@ -25,9 +24,9 @@ def server_log(filename):
 
     return logger
 
-def write_complete_list(orderId):
+def write_complete_list(orderId, item):
     with open("complete_asr_list.txt" , "w", encoding="utf-8") as w:
-        w.writelines(orderId + "\n")
+        w.writelines(orderId +","+item+ "\n")
         w.close()
 
 def read_complete_list():
