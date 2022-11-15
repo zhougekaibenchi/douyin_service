@@ -49,6 +49,8 @@ XunFei_ASR:
   Long_Form_ASR:
     appid: "f5293126"
     secret_key: "d8089745806779226c538608d8bec698"
+#    appid: "664f62a1"
+#    secret_key: "56471ae04b9a3abe23d54e4ee235f585"
     # 上传数据接口
     upload:
       # 接口配置

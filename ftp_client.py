@@ -13,6 +13,7 @@ import json
 import pandas as pd
 import requests
 import copy
+from tqdm import tqdm
 from hot_tracking import hot_keyword_tracking, recall_process, data_parser
 from hot_tracking.config import Config
 
@@ -157,8 +158,8 @@ class FTP_HOTTrends(FTP_OP):
     def __init__(self, config):
         super(FTP_HOTTrends, self).__init__(config)
 
-        # self.current_time = str(datetime.date.today())
-        self.current_time = '2022-11-14'
+        self.current_time = str(datetime.date.today())
+        # self.current_time = '2022-11-14'
         self.base_path = config["HOT_Trends"]["base_path"]
         self.base_asr_path = config["Douyin_Updata"]["base_asr_path"]
         self.sever_base_path = config["HOT_Trends"]["sever_base_path"]
@@ -201,6 +202,7 @@ class FTP_HOTTrends(FTP_OP):
         """
         批量下载抖音数据（下载整个目录）
         """
+        loacl_file_list = os.listdir(local_path)
         ftp = copy.copy(self.ftp)
         try:
             ftp.cwd(sever_path)
@@ -209,7 +211,9 @@ class FTP_HOTTrends(FTP_OP):
             logger.info(file_list)
             isBreak = False
             while file_list:
-                for file_name in file_list:
+                for file_name in tqdm(file_list, desc="视频数据下载"):
+                    if file_name in loacl_file_list:
+                        continue
                     ftp_file = os.path.join(sever_path, file_name)
                     logger.info("服务端ftp_file读取路径: " + ftp_file)
                     local_file = os.path.join(local_path, file_name)
@@ -271,7 +275,7 @@ class FTP_HOTTrends(FTP_OP):
         （6）下载视频数据
         """
         # 下载热榜数据
-        # self.download_file(self.hotvideo_local_path, self.hotvideo_sever_path) # 取热榜数据
+        self.download_file(self.hotvideo_local_path, self.hotvideo_sever_path) # 取热榜数据
 
         # 生成热搜词
         douyinDataset = data_parser.DouyinDataset(self.hotConfig)
@@ -279,9 +283,9 @@ class FTP_HOTTrends(FTP_OP):
 
         keywordMining = hot_keyword_tracking.KeywordMiningByTags(self.hotConfig)
         keywordMining.merge_keywords()  # 是否使用热门视频关键短语数据
-        #
-        # # 将热搜词传送给爬虫端，从爬虫端下载搜索热词视频数据
-        # self.upload_file(self.hotkeywords_local_path, self.hotkeywords_sever_path)    # 将热搜词传送给爬虫端
+
+        # 将热搜词传送给爬虫端，从爬虫端下载搜索热词视频数据
+        self.upload_file(self.hotkeywords_local_path, self.hotkeywords_sever_path)    # 将热搜词传送给爬虫端
         self.download_file(self.searchvideo_local_path, self.searchvideo_sever_path)       # 从爬虫端下载搜索热词视频数据
 
         # 召回、排序热搜词相关视频
