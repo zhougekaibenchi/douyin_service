@@ -52,9 +52,11 @@ class KeywordMiningByTags(object):
 
         # 提取每个热榜主题标签频次[top, {tag: count}]
         for top in tops:
+            if top == "":
+                continue
             tagList = []
             top_data = data[data['hot_title'] == top]
-            tags = top_data['tags']
+            tags = top_data[top_data['tags'] != "['']"]['tags']
             for tag in tags:
                 tagList.extend(eval(tag))
 
@@ -134,8 +136,8 @@ class KeywordMiningByTags(object):
         contents = []
         for i, top in enumerate(tops):
             print(i, top)
-            top_data = data[data['hot_title'] == top]
-            titles = top_data['title'].astype(str)
+            top_data = data[(data['hot_title'] == top) & (data['title'] != '')]
+            titles = top_data[top_data['title'].replace(' ', '').replace('nan', '') != '']['title'].astype(str)
 
             # 计算每个热榜主题的自由度、凝聚度、idf等
             generator = TermsRecognition(content=titles, tfreq=1, is_jieba=False, topK=self.config.num_hot_top_keywords, mode=[1, 2])  # 文字版'
@@ -225,6 +227,54 @@ class KeywordMiningByTags(object):
         return newKeyTagAndWordsList
 
 
+    def merge_nr_or_ns_entity(self, keyTagAndWordsList):
+        '''过滤包含在其他短语中的关键词，比如：二十大、二十大报告'''
+        newKeyTagAndWordsList = []
+
+        for keyTagAndWords in keyTagAndWordsList:
+            # 删除不包含名词的短句
+            if isinstance(keyTagAndWords[0], list):
+                top = keyTagAndWords[0][0]
+            else:
+                top = keyTagAndWords[0]
+            textPosseg = [(token.flag, token.word) for token in pseg.lcut(top)]
+
+            entities = []
+            textPoses = []
+
+            for textPos, word in textPosseg:
+                if textPos in ['ns', 'nr', 'nrfg', 'nrt']:
+                    entities.append(word)
+                    textPoses.append(textPos)
+
+            # 主题中包含地名和人名，则在检索词前面添加人名或地名主体
+            if len(entities) == 1:
+                if entities[0] not in keyTagAndWords[1]:
+                    keyTagAndWords[1] = entities[0] + keyTagAndWords[1]
+
+            # 主题中同时包含地名和机构名，则检索词前面添加地名+机构名
+            elif 'ns' in textPoses and 'nt' in textPoses:
+                if entities[textPoses.index('nt')] not in keyTagAndWords[1]:
+                    keyTagAndWords[1] = entities[textPoses.index('nt')] + keyTagAndWords[1]
+                if entities[textPoses.index('ns')] not in keyTagAndWords[1]:
+                    keyTagAndWords[1] = entities[textPoses.index('ns')] + keyTagAndWords[1]
+
+
+            # 主题中同时包含地名和人名，则检索词前面添加地名+人名
+            elif 'ns' in textPoses:
+                if 'nr' in textPoses and entities[textPoses.index('nr')] not in keyTagAndWords[1]:
+                    keyTagAndWords[1] = entities[textPoses.index('ns')] + entities[textPoses.index('nr')] + keyTagAndWords[1]
+                elif 'nrfg' in textPoses and entities[textPoses.index('nrfg')] not in keyTagAndWords[1]:
+                    keyTagAndWords[1] = entities[textPoses.index('ns')] + entities[textPoses.index('nrfg')] + keyTagAndWords[1]
+                elif 'nrt' in textPoses and entities[textPoses.index('nrt')] not in keyTagAndWords[1]:
+                    keyTagAndWords[1] = entities[textPoses.index('ns')] + entities[textPoses.index('nrt')] + keyTagAndWords[1]
+
+
+            newKeyTagAndWordsList.append(keyTagAndWords)
+
+        return newKeyTagAndWordsList
+
+
     def merge_keywords(self):
         '''将多路结果进行merge得到最终的结果'''
 
@@ -263,6 +313,10 @@ class KeywordMiningByTags(object):
 
         # 过滤包含关键词
         keyTagAndWordsList = self.filter_by_contain(keyTagAndWordsList)
+
+        # 若主题中包含人名或地名，则添加到检索词中
+        keyTagAndWordsList = self.merge_nr_or_ns_entity(keyTagAndWordsList)
+
 
         dataFrame = pd.DataFrame(keyTagAndWordsList, columns=['top', 'keyword', 'score', 'len'])
         dataFrame.dropna(subset=['keyword'], inplace=True)

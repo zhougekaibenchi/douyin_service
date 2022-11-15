@@ -34,6 +34,9 @@ class DouyinDataset(object):
         contents = []
         for record in records:
             video_info = record['video_info']
+            flag_score = record['flag_score']
+            if flag_score <= config.top_count:
+                continue
             # video_info = eval(record['video_info'])
             for video in video_info:
                 content = {}
@@ -43,7 +46,7 @@ class DouyinDataset(object):
                 content['hot_title'] = record['hot_title']
                 content['flag_score'] = record['flag_score']
 
-                content['title'] = video['title']
+                content['title'] = video['title'].strip()
                 content['like_count'] = video['digg_count']
                 content['comment_count'] = video['comment_count']
                 content['share_count'] = video['share_count']
@@ -55,7 +58,7 @@ class DouyinDataset(object):
                 tagWords = self.extract_tags(video['title'], '#')
                 words = atWords + tagWords
                 for tag in words:
-                    content['title'] = content['title'].replace(tag, "")
+                    content['title'] = content['title'].replace(tag, "").strip()
 
                 contents.append(content)
 
@@ -71,7 +74,7 @@ class DouyinDataset(object):
         for record in records:
             content = {}
             content['source'] = 'hot_video'
-            content['title'] = record['title']
+            content['title'] = record['title'].strip()
             content['flag_score'] = record.get('flag_score', 1)
             content['item_id'] = record['item_id']
             content['author_name'] = record['author_name']
@@ -88,7 +91,7 @@ class DouyinDataset(object):
             tagWords = self.extract_tags(record['title'], '#')
             words = atWords + tagWords
             for tag in words:
-                content['title'] = content['title'].replace(tag, "")
+                content['title'] = content['title'].replace(tag, "").strip()
             contents.append(content)
 
         print("热门视频数量：", len(contents))
@@ -97,8 +100,8 @@ class DouyinDataset(object):
     def merge_dataset(self):
         '''将所有类型数据整合起来'''
         hotTopDataset = self.parser_douyin_hot_top_data()
-        hotVideoDataset = self.parser_douyin_hot_video_data()
-        dataset = hotTopDataset + hotVideoDataset
+        # hotVideoDataset = self.parser_douyin_hot_video_data()
+        dataset = hotTopDataset #+ hotVideoDataset
 
         results = []
         for data in dataset:

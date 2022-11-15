@@ -43,7 +43,7 @@ class RecallSearchDataset(object):
         '''加载搜索内容'''
 
         # 查询词、标题ID、标题、播放量、点赞量、评论量、收藏量、转发量、发布时间、持续时间、主题、视频链接、作者ID、作者名、作者粉丝数
-        columns = ['key_word', 'item_id', 'title', 'play_count', 'like_count', 'comment_count', 'collect_count', 'share_count',
+        columns = ['flag', 'key_word', 'score', 'item_id', 'title', 'play_count', 'like_count', 'comment_count', 'collect_count', 'share_count',
                    'createTime', 'duration', 'topics', 'video_url', 'author_user_id', 'author_name', 'author_fans', 'tags']
 
         # data = open(self.douyin_search_data_json_file, 'r', encoding='utf-8').read()
@@ -73,6 +73,7 @@ class RecallSearchDataset(object):
 
 
         searchDataset = pd.DataFrame(contents, columns=columns)
+        searchDataset.drop_duplicates(subset=['item_id'], keep='first', inplace=True)
         # 按照时间过滤，选取最近一个星期的数据
         # searchDataset = self.filter_by_time(searchDataset, '2022-10-10 0:0:0')
         # 按照标签过滤，选取保险标签相关的数据
@@ -146,16 +147,16 @@ class RecallSearchDataset(object):
         # 转发率=转发量/播放量
         recallDataset['share_rate'] = recallDataset['share_count'] / (recallDataset['play_count'] + 1)
 
-        recallDataset['score'] = recallDataset['like_rate'] + recallDataset['comment_rate'] + recallDataset['collect_rate'] + recallDataset['share_rate']
+        recallDataset['rankScore'] = recallDataset['like_rate'] + recallDataset['comment_rate'] + recallDataset['collect_rate'] + recallDataset['share_rate']
 
         # 获取视频发布天数
         recallDataset['days'] = recallDataset['createTime'].apply(func=lambda x: self.diff_time(x))
 
         # 根据发布时间调整分值
-        recallDataset['score'] = recallDataset.apply(self.rank_score_by_time, axis=1)
+        recallDataset['rankScore'] = recallDataset.apply(self.rank_score_by_time, axis=1)
 
 
-        rankDataset = recallDataset.sort_values(by='score', ascending=False)
+        rankDataset = recallDataset.sort_values(by='rankScore', ascending=False)
 
         rankDataset.to_excel(self.config.douyin_search_hot_video_file, index=False)
 
@@ -167,7 +168,7 @@ class RecallSearchDataset(object):
     def rank_score_by_time(self, df):
         '''根据发布时间调整分值'''
         if df['days'] <= 7:
-            df['score'] /= df['days']
+            df['score'] /= (df['days'] + 1)
 
         elif df['days'] <= 14:
             df['score'] /= 10
