@@ -43,6 +43,5 @@ def douyin_pipeline(env):
     logger.info("******************************Pipeline Finish****************************************")
 
 if __name__ == "__main__":
-    # env = sys.argv[1] #"dev"
-    env = 'dev'
+    env = sys.argv[1] #"dev"
     douyin_pipeline(env)

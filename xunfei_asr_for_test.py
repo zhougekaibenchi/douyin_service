@@ -17,10 +17,11 @@ from __init__ import *
 from utils.read_config import Env
 from utils.utils import write_complete_list, read_complete_list
 
+
 class RequestApi(object):
     def __init__(self, config):
         # 当前时间
-        self.current_time = str(datetime.date.today())
+        self.current_time = str("2022-11-09") #str(datetime.date.today())
         # 账号，ID
         self.appid = config["XunFei_ASR"]["Long_Form_ASR"]["appid"]
         self.secret_key = config["XunFei_ASR"]["Long_Form_ASR"]["secret_key"]
@@ -32,15 +33,19 @@ class RequestApi(object):
         self.sysDicts = config["XunFei_ASR"]["Long_Form_ASR"]["upload"]["sysDicts"]
         self.duration = config["XunFei_ASR"]["Long_Form_ASR"]["upload"]["duration"]
         # 上传文件路径
-        self.upload_file_path_ZMY = self.get_upload_file_path(config["Douyin_Updata"]["base_asr_path"] + self.current_time + config["Douyin_Updata"]["localMP3file_path"])
-        #self.upload_file_path_JMZ = self.get_upload_file_path(config["HOT_Trends"]["base_path"] + self.current_time + config["HOT_Trends"]["crawler_video_local_path"]) TODO JMZ
-        # ASR最终存储路径
-        self.fianalasr_savepath_ZMY = config["Douyin_Updata"]["base_asr_path"] + self.current_time + config["Douyin_Updata"]["localASRfile_path"]
-        #self.fianalasr_savepath_JMZ = config["HOT_Trends"]["base_asr_path"] + self.current_time + config["HOT_Trends"]["localASRfile_path"] TODO JMZ
+        self.upload_file_path_ZMY = self.get_upload_file_path(
+            config["Douyin_Updata"]["base_asr_path"] + self.current_time + config["Douyin_Updata"]["localMP3file_path"])
+
+        self.upload_file_path_JMZ = self.get_upload_file_path(
+            self.get_upload_file_path(config["Douyin_Updata"]["base_asr_path"] + self.current_time + config["HOT_Trends"]["crawler_video_local_path"]))
+        # # ASR最终存储路径
+        self.fianalasr_savepath_ZMY = config["Douyin_Updata"]["base_asr_path"] + self.current_time + \
+                                      config["Douyin_Updata"]["localASRfile_path"]
+
+        self.fianalasr_savepath_JMZ = config["Douyin_Updata"]["base_asr_path"] + self.current_time + \
+                                      config["HOT_Trends"]["localASRfile_path"]
         # 回调函数url
         self.callbackUrl = config["XunFei_ASR"]["Long_Form_ASR"]["callbackUrl"]
-
-
 
     def get_upload_file_path(self, url):
         "遍历指定目下的所有文件"
@@ -87,7 +92,7 @@ class RequestApi(object):
         param_dict["fileName"] = file_name
         param_dict["sysDicts"] = "advertisement"
         param_dict["duration"] = "200"
-        # 采用轮询的方式访问接口，不再上传回调函数
+        # 采用轮询的方式访问接口，不再上传回调地址
         # param_dict["callbackUrl"] = self.callbackUrl
         logger.info("upload接口参数：", param_dict)
         data = open(upload_file_path, 'rb').read(file_len)
@@ -96,8 +101,8 @@ class RequestApi(object):
     def upload(self, upload_file_path):
         # 上传数据
         param_dict, data = self.upload_init(upload_file_path)
-        response = requests.post(url=self.lfasr_host + self.api_upload+"?"+urllib.parse.urlencode(param_dict),
-                                 headers={"Content-type":"application/json"},
+        response = requests.post(url=self.lfasr_host + self.api_upload + "?" + urllib.parse.urlencode(param_dict),
+                                 headers={"Content-type": "application/json"},
                                  data=data)
         logger.info("upload_url: {}".format(response.request.url))
         result = json.loads(response.text)
@@ -118,7 +123,6 @@ class RequestApi(object):
         logger.info("get result参数：", param_dict)
         return param_dict
 
-
     def download(self, uploadresp):
         # 下载数据
         param_dict = self.download_init(uploadresp)
@@ -127,19 +131,17 @@ class RequestApi(object):
             response = requests.post(
                 url=self.lfasr_host + self.api_get_result + "?" + urllib.parse.urlencode(param_dict),
                 headers={"Content-type": "application/json"})
-            print("查询中······")
+            logger.info("查询中········································································")
             result = json.loads(response.text)
             status = result['content']['orderInfo']['status']
             time.sleep(5)
-        print("get_result resp:", result)
-        with open("text.txt", 'w') as file_obj:
-            json.dump(result, file_obj)
+        logger.info("get_result resp:", result)
         return result
-
 
     def get_result(self):
 
         # 采用轮询的方式获取ASR结果，一条条上传等待
+        # todo ASR时间不够，这部分停止跑
         for item in self.upload_file_path_ZMY:
             self.ts = str(int(time.time()))
             self.signa = self.get_signa()
@@ -147,30 +149,27 @@ class RequestApi(object):
             orderId = uploadresp['content']['orderId']
             result = self.download(uploadresp)
             asr_txt = self.post_process(result)
-            self.save_asrdata(item.split("//")[-1], orderId, asr_txt, self.fianalasr_savepath_ZMY)
+            self.save_asrdata(item.split("\\")[-1], orderId, asr_txt, self.fianalasr_savepath_ZMY)
         logger.info("ZMY 抖音数据完成")
 
-        # todo JMZ
-        for item in self.upload_file_path_JMZ:
-            self.ts = str(int(time.time()))
-            self.signa = self.get_signa()
-            uploadresp = self.upload(item)
-            orderId = uploadresp['content']['orderId']
-            result = self.download(uploadresp)
-            asr_txt = self.post_process(result)
-            self.save_asrdata(item.split("//")[-1], orderId, asr_txt, self.fianalasr_savepath_JMZ)
-        logger.info("JMZ 抖音数据完成")
-
+        # for item in self.upload_file_path_JMZ:
+        #     self.ts = str(int(time.time()))
+        #     self.signa = self.get_signa()
+        #     uploadresp = self.upload(item)
+        #     orderId = uploadresp['content']['orderId']
+        #     result = self.download(uploadresp)
+        #     asr_txt = self.post_process(result)
+        #     self.save_asrdata(item.split("//")[-1], orderId, asr_txt, self.fianalasr_savepath_JMZ)
+        # logger.info("JMZ 抖音数据完成")
 
     def save_asrdata(self, filename, orderId, asr_txt, fianalasr_savepath):
 
-        save_path = fianalasr_savepath + "/" + filename
+        save_path = fianalasr_savepath + "/" + filename.split(".")[0] + ".txt"
         with open(save_path, "w", encoding="utf-8") as w:
             w.write(asr_txt)
             w.close()
         logger.info("文件 {} 存储完毕。".format(filename))
         write_complete_list(orderId)
-
 
     def post_process(self, content):
         # 处理ASR获取的结果并存储数据
@@ -207,7 +206,6 @@ class RequestApi(object):
         logger.info("非顺滑ASR结果输出: {}".format(str2))
         return str1
 
-
     # def listen_asr(self, total_nums):
     #     complete_nums = read_complete_list()
     #     count = 0
@@ -222,7 +220,6 @@ class RequestApi(object):
     #             logger.info("ASR全量数据获取失败，获取数据比例{}".format(len(complete_nums) / total_nums))
     #             break
     #     logger.info("*******************************ASR DataDownload Finish******************************************")
-
 # 输入讯飞开放平台的appid，secret_key和待转写的文件路径
 if __name__ == '__main__':
     env = "dev"  # sys.argv[1]

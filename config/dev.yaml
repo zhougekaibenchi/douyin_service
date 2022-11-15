@@ -1,5 +1,5 @@
 FTP_Sever:
-  host: '14.116.177.18'# 127.0.0.1   14.116.177.18
+  host: '14.116.177.18'# 127.0.0.1
   username: 'username1'
   password: '1PASSWORD'
   buffer_size: 204800
@@ -11,10 +11,10 @@ Douyin_Updata:
   # 存储ASR数据的路径
   base_asr_path: 'result/asr_data/'
   # 爬虫文本数据
-  server_txt_path: '/ZMY/douyin.json'
-  local_txt_path: '/result/douyin_update'
+  server_txt_path: 'ZMY/hudao_douyin.json'
+  local_txt_path: '/ZMY/hudao_douyin.json'
   # 爬虫音频数据
-  severMP3file_path: '/ZMY/mp3_file'
+  severMP3file_path: 'ZMY/mp3_file'
   localMP3file_path: '/ZMY/audio'
   # 准换后ASR数据
   localASRfile_path: '/ZMY/asr'
@@ -36,6 +36,9 @@ HOT_Trends:
   # 本地视频数据
   crawler_video_local_path: '/JMZ/audio'
   crawler_video_sever_path: '/JMZ/mp3_file'
+
+  localASRfile_path: '/JMZ/asr'
+  base_asr_path: 'result/asr_data/'
   # 热门关键短语中间文件路径
   hotkeywords_tmp_local_path: '/JMZ/hot_tracking/douyin_hot_keywords_tmp/'
   # 最终输入结果文件路径

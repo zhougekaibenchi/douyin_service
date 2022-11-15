@@ -2,7 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="24f17224-1609-409b-8376-efb4aab0b639" name="默认变更列表" comment="代码修正">
-      <change beforePath="$PROJECT_DIR$/utils/utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/utils.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/result/asr_data/2022-11-10/ZMY/audio/6735671146458434829.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/result/asr_data/2022-11-10/ZMY/audio/6735731005451144451.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/result/asr_data/2022-11-10/ZMY/audio/6735732552184646926.mp3" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,11 +50,15 @@
     <setting file="file://$PROJECT_DIR$/pipeline.py" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="ProjectId" id="2GtiLsrpSpGlsYsbqsD53Lfy4J3" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
@@ -70,8 +76,8 @@
       <recent name="D:\抖音数据传输分析\douyin_service\douyin_service\asr" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.xunfei_asr_for_test">
-    <configuration name="server" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="Python.pipeline">
+    <configuration name="pipeline" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="douyin_service" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -84,7 +90,7 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/server.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/pipeline.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -137,7 +143,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="xunfei_asr" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="xunfei_asr_for_test (1)" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="douyin_service" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -145,12 +151,12 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/asr" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/asr/xunfei_asr.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/xunfei_asr_for_test.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -183,11 +189,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.pipeline" />
+        <item itemvalue="Python.xunfei_asr_for_test (1)" />
         <item itemvalue="Python.xunfei_asr_for_test" />
         <item itemvalue="Python.test (1)" />
         <item itemvalue="Python.test" />
-        <item itemvalue="Python.server" />
-        <item itemvalue="Python.xunfei_asr" />
       </list>
     </recent_temporary>
   </component>
@@ -206,7 +212,9 @@
       <workItem from="1667983443374" duration="48000" />
       <workItem from="1667984210207" duration="3501000" />
       <workItem from="1667988002632" duration="356000" />
-      <workItem from="1667988593771" duration="1480000" />
+      <workItem from="1667988593771" duration="2324000" />
+      <workItem from="1668047544909" duration="23831000" />
+      <workItem from="1668395708784" duration="7640000" />
     </task>
     <task id="LOCAL-00001" summary="加入美芝老师修改的部分">
       <created>1667214502982</created>
@@ -397,7 +405,70 @@
       <option name="project" value="LOCAL" />
       <updated>1667989797776</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL-00028" summary="代码修正">
+      <created>1667990087800</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1667990087800</updated>
+    </task>
+    <task id="LOCAL-00029" summary="代码修正">
+      <created>1667990227390</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1667990227390</updated>
+    </task>
+    <task id="LOCAL-00030" summary="代码修正">
+      <created>1668058439790</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1668058439790</updated>
+    </task>
+    <task id="LOCAL-00031" summary="代码修正">
+      <created>1668066008536</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1668066008536</updated>
+    </task>
+    <task id="LOCAL-00032" summary="代码修正">
+      <created>1668133036184</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1668133036184</updated>
+    </task>
+    <task id="LOCAL-00033" summary="代码修正">
+      <created>1668391855327</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1668391855327</updated>
+    </task>
+    <task id="LOCAL-00034" summary="代码修正">
+      <created>1668391927394</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1668391927394</updated>
+    </task>
+    <task id="LOCAL-00035" summary="代码修正">
+      <created>1668411363377</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1668411363377</updated>
+    </task>
+    <task id="LOCAL-00036" summary="代码修正">
+      <created>1668411481421</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1668411481421</updated>
+    </task>
+    <option name="localTasksCounter" value="37" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -426,6 +497,7 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="加入美芝老师修改的部分" />
     <MESSAGE value="增加回调端口" />
     <MESSAGE value="ASR接收" />
@@ -441,18 +513,48 @@
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/ftp_client.py</url>
-          <line>85</line>
-          <option name="timeStamp" value="40" />
+          <line>40</line>
+          <option name="timeStamp" value="59" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/xunfei_asr_for_test.py</url>
+          <line>181</line>
+          <option name="timeStamp" value="74" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/xunfei_asr_for_test.py</url>
+          <line>194</line>
+          <option name="timeStamp" value="75" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/xunfei_asr_for_test.py</url>
+          <line>151</line>
+          <option name="timeStamp" value="76" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/xunfei_asr_for_test.py</url>
+          <line>167</line>
+          <option name="timeStamp" value="78" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/xunfei_asr_for_test.py</url>
+          <line>35</line>
+          <option name="timeStamp" value="79" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/xunfei_asr_for_test.py</url>
+          <line>41</line>
+          <option name="timeStamp" value="80" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/ftp_client.py</url>
-          <line>84</line>
-          <option name="timeStamp" value="41" />
+          <line>88</line>
+          <option name="timeStamp" value="81" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/asr/xunfei_asr.py</url>
-          <line>35</line>
-          <option name="timeStamp" value="52" />
+          <url>file://$PROJECT_DIR$/ftp_client.py</url>
+          <line>89</line>
+          <option name="timeStamp" value="82" />
         </line-breakpoint>
       </breakpoints>
       <default-breakpoints>
@@ -466,11 +568,12 @@
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/douyin_service$test__1_.coverage" NAME="test (1) 覆盖结果" MODIFIED="1667986093881" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/douyin_service$xunfei_asr_for_test__1_.coverage" NAME="xunfei_asr_for_test (1) 覆盖结果" MODIFIED="1668391476473" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/douyin_service$ftp_sever.coverage" NAME="ftp_sever 覆盖结果" MODIFIED="1667809236311" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/utils" />
     <SUITE FILE_PATH="coverage/douyin_service$test.coverage" NAME="test 覆盖结果" MODIFIED="1667976878708" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/result/asr_data/2022-11-09/ZMY/audio" />
     <SUITE FILE_PATH="coverage/douyin_service$server.coverage" NAME="server 覆盖结果" MODIFIED="1667975364514" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/douyin_service$xunfei_asr.coverage" NAME="xunfei_asr 覆盖结果" MODIFIED="1667973992486" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/asr" />
     <SUITE FILE_PATH="coverage/douyin_service$xunfei_asr__1_.coverage" NAME="xunfei_asr (1) 覆盖结果" MODIFIED="1667989432346" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/douyin_service$pipeline.coverage" NAME="pipeline 覆盖结果" MODIFIED="1667902252456" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/douyin_service$pipeline.coverage" NAME="pipeline 覆盖结果" MODIFIED="1668409306105" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>
