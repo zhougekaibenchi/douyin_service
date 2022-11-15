@@ -13,6 +13,7 @@ import base64
 import hashlib
 import requests
 import datetime
+import os
 from __init__ import *
 from utils.read_config import Env
 from utils.utils import write_complete_list, read_complete_list
@@ -33,11 +34,11 @@ class RequestApi(object):
         self.sysDicts = config["XunFei_ASR"]["Long_Form_ASR"]["upload"]["sysDicts"]
         self.duration = config["XunFei_ASR"]["Long_Form_ASR"]["upload"]["duration"]
         # 上传文件路径
-        self.upload_file_path_ZMY = self.get_upload_file_path(
-            config["Douyin_Updata"]["base_asr_path"] + self.current_time + config["Douyin_Updata"]["localMP3file_path"])
+        # self.upload_file_path_ZMY = self.get_upload_file_path(
+        #     config["Douyin_Updata"]["base_asr_path"] + self.current_time + config["Douyin_Updata"]["localMP3file_path"])
 
         self.upload_file_path_JMZ = self.get_upload_file_path(
-            self.get_upload_file_path(config["Douyin_Updata"]["base_asr_path"] + self.current_time + config["HOT_Trends"]["crawler_video_local_path"]))
+            config["Douyin_Updata"]["base_asr_path"] + self.current_time + config["HOT_Trends"]["crawler_video_local_path"])
         # # ASR最终存储路径
         self.fianalasr_savepath_ZMY = config["Douyin_Updata"]["base_asr_path"] + self.current_time + \
                                       config["Douyin_Updata"]["localASRfile_path"]
@@ -159,12 +160,16 @@ class RequestApi(object):
             orderId = uploadresp['content']['orderId']
             result = self.download(uploadresp)
             asr_txt = self.post_process(result)
-            self.save_asrdata(item.split("//")[-1], orderId, asr_txt, self.fianalasr_savepath_JMZ)
+            self.save_asrdata(item.split("\\")[-1], orderId, asr_txt, self.fianalasr_savepath_JMZ)
         logger.info("JMZ 抖音数据完成")
 
     def save_asrdata(self, filename, orderId, asr_txt, fianalasr_savepath):
 
-        save_path = fianalasr_savepath + "/" + filename
+        if os.path.exists(fianalasr_savepath):
+            os.makedirs(fianalasr_savepath)
+
+        save_path = os.path.join(fianalasr_savepath, filename)
+
         with open(save_path, "w", encoding="utf-8") as w:
             w.write(asr_txt)
             w.close()
