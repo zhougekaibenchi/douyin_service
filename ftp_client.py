@@ -306,7 +306,7 @@ class FTP_HOTTrends(FTP_OP):
             file_list = os.listdir(self.rewriter_local_path)
             if self.hotConfig.douyin_rewriter_file.split('\\')[-1] in file_list:
                 df = pd.read_excel(self.hotConfig.douyin_rewriter_file)
-                for row in self.df.iterrows():
+                for row in df.iterrows():
                     content = self.api_rewriter(row[1]['content'])
                     row[1]['rewriter'] = content
                     rewriterDataset = rewriterDataset.append(row[1], ignore_index=True)
