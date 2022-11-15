@@ -24,8 +24,8 @@ class FTP_OP(object):
         """
         :param config: 配置文件
         """
-        #self.current_time = str(datetime.date.today())
-        self.current_time = str("2022-11-10")
+        self.current_time = str(datetime.date.today())
+        # self.current_time = str("2022-11-10")
         self.host = config["FTP_Sever"]["host"]
         self.username = config["FTP_Sever"]["username"]
         self.password = config["FTP_Sever"]["password"]
@@ -39,14 +39,15 @@ class FTP_OP(object):
         ftp.login(self.username, self.password)
         ftp.set_pasv(True)  #主动模式，被动模式调整
         logger.info(ftp.getwelcome())
-        ftp.cwd("2022-11-14")
-        # ftp.cwd(self.current_time)
         return ftp
 
     def download_file(self, local_path, sever_path):
         raise NotImplementedError()
 
     def upload_file(self, local_path, server_path):
+        raise NotImplementedError()
+
+    def make_dir(self):
         raise NotImplementedError()
 
     def scaner_file(self, url):
@@ -83,7 +84,15 @@ class FTP_Updata(FTP_OP):
         self.local_txt_path = config["Douyin_Updata"]["base_asr_path"] + self.current_time + config["Douyin_Updata"]["local_txt_path"]
         self.severMP3file_path = config["Douyin_Updata"]["severMP3file_path"]
         self.localMP3file_path = config["Douyin_Updata"]["base_asr_path"] + self.current_time + config["Douyin_Updata"]["localMP3file_path"]
+        self.make_dir()
 
+    def make_dir(self):
+        isExists = os.path.exists(self.localMP3file_path)
+        if not isExists:
+            os.makedirs(self.localMP3file_path)
+            logger.info("创建目录成功： {}".format(self.localMP3file_path))
+        else:
+            logger.info("{} 目录已经存在".format(self.localMP3file_path))
 
     def check(self, file_list):
         """
@@ -101,25 +110,33 @@ class FTP_Updata(FTP_OP):
 
         logger.info("ftp数据传输开始")
         self.ftp = self.ftp_connect()
-        # (1) 传输文本文件
-        # f = open(self.local_txt_path, "wb")
-        # self.ftp.retrbinary('RETR %s' % self.server_txt_path, f.write, self.buffer_size)
-        # f.close()
+        self.ftp.cwd(self.current_time)
+
+        #(1) 传输文本文件
+        try:
+            f = open(self.local_txt_path, "wb")
+            self.ftp.retrbinary('RETR %s' % self.server_txt_path, f.write, self.buffer_size)
+            f.close()
+        except:
+            logger.info("无法下载文本数据，请检查服务端文本数据路径")
 
         # (2) 传输音频文件
-        file_list = self.ftp.nlst(self.severMP3file_path)
-        file_list = self.check(file_list)
-        for file_name in tqdm.tqdm(file_list):
-            ftp_file = os.path.join(self.severMP3file_path, file_name)
-            logger.info("服务端ftp_file读取路径: " + ftp_file)
-            local_file = os.path.join(self.localMP3file_path, file_name)
-            logger.info("客户端local_file存储路径: " + local_file)
-            f = open(local_file, "wb")
-            self.ftp.retrbinary('RETR %s'%ftp_file, f.write, self.buffer_size)
-            f.close()
-            logger.info("文件下载成功：" + file_name)
-        logger.info(time.strftime('%Y%m%d', time.localtime(time.time()))+"ftp数据下载完毕")
-        logger.info("******************************DouyinData ZMY Get Finish*****************************************")
+        try:
+            file_list = self.ftp.nlst(self.severMP3file_path)
+            file_list = self.check(file_list)
+            for file_name in tqdm.tqdm(file_list):
+                ftp_file = os.path.join(self.severMP3file_path, file_name)
+                logger.info("服务端ftp_file读取路径: " + ftp_file)
+                local_file = os.path.join(self.localMP3file_path, file_name)
+                logger.info("客户端local_file存储路径: " + local_file)
+                f = open(local_file, "wb")
+                self.ftp.retrbinary('RETR %s'%ftp_file, f.write, self.buffer_size)
+                f.close()
+                logger.info("文件下载成功：" + file_name)
+            logger.info(time.strftime('%Y%m%d', time.localtime(time.time()))+"ftp数据下载完毕")
+            logger.info("******************************DouyinData ZMY Get Finish*****************************************")
+        except:
+            logger.info("无法下载视频数据，请检查视频数据路径")
         self.ftp.quit()
 
 # ****************************************************  JMZ  ***********************************************************
