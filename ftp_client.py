@@ -4,7 +4,7 @@
 # @Author  : stce
 
 from __init__ import *
-from ftplib import FTP, error_perm
+from ftplib import FTP
 import os
 import time
 import tqdm
