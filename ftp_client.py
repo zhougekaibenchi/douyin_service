@@ -314,7 +314,11 @@ class FTP_HOTTrends(FTP_OP):
         '''调用改写接口提取改写文案'''
         self.hotConfig.rewriter_params['text'] = text
         rewriterText = requests.post(self.hotConfig.rewriter_url, data=json.dumps(self.hotConfig.rewriter_params), headers=self.hotConfig.headers)
-        return rewriterText.json()
+        rewriterText = rewriterText.json()
+        if rewriterText.get('dara') and rewriterText['data'].get('output'):
+            return rewriterText['data']['output']
+
+        return ["", ""]
 
 
     def video_content_rewrite(self):
@@ -328,8 +332,10 @@ class FTP_HOTTrends(FTP_OP):
             if self.hotConfig.douyin_rewriter_file.split('\\')[-1] in file_list:
                 df = pd.read_excel(self.hotConfig.douyin_rewriter_file)
                 for row in df.iterrows():
-                    content = self.api_rewriter(row[1]['content'])
-                    row[1]['rewriter'] = content
+                    rewriterContent = self.api_rewriter(row[1]['content'])
+                    row[1]['rewriter'] = rewriterContent[0]
+                    row[1]['rwScore'] = rewriterContent[1]
+
                     rewriterDataset = rewriterDataset.append(row[1], ignore_index=True)
 
 

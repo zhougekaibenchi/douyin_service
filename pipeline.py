@@ -17,8 +17,8 @@ def douyin_pipeline(env):
     try:
         config = Env.get(env)
         # 抖音账号数据更新
-        ftp_update = FTP_Updata(config)
-        ftp_update.download_file()
+        # ftp_update = FTP_Updata(config)
+        # ftp_update.download_file()
 
         # 美芝老师热点数据更新
         ftp_hottrends = FTP_HOTTrends(config)
@@ -28,8 +28,11 @@ def douyin_pipeline(env):
         asr_request = RequestApi(config)
         asr_request.get_result()
 
-        # todo ZMY其他逻辑
+        # 基于视频文案进行过滤，并输出最终结果
         ftp_hottrends.data_collect_by_content()    # 基于视频文案进行过滤，并输出最终结果
+
+        # 文案改写
+        ftp_hottrends.video_content_rewrite()
 
 
     except Exception as ex:

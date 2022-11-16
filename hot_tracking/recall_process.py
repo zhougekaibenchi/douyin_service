@@ -219,6 +219,11 @@ class RecallSearchDataset(object):
                     if not self.filter_video_content_by_length(content):
                         continue
 
+                    # 过滤掉转写失败的数据
+                    if content == '音频数据转写失败':
+                        continue
+
+
                     videoContent[videoFileName.replace(".txt", "")] = content
 
         return videoContent
@@ -256,12 +261,17 @@ class RecallSearchDataset(object):
 
     def merge_video_content(self):
         '''将视频内容整合到召回数据中'''
-        textContent = pd.read_excel(self.config.douyin_search_hot_video_file)
+
         videoContent = self.load_video_content()
+
+        textContent = pd.read_excel(self.config.douyin_search_hot_video_file)
         textContent['item_id'] = textContent['item_id'].astype(str)
         textContent['content'] = textContent['item_id'].apply(func=lambda x: videoContent.get(x, ""))
-        textContent = textContent[textContent['content'] != ""]
+
+        # 过滤掉内容为空或转写失败的数据
+        textContent = textContent[(textContent['content'] != "") & (textContent['content'] != '音频数据转写失败')]
         textContent.dropna(subset=['content'], inplace=True)
+
         textContent.to_excel(self.config.douyin_output_file, index=False)
         print("视频文案过滤后的数量：", len(textContent))
         print('视频内容整合到文本数据中完成！')
