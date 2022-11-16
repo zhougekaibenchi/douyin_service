@@ -10,6 +10,7 @@ class DouyinDataset(object):
     处理抖音热榜数据
     '''
     def __init__(self, config):
+        self.config = config
         self.douyin_hot_top_file = config.douyin_hot_top_file
         self.douyin_hot_video_file = config.douyin_hot_video_file
         self.douyin_data_file = config.douyin_data_file
@@ -35,7 +36,7 @@ class DouyinDataset(object):
         for record in records:
             video_info = record['video_info']
             flag_score = record['flag_score']
-            if flag_score <= config.top_count:
+            if flag_score <= self.config.top_count:
                 continue
             # video_info = eval(record['video_info'])
             for video in video_info:

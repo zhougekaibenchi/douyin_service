@@ -25,8 +25,8 @@ class FTP_OP(object):
         """
         :param config: 配置文件
         """
-        self.current_time = str(datetime.date.today())
-        # self.current_time = str("2022-11-10")
+        # self.current_time = str(datetime.date.today())
+        self.current_time = str("2022-11-15")
         self.host = config["FTP_Sever"]["host"]
         self.username = config["FTP_Sever"]["username"]
         self.password = config["FTP_Sever"]["password"]
@@ -158,8 +158,8 @@ class FTP_HOTTrends(FTP_OP):
     def __init__(self, config):
         super(FTP_HOTTrends, self).__init__(config)
 
-        self.current_time = str(datetime.date.today())
-        # self.current_time = '2022-11-14'
+        # self.current_time = str(datetime.date.today())
+        self.current_time = '2022-11-15'
         self.base_path = config["HOT_Trends"]["base_path"]
         self.base_asr_path = config["Douyin_Updata"]["base_asr_path"]
         self.sever_base_path = config["HOT_Trends"]["sever_base_path"]
@@ -233,7 +233,7 @@ class FTP_HOTTrends(FTP_OP):
                 time.sleep(5 * 60 * 1000)
 
         except:
-            logger.error(sever_path + "路径不存在！")
+            logger.info(sever_path + "路径不存在！")
             time.sleep(5 * 60 * 1000)
 
     def download_single_file(self, local_path=None, sever_path=None):

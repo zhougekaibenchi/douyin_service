@@ -22,8 +22,8 @@ from utils.utils import write_complete_list, read_complete_list
 class RequestApi(object):
     def __init__(self, config):
         # 当前时间
-        self.current_time = str(datetime.date.today())
-        # self.current_time = '2022-11-14'
+        # self.current_time = str(datetime.date.today())
+        self.current_time = '2022-11-15'
         # 账号，ID
         self.appid = config["XunFei_ASR"]["Long_Form_ASR"]["appid"]
         self.secret_key = config["XunFei_ASR"]["Long_Form_ASR"]["secret_key"]
@@ -35,8 +35,8 @@ class RequestApi(object):
         self.sysDicts = config["XunFei_ASR"]["Long_Form_ASR"]["upload"]["sysDicts"]
         self.duration = config["XunFei_ASR"]["Long_Form_ASR"]["upload"]["duration"]
         # 上传文件路径
-        self.upload_file_path_ZMY = self.get_upload_file_path(
-            config["Douyin_Updata"]["base_asr_path"] + self.current_time + config["Douyin_Updata"]["localMP3file_path"])
+        # self.upload_file_path_ZMY = self.get_upload_file_path(
+        #     config["Douyin_Updata"]["base_asr_path"] + self.current_time + config["Douyin_Updata"]["localMP3file_path"])
 
         self.upload_file_path_JMZ = self.get_upload_file_path(
             config["Douyin_Updata"]["base_asr_path"] + self.current_time + config["HOT_Trends"]["crawler_video_local_path"])
@@ -156,18 +156,18 @@ class RequestApi(object):
 
         # 采用轮询的方式获取ASR结果，一条条上传等待
         # todo ASR时间不够，这部分停止跑
-        for item in self.upload_file_path_ZMY:
-            self.ts = str(int(time.time()))
-            self.signa = self.get_signa()
-            uploadresp = self.upload(item)
-            if uploadresp != False:
-                orderId = uploadresp['content']['orderId']
-                result = self.download(uploadresp, item)
-                asr_txt = self.post_process(result)
-                self.save_asrdata(item.split("//")[-1], orderId, asr_txt, self.fianalasr_savepath_ZMY)
-            else:
-                logger.info("{}音频长度不够转换失败。".format(item))
-        logger.info("ZMY 抖音数据完成")
+        # for item in self.upload_file_path_ZMY:
+        #     self.ts = str(int(time.time()))
+        #     self.signa = self.get_signa()
+        #     uploadresp = self.upload(item)
+        #     if uploadresp != False:
+        #         orderId = uploadresp['content']['orderId']
+        #         result = self.download(uploadresp, item)
+        #         asr_txt = self.post_process(result)
+        #         self.save_asrdata(item.split("//")[-1], orderId, asr_txt, self.fianalasr_savepath_ZMY)
+        #     else:
+        #         logger.info("{}音频长度不够转换失败。".format(item))
+        # logger.info("ZMY 抖音数据完成")
 
         local_file_list = os.listdir(self.fianalasr_savepath_JMZ)
 

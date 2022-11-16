@@ -35,7 +35,7 @@ HOT_Trends:
   recallvideo_sever_path: '/JMZ/hot_tracking/douyin_recall_video/'
   # 本地视频数据
   crawler_video_local_path: '/JMZ/audio'
-  crawler_video_sever_path: '/JMZ/mp3_file'
+  crawler_video_sever_path: '/JMZ/mp4_file'
 
   localASRfile_path: '/JMZ/asr'
   base_asr_path: 'result/asr_data/'
