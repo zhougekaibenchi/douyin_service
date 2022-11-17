@@ -67,6 +67,8 @@ class KeywordMiningByTags(object):
             # 统计每个标签出现的概率
             tagRate = {}
             for tag, freq in tagFreq.items():
+                if "科普" in tag or "DOU" in tag:
+                    continue
                 rate = freq / len(top_data)
                 if rate >= self.config.tag_rate:
                     tagRate[tag] = freq / len(top_data)

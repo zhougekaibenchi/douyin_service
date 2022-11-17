@@ -55,6 +55,7 @@ class RecallSearchDataset(object):
         for dataJson in dataList:
             content = []
             for column in columns:
+
                 if column == 'tags':
                     tags = self.extract_tags(dataJson['title'], '#')
                     content.append(tags)
@@ -73,11 +74,9 @@ class RecallSearchDataset(object):
 
 
         searchDataset = pd.DataFrame(contents, columns=columns)
-        searchDataset.drop_duplicates(subset=['item_id'], keep='first', inplace=True)
+        searchDataset.drop_duplicates(subset=['item_id', 'title', 'video_url', 'author_user_id'], keep='last', inplace=True)
         # 按照时间过滤，选取最近一个星期的数据
         # searchDataset = self.filter_by_time(searchDataset, '2022-10-10 0:0:0')
-        # 按照标签过滤，选取保险标签相关的数据
-        searchDataset = searchDataset[searchDataset['topics'].isin(self.config.insurance_topics)]
         searchDataset.to_excel(self.config.douyin_search_data_xls_file, index=False)
 
         print('搜索视频数量：', len(searchDataset))
@@ -104,6 +103,9 @@ class RecallSearchDataset(object):
 
     def recall_dataset_by_insurances(self):
         '''基于保险关键词进行内容召回'''
+
+        # 按照标签过滤，选取保险标签相关的数据
+        self.searchDataset = self.searchDataset[self.searchDataset['topics'].isin(self.config.insurance_topics)]
 
         recallDataset = pd.DataFrame([])
         # 若title中包含保险关键词，则进行召回
@@ -133,7 +135,8 @@ class RecallSearchDataset(object):
     def rank_dataset_by_count(self, recallDataset):
         '''对召回视频进行排序'''
 
-        recallDataset = recallDataset[recallDataset['play_count'] != '0']
+        recallDataset['play_count'] = recallDataset[recallDataset['play_count'] == '0']
+        recallDataset['play_count'] = recallDataset['like_count'] + recallDataset['comment_count'] + recallDataset['collect_count'] + recallDataset['share_count']
         recallDataset = recallDataset[recallDataset.ne('').all(axis=1)]
         recallDataset = recallDataset.dropna(axis=0, subset=['play_count', 'like_count', 'comment_count', 'collect_count', 'share_count'])
         recallDataset[['play_count', 'like_count', 'comment_count', 'collect_count', 'share_count']] = recallDataset[['play_count', 'like_count', 'comment_count', 'collect_count', 'share_count']].astype(int)

@@ -25,8 +25,8 @@ class FTP_OP(object):
         """
         :param config: 配置文件
         """
-        # self.current_time = str(datetime.date.today())
-        self.current_time = str("2022-11-15")
+        self.current_time = str(datetime.date.today())
+        # self.current_time = str("2022-11-16")
         self.host = config["FTP_Sever"]["host"]
         self.username = config["FTP_Sever"]["username"]
         self.password = config["FTP_Sever"]["password"]
@@ -158,8 +158,8 @@ class FTP_HOTTrends(FTP_OP):
     def __init__(self, config):
         super(FTP_HOTTrends, self).__init__(config)
 
-        # self.current_time = str(datetime.date.today())
-        self.current_time = '2022-11-15'
+        self.current_time = str(datetime.date.today())
+        # self.current_time = '2022-11-16'
         self.base_path = config["HOT_Trends"]["base_path"]
         self.base_asr_path = config["Douyin_Updata"]["base_asr_path"]
         self.sever_base_path = config["HOT_Trends"]["sever_base_path"]
@@ -185,6 +185,8 @@ class FTP_HOTTrends(FTP_OP):
         self.hottracking_result_local_path = self.base_path + self.current_time + config["HOT_Trends"]["hottracking_result_local_path"]
         # 视频文案改写文件路径
         self.rewriter_local_path = self.base_path + self.current_time + config['HOT_Trends']['rewriter_local_path']
+        # 视频文案路径
+        self.video_content_path = self.base_asr_path + self.current_time + config['HOT_Trends']['localASRfile_path']
 
 
         self.hotConfig = Config(self.hotvideo_local_path,           # 热榜数据路径
@@ -192,8 +194,9 @@ class FTP_HOTTrends(FTP_OP):
                                 self.hotkeywords_tmp_local_path,    # 挖掘热门词中间文件
                                 self.searchvideo_local_path,        # 搜索词检索视频数据路径
                                 self.recallvideo_local_path,        # 视频召回数据路径
-                                self.hottracking_result_local_path,
-                                self.rewriter_local_path) # 最终输入路径
+                                self.video_content_path,            # 视频文案数据
+                                self.hottracking_result_local_path,   # 最终输入结果数据
+                                self.rewriter_local_path) # 最终文案改写数据
 
         self.ftp = self.ftp_connect()
 
@@ -202,39 +205,45 @@ class FTP_HOTTrends(FTP_OP):
         """
         批量下载抖音数据（下载整个目录）
         """
+        if not os.path.exists(local_path):
+            os.makedirs(local_path)
         loacl_file_list = os.listdir(local_path)
         ftp = copy.copy(self.ftp)
-        try:
-            ftp.cwd(sever_path)
-            file_list = self.ftp.nlst()
-            logger.info("ftp数据传输开始")
-            logger.info(file_list)
-            isBreak = False
-            while file_list:
-                for file_name in tqdm(file_list, desc="视频数据下载"):
-                    if file_name in loacl_file_list:
-                        continue
-                    ftp_file = os.path.join(sever_path, file_name)
-                    logger.info("服务端ftp_file读取路径: " + ftp_file)
-                    local_file = os.path.join(local_path, file_name)
-                    logger.info("客户端local_file存储路径: " + local_file)
-                    if not os.path.exists(local_path):
-                        os.makedirs(local_path)
-                    f = open(local_file, "wb")
-                    self.ftp.retrbinary('RETR %s'%ftp_file, f.write, self.buffer_size)
-                    f.close()
-                    logger.info("文件下载成功：" + file_name)
-                logger.info(time.strftime('%Y%m%d', time.localtime(time.time()))+"ftp数据下载完毕")
 
-                isBreak = True
-                break
+        isBreak = True
 
-            if not isBreak:
-                time.sleep(5 * 60 * 1000)
+        while isBreak:
+            try:
+                ftp.cwd(sever_path)
+                file_list = self.ftp.nlst()
+                logger.info("ftp数据传输开始")
+                logger.info(file_list)
 
-        except:
-            logger.info(sever_path + "路径不存在！")
-            time.sleep(5 * 60 * 1000)
+                while file_list:
+                    for file_name in tqdm(file_list, desc="视频数据下载"):
+                        if file_name in loacl_file_list:
+                            continue
+                        ftp_file = os.path.join(sever_path, file_name)
+                        logger.info("服务端ftp_file读取路径: " + ftp_file)
+                        local_file = os.path.join(local_path, file_name)
+                        logger.info("客户端local_file存储路径: " + local_file)
+                        if not os.path.exists(local_path):
+                            os.makedirs(local_path)
+                        f = open(local_file, "wb")
+                        self.ftp.retrbinary('RETR %s'%ftp_file, f.write, self.buffer_size)
+                        f.close()
+                        logger.info("文件下载成功：" + file_name)
+                    logger.info(time.strftime('%Y%m%d', time.localtime(time.time()))+"ftp数据下载完毕")
+
+                    isBreak = False
+                    break
+
+                if isBreak:
+                    time.sleep(60)
+
+            except:
+                logger.info(sever_path + "路径不存在！")
+                time.sleep(60)
 
     def download_single_file(self, local_path=None, sever_path=None):
         """
@@ -315,7 +324,7 @@ class FTP_HOTTrends(FTP_OP):
         self.hotConfig.rewriter_params['text'] = text
         rewriterText = requests.post(self.hotConfig.rewriter_url, data=json.dumps(self.hotConfig.rewriter_params), headers=self.hotConfig.headers)
         rewriterText = rewriterText.json()
-        if rewriterText.get('dara') and rewriterText['data'].get('output'):
+        if rewriterText.get('data') and rewriterText['data'].get('output'):
             return rewriterText['data']['output']
 
         return ["", ""]
@@ -325,13 +334,13 @@ class FTP_HOTTrends(FTP_OP):
         '''对视频文案进行改写'''
 
         logger.info("API视频文案改写开始")
-        isBreak = False
+        isBreak = True
         rewriterDataset = pd.DataFrame([])
         while isBreak:
             file_list = os.listdir(self.rewriter_local_path)
-            if self.hotConfig.douyin_rewriter_file.split('\\')[-1] in file_list:
+            if self.hotConfig.douyin_rewriter_file.split('//')[-1] in file_list:
                 df = pd.read_excel(self.hotConfig.douyin_rewriter_file)
-                for row in df.iterrows():
+                for row in tqdm(df.iterrows(), desc='文案改写'):
                     rewriterContent = self.api_rewriter(row[1]['content'])
                     row[1]['rewriter'] = rewriterContent[0]
                     row[1]['rwScore'] = rewriterContent[1]
@@ -343,10 +352,10 @@ class FTP_HOTTrends(FTP_OP):
 
                 logger.info("视频文案改写完成！")
 
-                isBreak = True
+                isBreak = False
 
-        if not isBreak:
-            time.sleep(5 * 60 * 1000)
+            if isBreak:
+                time.sleep(60)
 
 
 

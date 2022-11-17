@@ -22,8 +22,8 @@ from utils.utils import write_complete_list, read_complete_list
 class RequestApi(object):
     def __init__(self, config):
         # 当前时间
-        # self.current_time = str(datetime.date.today())
-        self.current_time = '2022-11-15'
+        self.current_time = str(datetime.date.today())
+        # self.current_time = '2022-11-16'
         # 账号，ID
         self.appid = config["XunFei_ASR"]["Long_Form_ASR"]["appid"]
         self.secret_key = config["XunFei_ASR"]["Long_Form_ASR"]["secret_key"]
@@ -136,21 +136,21 @@ class RequestApi(object):
         param_dict = self.download_init(uploadresp)
 
         status = 3
-        # count = 0
-        while status == 3:
-            response = requests.post(
-                url=self.lfasr_host + self.api_get_result + "?" + urllib.parse.urlencode(param_dict),
-                headers={"Content-type": "application/json"})
-            logger.info("查询中········································································")
-            result = json.loads(response.text)
-            status = result['content']['orderInfo']['status']
-            time.sleep(5)
-            # count += 1
-            # if count < 5:
-            #     break
-        logger.info("get_result resp:", result)
+        try:
+            while status == 3:
+                response = requests.post(
+                    url=self.lfasr_host + self.api_get_result + "?" + urllib.parse.urlencode(param_dict),
+                    headers={"Content-type": "application/json"})
+                logger.info("查询中········································································")
+                result = json.loads(response.text)
+                status = result['content']['orderInfo']['status']
+                time.sleep(5)
+            logger.info("get_result resp:", result)
+            return result
 
-        return result
+        except Exception as ex:
+            logger.error('调用讯飞接口下载文案数据报错：', ex)
+            return {}
 
     def get_result(self):
 
@@ -169,11 +169,14 @@ class RequestApi(object):
         #         logger.info("{}音频长度不够转换失败。".format(item))
         # logger.info("ZMY 抖音数据完成")
 
+        if not os.path.exists(self.fianalasr_savepath_JMZ):
+            os.makedirs(self.fianalasr_savepath_JMZ)
+
         local_file_list = os.listdir(self.fianalasr_savepath_JMZ)
 
         for item in self.upload_file_path_JMZ:
 
-            filename = item.split("/")[-1].replace('.mp3', '.txt')
+            filename = item.split("/")[-1].replace('.pcm', '.txt')
             if filename in local_file_list:
                 continue
 

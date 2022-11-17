@@ -1,7 +1,7 @@
 import os
 
 class Config(object):
-    def __init__(self, hotvideo_path, hotkeywords_path, hotkeywords_tmp_path, searchvideo_path, recallvideo_path, hottracking_result_path, rewriter_path):
+    def __init__(self, hotvideo_path, hotkeywords_path, hotkeywords_tmp_path, searchvideo_path, recallvideo_path, video_content_path, hottracking_result_path, rewriter_path):
 
         # 判断目录文件是否存在， 不存在则创建
         if not os.path.exists(hotvideo_path):
@@ -18,6 +18,9 @@ class Config(object):
 
         if not os.path.exists(recallvideo_path):
             os.makedirs(recallvideo_path)
+
+        if not os.path.exists(video_content_path):
+            os.makedirs(video_content_path)
 
         if not os.path.exists(hottracking_result_path):
             os.makedirs(hottracking_result_path)
@@ -44,10 +47,10 @@ class Config(object):
 
         # 检索词视频中间文件
         self.douyin_search_data_xls_file = hotkeywords_tmp_path + '/douyin_search_data.xls'    # 整理后的抖音搜索视频数据
-        self.douyin_search_video_content_file = './JMZ/hot_tracking/video_content/'    # 抖音召回视频内容文案数据路径
 
         # 召回视频数据
         self.douyin_search_hot_video_file = recallvideo_path + '/result_hot_insurance_data.xls'  # 最终挖掘热点视频
+        self.douyin_search_video_content_file = video_content_path    # 视频文案
 
         # 最终输出数据
         self.douyin_output_file = hottracking_result_path + '/result_output_file.xls'   # 抖音最终输出文件（包含视频文案）
