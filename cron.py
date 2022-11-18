@@ -12,7 +12,7 @@ from apscheduler.schedulers.background import BlockingScheduler
 from apscheduler.events import EVENT_JOB_ERROR, EVENT_JOB_EXECUTED
 
 scheduler = BlockingScheduler()
-ftp_trigger = CronTrigger(hour=12, minute=0)
+ftp_trigger = CronTrigger(hour=22, minute=30)
 
 def main():
 

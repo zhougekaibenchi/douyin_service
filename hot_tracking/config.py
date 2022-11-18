@@ -95,9 +95,10 @@ class Config(object):
         self.rewriter_params = {
             "text": "有社保的朋友别划走，不管你交的是新农合还是居民医保或者是职工医保，耐心看完今天的视频，帮你省个大几万不是问题",
             "seg_mode": 1,
-            "strategy": [ "baidu", "youdao", "deepL", "xunfei", "synonyms", "facebook"]
+            "strategy": ["xunfei"]
+            # "strategy": [ "baidu", "youdao", "deepL", "xunfei", "synonyms", "facebook"]
         }
-
+#
 
 
 
