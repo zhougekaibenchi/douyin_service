@@ -26,7 +26,7 @@ class FTP_OP(object):
         :param config: 配置文件
         """
         self.current_time = str(datetime.date.today())
-        # self.current_time = str("2022-11-16")
+        # self.current_time = str("2022-11-10")
         self.host = config["FTP_Sever"]["host"]
         self.username = config["FTP_Sever"]["username"]
         self.password = config["FTP_Sever"]["password"]
@@ -87,6 +87,8 @@ class FTP_Updata(FTP_OP):
         self.localMP3file_path = config["Douyin_Updata"]["base_asr_path"] + self.current_time + config["Douyin_Updata"]["localMP3file_path"]
         self.make_dir()
 
+        self.ftp = self.ftp_connect()
+
     def make_dir(self):
         isExists = os.path.exists(self.localMP3file_path)
         if not isExists:
@@ -106,39 +108,103 @@ class FTP_Updata(FTP_OP):
                 file_list.remove(item)
         return file_list
 
-
     def download_file(self):
-
         logger.info("ftp数据传输开始")
-        self.ftp = self.ftp_connect()
-        self.ftp.cwd(self.current_time)
 
-        #(1) 传输文本文件
-        try:
-            f = open(self.local_txt_path, "wb")
-            self.ftp.retrbinary('RETR %s' % self.server_txt_path, f.write, self.buffer_size)
-            f.close()
-        except:
-            logger.info("无法下载文本数据，请检查服务端文本数据路径")
+        ftp = copy.copy(self.ftp)
+
+        isBreak = True
+        while isBreak:
+            try:
+                ftp.cwd(self.current_time)
+                f = open(self.local_txt_path, "wb")
+                self.ftp.retrbinary('RETR %s' % self.server_txt_path, f.write, self.buffer_size)
+                f.close()
+                isBreak = False
+            except:
+                logger.info("无法下载文本数据，请检查服务端文本数据路径! " + self.server_txt_path)
+
+
+            if isBreak:
+                time.sleep(60)
+
+    def download_path(self):
+        logger.info("ftp数据传输开始")
+        ftp = copy.copy(self.ftp)
+
+        isBreak = True
+        while isBreak:
+            try:
+                ftp.cwd(self.current_time)
+                file_list = ftp.nlst(self.severMP3file_path)
+                file_list = self.check(file_list)
+                while file_list:
+                    for file_name in tqdm.tqdm(file_list):
+                        ftp_file = os.path.join(self.severMP3file_path, file_name)
+                        logger.info("服务端ftp_file读取路径: " + ftp_file)
+                        local_file = os.path.join(self.localMP3file_path, file_name)
+                        logger.info("客户端local_file存储路径: " + local_file)
+                        f = open(local_file, "wb")
+                        self.ftp.retrbinary('RETR %s'%ftp_file, f.write, self.buffer_size)
+                        f.close()
+                        logger.info("文件下载成功：" + file_name)
+                    logger.info(time.strftime('%Y%m%d', time.localtime(time.time()))+"ftp数据下载完毕")
+                    logger.info("******************************DouyinData ZMY Get Finish*****************************************")
+                    ftp.quit()
+                    isBreak = False
+                    break
+            except:
+                logger.info("无法下载视频数据，请检查视频数据路径! " + self.severMP3file_path)
+
+            if isBreak:
+                time.sleep(60)
+
+
+    def download_account(self):
+
+        # (1) 传输文本文件
+        self.download_file()
 
         # (2) 传输音频文件
-        try:
-            file_list = self.ftp.nlst(self.severMP3file_path)
-            file_list = self.check(file_list)
-            for file_name in tqdm.tqdm(file_list):
-                ftp_file = os.path.join(self.severMP3file_path, file_name)
-                logger.info("服务端ftp_file读取路径: " + ftp_file)
-                local_file = os.path.join(self.localMP3file_path, file_name)
-                logger.info("客户端local_file存储路径: " + local_file)
-                f = open(local_file, "wb")
-                self.ftp.retrbinary('RETR %s'%ftp_file, f.write, self.buffer_size)
-                f.close()
-                logger.info("文件下载成功：" + file_name)
-            logger.info(time.strftime('%Y%m%d', time.localtime(time.time()))+"ftp数据下载完毕")
-            logger.info("******************************DouyinData ZMY Get Finish*****************************************")
-        except:
-            logger.info("无法下载视频数据，请检查视频数据路径")
-        self.ftp.quit()
+        self.download_path()
+
+
+
+    # def download_file(self):
+    #
+    #     logger.info("ftp数据传输开始")
+    #
+    #
+    #     isBreak = True
+    #     while isBreak:
+    #         self.ftp.cwd(self.current_time)
+    #
+    #         #(1) 传输文本文件
+    #         try:
+    #             f = open(self.local_txt_path, "wb")
+    #             self.ftp.retrbinary('RETR %s' % self.server_txt_path, f.write, self.buffer_size)
+    #             f.close()
+    #         except:
+    #             logger.info("无法下载文本数据，请检查服务端文本数据路径")
+    #
+    #         # (2) 传输音频文件
+    #         try:
+    #             file_list = self.ftp.nlst(self.severMP3file_path)
+    #             file_list = self.check(file_list)
+    #             for file_name in tqdm.tqdm(file_list):
+    #                 ftp_file = os.path.join(self.severMP3file_path, file_name)
+    #                 logger.info("服务端ftp_file读取路径: " + ftp_file)
+    #                 local_file = os.path.join(self.localMP3file_path, file_name)
+    #                 logger.info("客户端local_file存储路径: " + local_file)
+    #                 f = open(local_file, "wb")
+    #                 self.ftp.retrbinary('RETR %s'%ftp_file, f.write, self.buffer_size)
+    #                 f.close()
+    #                 logger.info("文件下载成功：" + file_name)
+    #             logger.info(time.strftime('%Y%m%d', time.localtime(time.time()))+"ftp数据下载完毕")
+    #             logger.info("******************************DouyinData ZMY Get Finish*****************************************")
+    #         except:
+    #             logger.info("无法下载视频数据，请检查视频数据路径")
+    #         self.ftp.quit()
 
 # ****************************************************  JMZ  ***********************************************************
 class FTP_HOTTrends(FTP_OP):

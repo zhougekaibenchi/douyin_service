@@ -1,6 +1,6 @@
 #!/bin/bash
 
-environment='test'
+environment='dev'
 cron_log="log/cron.log"
 sever_log="log/sever.log"
 
