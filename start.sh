@@ -21,12 +21,13 @@ echo "(2) Please wait restart..................."
 #source /mengyuan
 #cd /douyin/pipeline || exit
 echo "Run sever job................"
-nohup python -m sever.py $environment >> $sever_log 2>&1 &
+nohup python sever.py ${environment} >> ${sever_log} 2>&1 &
 echo "Restart cron job................"
-nohup python -m cron.py $environment >> $cron_log 2>&1 &
+nohup python cron.py ${environment} >> ${cron_log} 2>&1 &
 echo "restart successfully!"
 
 echo "(3) Run pipeline for check.........."
-nohup python -m pipeline.py $environment >> $cron_log 2>&1 &
+nohup python pipeline.py ${environment} >> ${cron_log} 2>&1 &
+echo "服务启动成功！"
 
 
