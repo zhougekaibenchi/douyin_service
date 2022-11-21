@@ -99,7 +99,12 @@ class RecallByBert(object):
         input1s_embedding = self.get_embedding_batch(input1s)
         input2s_embedding = self.get_embedding_batch(input2s)
 
-        scores = self.similar_count(input1s_embedding, input2s_embedding)
+        assert len(input1s_embedding) != len(input2s_embedding), '句子数量必须相等'
+
+        scores = []
+        for i in len(input1s_embedding):
+            score = self.similar_count(input1s_embedding[i], input2s_embedding[i])
+            scores.append(score)
 
         return scores
 
