@@ -6,6 +6,10 @@ import re
 import jieba
 import jieba.posseg as pseg
 import os
+import numpy as np
+from tqdm import tqdm
+import copy
+from recall_by_bert import RecallByBert
 
 
 
@@ -21,6 +25,8 @@ class RecallSearchDataset(object):
         self.insurances = self.load_insurance_vocab(freq=1)
         # 搜索内容
         self.searchDataset = self.read_search_dataset()
+        # 语义模型
+        self.bertRecallModel = RecallByBert(config)
 
 
 
@@ -74,7 +80,7 @@ class RecallSearchDataset(object):
 
 
         searchDataset = pd.DataFrame(contents, columns=columns)
-        searchDataset.drop_duplicates(subset=['item_id', 'title', 'video_url', 'author_user_id'], keep='last', inplace=True)
+        searchDataset.drop_duplicates(subset=['item_id'], keep='last', inplace=True)
         # 按照时间过滤，选取最近一个星期的数据
         # searchDataset = self.filter_by_time(searchDataset, '2022-10-10 0:0:0')
         searchDataset.to_excel(self.config.douyin_search_data_xls_file, index=False)
@@ -120,6 +126,19 @@ class RecallSearchDataset(object):
             if duration < 15 or duration > 120:
                 continue
 
+            # 过滤电视台视频
+            isContinue = False
+            deleteAuthors = ['电视台', '网', '日报', '广播', '频道', '晚报', '新闻']
+            author_name = row[1]['author_name']
+            for deleteAuthor in deleteAuthors:
+                if deleteAuthor in author_name:
+                    isContinue = True
+                    break
+
+            if isContinue:
+                continue
+
+
             # 若标题中不包含保险关键词则不召回
             title = row[1]['title']
             cutTitle = jieba.lcut(title)
@@ -132,14 +151,39 @@ class RecallSearchDataset(object):
         return recallDataset
 
 
+    def recall_by_bert(self):
+        recallDataset = copy.copy(self.searchDataset)
+        titles = []
+        topics = []
+        for row in tqdm(self.searchDataset.iterrows(), desc='bert语义召回'):
+            title = row[1]['title']
+            topic = row[1]['flag']
+            titles.append(title)
+            topics.append(topic)
+
+        scores = self.bertRecallModel.predict_batch_by_bert(titles, topics)
+
+        recallDataset['bertScore'] = scores
+        recallDataset = recallDataset[recallDataset['bertScore'] >= self.config.sim_threshold]
+        # if score >= self.config.sim_threshold:
+        #     recallDataset = recallDataset.append(row[1], ignore_index=True)
+
+
+        print("bert语义召回完成！", len(recallDataset))
+        recallDataset.to_excel(self.config.bert_recall_dataset, index=False)
+        return recallDataset
+
     def rank_dataset_by_count(self, recallDataset):
         '''对召回视频进行排序'''
 
-        recallDataset['play_count'] = recallDataset[recallDataset['play_count'] == '0']
-        recallDataset['play_count'] = recallDataset['like_count'] + recallDataset['comment_count'] + recallDataset['collect_count'] + recallDataset['share_count']
+        recallDataset['play_count'] = np.where((recallDataset['play_count'] == '0') | (recallDataset['play_count'] == ""),
+                                               recallDataset['like_count'] + recallDataset['comment_count'] + recallDataset['collect_count'] + recallDataset['share_count'],
+                                               recallDataset['play_count'])
+        # recallDataset['play_count'] = recallDataset[recallDataset['play_count'] == '0']
+        # recallDataset['play_count'] = recallDataset['like_count'] + recallDataset['comment_count'] + recallDataset['collect_count'] + recallDataset['share_count']
         recallDataset = recallDataset[recallDataset.ne('').all(axis=1)]
         recallDataset = recallDataset.dropna(axis=0, subset=['play_count', 'like_count', 'comment_count', 'collect_count', 'share_count'])
-        recallDataset[['play_count', 'like_count', 'comment_count', 'collect_count', 'share_count']] = recallDataset[['play_count', 'like_count', 'comment_count', 'collect_count', 'share_count']].astype(int)
+        recallDataset[['play_count', 'like_count', 'comment_count', 'collect_count', 'share_count']] = recallDataset[['play_count', 'like_count', 'comment_count', 'collect_count', 'share_count']].astype(np.int64)
 
         # 点赞率=点赞量/播放量
         recallDataset['like_rate'] = recallDataset['like_count'] / (recallDataset['play_count'] + 1)
@@ -293,7 +337,8 @@ if __name__ == '__main__':
 
     recall = RecallSearchDataset(config)
     # 召回
-    recallDataset = recall.recall_dataset_by_insurances()
+    # recallDataset = recall.recall_dataset_by_insurances()
+    recallDataset = recall.recall_by_bert()
     # # 排序
     rankDataset = recall.rank_dataset_by_count(recallDataset)
     # 将视频内容整合到召回排序结果中

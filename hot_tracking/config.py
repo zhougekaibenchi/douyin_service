@@ -98,6 +98,15 @@ class Config(object):
             "strategy": ["xunfei"]
             # "strategy": [ "baidu", "youdao", "deepL", "xunfei", "synonyms", "facebook"]
         }
+
+        # bert召回参数
+        self.pretrained_model_path = '/Users/mickey/project/pre-models/bert/bert-base-chinese'
+        self.max_sequence_length = 32
+        self.sim_threshold = 0.6
+        self.batch_size = 64
+        self.hidden_sizes = [384, 128]
+        self.bert_recall_dataset = hotkeywords_tmp_path + "/bert_recall_dataset.xls"
+
 #
 
 

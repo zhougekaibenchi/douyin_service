@@ -2,6 +2,7 @@ import pandas as pd
 import numpy as np
 import json
 import re
+from tqdm import tqdm
 from .config import Config
 
 
@@ -38,7 +39,6 @@ class DouyinDataset(object):
             flag_score = record['flag_score']
             if flag_score <= self.config.top_count:
                 continue
-            # video_info = eval(record['video_info'])
             for video in video_info:
                 content = {}
                 content['source'] = 'hot_top'

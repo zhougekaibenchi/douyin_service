@@ -141,6 +141,9 @@ class KeywordMiningByTags(object):
             top_data = data[(data['hot_title'] == top) & (data['title'] != '')]
             titles = top_data[top_data['title'].replace(' ', '').replace('nan', '') != '']['title'].astype(str)
 
+            if len(titles) <= 1:
+                continue
+
             # 计算每个热榜主题的自由度、凝聚度、idf等
             generator = TermsRecognition(content=titles, tfreq=1, is_jieba=False, topK=self.config.num_hot_top_keywords, mode=[1, 2])  # 文字版'
             result_dataframe = generator.generate_word(sortKey=sortKey)
