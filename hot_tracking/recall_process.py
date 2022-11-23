@@ -396,6 +396,7 @@ class RecallSearchDataset(object):
         textContent.to_excel(self.config.douyin_output_file, index=False)
         print("视频文案过滤后的数量：", len(textContent))
         print('视频内容整合到文本数据中完成！')
+        return textContent
 
 
 

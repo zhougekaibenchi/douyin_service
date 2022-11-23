@@ -216,6 +216,15 @@ class FTP_HOTTrends(FTP_OP):
         # 视频文案路径
         self.video_content_path = self.base_asr_path + self.current_time + config['HOT_Trends']['localASRfile_path']
 
+        # 产品下载、上传文件路径
+        self.hot_trends_dowload_path = config['HOT_Trends']['hot_trends_dowload_path']
+        self.hot_trends_upload_path = config['HOT_Trends']['hot_trends_upload_path']
+        if not os.path.exists(self.hot_trends_dowload_path):
+            os.makedirs(self.hot_trends_dowload_path)
+
+        if not os.path.exists(self.hot_trends_upload_path):
+            os.makedirs(self.hot_trends_upload_path)
+
 
         self.hotConfig = Config(self.hotvideo_local_path,           # 热榜数据路径
                                 self.hotkeywords_local_path,        # 挖掘热门词数据路径
@@ -345,7 +354,9 @@ class FTP_HOTTrends(FTP_OP):
         '''根据视频文案进行过滤，并排序'''
 
         recall = recall_process.RecallSearchDataset(self.hotConfig)
-        recall.merge_video_content()
+        resultDataset = recall.merge_video_content()
+        filename = 'douyin_recall_video_' + self.current_time + '.xls'
+        resultDataset.to_excel(os.path.join(self.hot_trends_dowload_path, filename), index=False)
         logger.info("******************************Filter By Video Content Finished*****************************************")
 
 
@@ -367,22 +378,28 @@ class FTP_HOTTrends(FTP_OP):
         isBreak = True
         rewriterDataset = pd.DataFrame([])
         while isBreak:
-            file_list = os.listdir(self.rewriter_local_path)
-            if self.hotConfig.douyin_rewriter_file.split('//')[-1] in file_list:
-                df = pd.read_excel(self.hotConfig.douyin_rewriter_file)
-                for row in tqdm(df.iterrows(), desc='文案改写'):
-                    rewriterContent = self.api_rewriter(row[1]['content'])
-                    row[1]['rewriter'] = rewriterContent[0]
-                    row[1]['rwScore'] = rewriterContent[1]
+            # file_list = os.listdir(self.rewriter_local_path)
+            file_list = os.listdir(self.hot_trends_upload_path)
+            for filename in file_list:
+                if self.current_time in filename:
+                    file = os.path.join(self.hot_trends_upload_path, filename)
+                    # if self.hotConfig.douyin_rewriter_file.split('//')[-1] in file_list:
+                    # df = pd.read_excel(self.hotConfig.douyin_rewriter_file)
+                    df = pd.read_excel(file)
+                    for row in tqdm(df.iterrows(), desc='文案改写'):
+                        rewriterContent = self.api_rewriter(row[1]['content'])
+                        row[1]['rewriter'] = rewriterContent[0]
+                        row[1]['rwScore'] = rewriterContent[1]
 
-                    rewriterDataset = rewriterDataset.append(row[1], ignore_index=True)
+                        rewriterDataset = rewriterDataset.append(row[1], ignore_index=True)
 
+                    rewriterFile = os.path.join(self.hot_trends_dowload_path, 'rewriter_' + filename)
+                    rewriterDataset.to_excel(rewriterFile, index=False)
+                    # rewriterDataset.to_excel(self.hotConfig.douyin_rewriter_result_file, index=False)
 
-                rewriterDataset.to_excel(self.hotConfig.douyin_rewriter_result_file, index=False)
+                    logger.info("视频文案改写完成！")
 
-                logger.info("视频文案改写完成！")
-
-                isBreak = False
+                    isBreak = False
 
             if isBreak:
                 time.sleep(60)

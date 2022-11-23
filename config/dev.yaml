@@ -45,6 +45,10 @@ HOT_Trends:
   hottracking_result_local_path: '/JMZ/hot_tracking/douyin_result_video/'
   # 需要改写的视频数据
   rewriter_local_path: '/JMZ/hot_tracking/douyin_rewriter_result/'
+  # 产品下载路径
+  hot_trends_dowload_path: '/Users/mickey/project/对话图谱/douyin_service/download/'
+  # 产品上传路径
+  hot_trends_upload_path: '/Users/mickey/project/对话图谱/douyin_service/upload/'
 XunFei_ASR:
   Long_Form_ASR:
     appid: "f5293126"

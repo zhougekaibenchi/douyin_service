@@ -75,6 +75,7 @@ class BM25(object):
             docs_list = []
             line_length_list =[]
             for line in lines:
+                line = str(line)
                 line = line.strip()
                 if not line:
                     continue
