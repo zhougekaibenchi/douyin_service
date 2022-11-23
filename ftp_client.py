@@ -26,7 +26,7 @@ class FTP_OP(object):
         :param config: 配置文件
         """
         self.current_time = str(datetime.date.today())
-        # self.current_time = str("2022-11-10")
+        # self.current_time = '2022-11-21'
         self.host = config["FTP_Sever"]["host"]
         self.username = config["FTP_Sever"]["username"]
         self.password = config["FTP_Sever"]["password"]
@@ -111,17 +111,17 @@ class FTP_Updata(FTP_OP):
     def download_file(self):
         logger.info("ftp数据传输开始")
 
-        ftp = copy.copy(self.ftp)
-
         isBreak = True
         while isBreak:
             try:
-                ftp.cwd(self.current_time)
+                self.ftp.cwd('/')
+                self.ftp.cwd(self.current_time)
                 f = open(self.local_txt_path, "wb")
                 self.ftp.retrbinary('RETR %s' % self.server_txt_path, f.write, self.buffer_size)
                 f.close()
                 isBreak = False
-            except:
+            except Exception as ex:
+                print(ex)
                 logger.info("无法下载文本数据，请检查服务端文本数据路径! " + self.server_txt_path)
 
 
@@ -130,16 +130,17 @@ class FTP_Updata(FTP_OP):
 
     def download_path(self):
         logger.info("ftp数据传输开始")
-        ftp = copy.copy(self.ftp)
+
 
         isBreak = True
         while isBreak:
             try:
-                ftp.cwd(self.current_time)
-                file_list = ftp.nlst(self.severMP3file_path)
+                self.ftp.cwd('/')
+                self.ftp.cwd(self.current_time)
+                file_list = self.ftp.nlst(self.severMP3file_path)
                 file_list = self.check(file_list)
                 while file_list:
-                    for file_name in tqdm.tqdm(file_list):
+                    for file_name in tqdm(file_list, desc='asr音频文件下载'):
                         ftp_file = os.path.join(self.severMP3file_path, file_name)
                         logger.info("服务端ftp_file读取路径: " + ftp_file)
                         local_file = os.path.join(self.localMP3file_path, file_name)
@@ -150,7 +151,7 @@ class FTP_Updata(FTP_OP):
                         logger.info("文件下载成功：" + file_name)
                     logger.info(time.strftime('%Y%m%d', time.localtime(time.time()))+"ftp数据下载完毕")
                     logger.info("******************************DouyinData ZMY Get Finish*****************************************")
-                    ftp.quit()
+                    self.ftp.quit()
                     isBreak = False
                     break
             except:
@@ -168,43 +169,6 @@ class FTP_Updata(FTP_OP):
         # (2) 传输音频文件
         self.download_path()
 
-
-
-    # def download_file(self):
-    #
-    #     logger.info("ftp数据传输开始")
-    #
-    #
-    #     isBreak = True
-    #     while isBreak:
-    #         self.ftp.cwd(self.current_time)
-    #
-    #         #(1) 传输文本文件
-    #         try:
-    #             f = open(self.local_txt_path, "wb")
-    #             self.ftp.retrbinary('RETR %s' % self.server_txt_path, f.write, self.buffer_size)
-    #             f.close()
-    #         except:
-    #             logger.info("无法下载文本数据，请检查服务端文本数据路径")
-    #
-    #         # (2) 传输音频文件
-    #         try:
-    #             file_list = self.ftp.nlst(self.severMP3file_path)
-    #             file_list = self.check(file_list)
-    #             for file_name in tqdm.tqdm(file_list):
-    #                 ftp_file = os.path.join(self.severMP3file_path, file_name)
-    #                 logger.info("服务端ftp_file读取路径: " + ftp_file)
-    #                 local_file = os.path.join(self.localMP3file_path, file_name)
-    #                 logger.info("客户端local_file存储路径: " + local_file)
-    #                 f = open(local_file, "wb")
-    #                 self.ftp.retrbinary('RETR %s'%ftp_file, f.write, self.buffer_size)
-    #                 f.close()
-    #                 logger.info("文件下载成功：" + file_name)
-    #             logger.info(time.strftime('%Y%m%d', time.localtime(time.time()))+"ftp数据下载完毕")
-    #             logger.info("******************************DouyinData ZMY Get Finish*****************************************")
-    #         except:
-    #             logger.info("无法下载视频数据，请检查视频数据路径")
-    #         self.ftp.quit()
 
 # ****************************************************  JMZ  ***********************************************************
 class FTP_HOTTrends(FTP_OP):
@@ -224,8 +188,6 @@ class FTP_HOTTrends(FTP_OP):
     def __init__(self, config):
         super(FTP_HOTTrends, self).__init__(config)
 
-        self.current_time = str(datetime.date.today())
-        # self.current_time = '2022-11-16'
         self.base_path = config["HOT_Trends"]["base_path"]
         self.base_asr_path = config["Douyin_Updata"]["base_asr_path"]
         self.sever_base_path = config["HOT_Trends"]["sever_base_path"]
@@ -274,13 +236,13 @@ class FTP_HOTTrends(FTP_OP):
         if not os.path.exists(local_path):
             os.makedirs(local_path)
         loacl_file_list = os.listdir(local_path)
-        ftp = copy.copy(self.ftp)
 
         isBreak = True
 
         while isBreak:
             try:
-                ftp.cwd(sever_path)
+                self.ftp.cwd('/')
+                self.ftp.cwd(sever_path)
                 file_list = self.ftp.nlst()
                 logger.info("ftp数据传输开始")
                 logger.info(file_list)
@@ -325,18 +287,18 @@ class FTP_HOTTrends(FTP_OP):
         :param sever_path:
         :return:
         '''
-        ftp = copy.copy(self.ftp)
+        self.ftp.cwd('/')
         try:
-            ftp.cwd(sever_path)
+            self.ftp.cwd(sever_path)
         except:
-            ftp.mkd(sever_path)
-            ftp.cwd(sever_path)
+            self.ftp.mkd(sever_path)
+            self.ftp.cwd(sever_path)
         file_list = self.scaner_file(local_path)
         for file_name in file_list:
             f = open(file_name, "rb")
             file_name = os.path.split(file_name)[-1]
             ftp_file = os.path.join(sever_path, file_name)
-            ftp.storbinary('STOR %s' % file_name, f, self.buffer_size)
+            self.ftp.storbinary('STOR %s' % file_name, f, self.buffer_size)
             logger.info('成功上传文件： "%s"' % ftp_file)
         logger.info(time.strftime('%Y%m%d', time.localtime(time.time()))+"文件全部上传完毕")
 
@@ -365,6 +327,8 @@ class FTP_HOTTrends(FTP_OP):
 
         # 召回、排序热搜词相关视频
         recall = recall_process.RecallSearchDataset(self.hotConfig)
+        # recallDataset = recall.recall_by_bert()
+        # recallDataset = recall.recall_dataset_by_bm25()
         recallDataset = recall.recall_dataset_by_insurances()   # 召回
         recall.rank_dataset_by_count(recallDataset)  # 排序
 
