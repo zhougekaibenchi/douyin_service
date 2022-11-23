@@ -4,28 +4,28 @@ class Config(object):
     def __init__(self, hotvideo_path, hotkeywords_path, hotkeywords_tmp_path, searchvideo_path, recallvideo_path, video_content_path, hottracking_result_path, rewriter_path):
 
         # 判断目录文件是否存在， 不存在则创建
-        if not os.path.exists(hotvideo_path):
+        if hotvideo_path and not os.path.exists(hotvideo_path):
             os.makedirs(hotvideo_path)
 
-        if not os.path.exists(hotkeywords_path):
+        if hotkeywords_path and not os.path.exists(hotkeywords_path):
             os.makedirs(hotkeywords_path)
 
-        if not os.path.exists(hotkeywords_tmp_path):
+        if hotkeywords_tmp_path and not os.path.exists(hotkeywords_tmp_path):
             os.makedirs(hotkeywords_tmp_path)
 
-        if not os.path.exists(searchvideo_path):
+        if searchvideo_path and not os.path.exists(searchvideo_path):
             os.makedirs(searchvideo_path)
 
-        if not os.path.exists(recallvideo_path):
+        if recallvideo_path and not os.path.exists(recallvideo_path):
             os.makedirs(recallvideo_path)
 
-        if not os.path.exists(video_content_path):
+        if video_content_path and not os.path.exists(video_content_path):
             os.makedirs(video_content_path)
 
-        if not os.path.exists(hottracking_result_path):
+        if hottracking_result_path and not os.path.exists(hottracking_result_path):
             os.makedirs(hottracking_result_path)
 
-        if not os.path.exists(rewriter_path):
+        if rewriter_path and not os.path.exists(rewriter_path):
             os.makedirs(rewriter_path)
 
         # 热榜数据
@@ -47,6 +47,10 @@ class Config(object):
 
         # 检索词视频中间文件
         self.douyin_search_data_xls_file = hotkeywords_tmp_path + '/douyin_search_data.xls'    # 整理后的抖音搜索视频数据
+
+        self.bert_recall_dataset = hotkeywords_tmp_path + "/bert_recall_dataset.xls"
+        self.keyword_recall_dataset = hotkeywords_tmp_path + "/keyword_recall_dataset.xls"
+        self.bm25_recall_dataset = hotkeywords_tmp_path + "/bm25_recall_dataset.xls"
 
         # 召回视频数据
         self.douyin_search_hot_video_file = recallvideo_path + '/result_hot_insurance_data.xls'  # 最终挖掘热点视频
@@ -104,10 +108,14 @@ class Config(object):
         self.max_sequence_length = 32
         self.sim_threshold = 0.6
         self.batch_size = 64
-        self.hidden_sizes = [384, 128]
-        self.bert_recall_dataset = hotkeywords_tmp_path + "/bert_recall_dataset.xls"
+        self.hidden_sizes = [378, 128]
 
-#
+
+
+        # BM25算法召回参数
+        self.bm25_param_file = './data/bm25_param.pkl'
+
+
 
 
 

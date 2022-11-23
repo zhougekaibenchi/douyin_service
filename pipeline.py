@@ -19,7 +19,6 @@ def douyin_pipeline(env):
         # 抖音账号数据更新
         ftp_update = FTP_Updata(config)
         ftp_update.download_account()
-        # ftp_update.download_file()
 
         # 美芝老师热点数据更新
         ftp_hottrends = FTP_HOTTrends(config)

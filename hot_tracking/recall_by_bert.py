@@ -21,7 +21,7 @@ class RecallByBert(object):
 
         self.tokenizer = BertTokenizer.from_pretrained(self.config.pretrained_model_path + '/vocab.txt')
 
-        self.bert = BertTextEncoder(self.config.pretrained_model_path, self.config.max_length)
+        self.bert = BertTextEncoder(self.config.pretrained_model_path, self.config.hidden_sizes)
 
 
     def similar_count(self, vec1, vec2, mode='cos'):
@@ -68,7 +68,7 @@ class RecallByBert(object):
         batchs = math.ceil(len(inputs) / batch_size)
 
         flag = True
-        for batch in range(batchs):
+        for batch in tqdm(range(batchs), desc='批次生成句向量'):
             start = batch * batch_size
             end = (batch + 1) * batch_size
             batch_inputs = inputs[start: end]
@@ -99,10 +99,10 @@ class RecallByBert(object):
         input1s_embedding = self.get_embedding_batch(input1s)
         input2s_embedding = self.get_embedding_batch(input2s)
 
-        assert len(input1s_embedding) != len(input2s_embedding), '句子数量必须相等'
+        assert len(input1s_embedding) == len(input2s_embedding), '句子数量必须相等'
 
         scores = []
-        for i in len(input1s_embedding):
+        for i in range(len(input1s_embedding)):
             score = self.similar_count(input1s_embedding[i], input2s_embedding[i])
             scores.append(score)
 
@@ -127,7 +127,8 @@ class BertTextEncoder(nn.Module):
     def forward(self, input_ids, token_type_ids, attention_mask):
         output = self.bert(input_ids, token_type_ids, attention_mask)
         textEmbeddings = output[0][:, 0, :]
-        features = self.fc(textEmbeddings)
+        features = self.fc1(textEmbeddings)
+        features = self.fc2(features)
         features = self.tanh(features)
 
         return features
@@ -135,7 +136,14 @@ class BertTextEncoder(nn.Module):
 
 
 
+if __name__ == '__main__':
+    from config import Config
+    config = Config("", "", "", "", "", "", "", "")
+    recall = RecallByBert(config)
 
+    input1 = ['男子抢老人九条烟发视频炫耀']
+    input2 = ['22日早上3时举行美国对威尔斯的B组分组赛，拜登给美国队打电话。拜登在电话先是说笑，还向教练称自己已准备好，可派他上场。#卡塔尔世界杯 #足球⚽️']
+    print(recall.predict_batch_by_bert(input1, input2))
 
 
 

@@ -10,6 +10,7 @@ import numpy as np
 from tqdm import tqdm
 import copy
 from recall_by_bert import RecallByBert
+from recall_by_bm25 import BM25
 
 
 
@@ -27,6 +28,8 @@ class RecallSearchDataset(object):
         self.searchDataset = self.read_search_dataset()
         # 语义模型
         self.bertRecallModel = RecallByBert(config)
+        # BM25算法
+        self.bm25 = BM25(config)
 
 
 
@@ -107,6 +110,50 @@ class RecallSearchDataset(object):
 
         return tags
 
+    def recall_dataset_by_bm25(self):
+        '''基于BM25算法进行召回匹配'''
+        # 按照标签过滤，选取保险标签相关的数据
+        self.searchDataset = self.searchDataset[self.searchDataset['topics'].isin(self.config.insurance_topics)]
+
+        recallDataset = pd.DataFrame([])
+        scores = []
+        # 若title中包含保险关键词，则进行召回
+        for row in self.searchDataset.iterrows():
+            poseg = [token.flag for token in pseg.lcut(row[1]['key_word'])]
+            # 如果搜索词为地名或人名则不召回
+            if poseg == ['ns'] or poseg == ['nr']:
+                continue
+
+            # 根据视频时长进行过滤
+            duration = row[1]['duration']
+            if duration < 15 or duration > 120:
+                continue
+
+            # 过滤电视台视频
+            isContinue = False
+            deleteAuthors = ['电视台', '网', '日报', '广播', '频道', '晚报', '新闻']
+            author_name = row[1]['author_name']
+            for deleteAuthor in deleteAuthors:
+                if deleteAuthor in author_name:
+                    isContinue = True
+                    break
+
+            if isContinue:
+                continue
+
+            # 若标题中不包含保险关键词则不召回
+            title = row[1]['title']
+            topic = row[1]['flag']
+            score = self.bm25.cal_text_similarity(topic, title)
+            row[1]['bm25Score'] = score
+
+            recallDataset = recallDataset.append(row[1], ignore_index=True)
+
+        print("BM25召回视频数量：", len(recallDataset))
+        recallDataset.to_excel(self.config.bm25_recall_dataset, index=False)
+        return recallDataset
+
+
     def recall_dataset_by_insurances(self):
         '''基于保险关键词进行内容召回'''
 
@@ -146,20 +193,47 @@ class RecallSearchDataset(object):
                 row[1]['insurance_key_word'] = list(set(cutTitle) & set(self.insurances))
                 recallDataset = recallDataset.append(row[1], ignore_index=True)
 
-        print("召回视频数量：", len(recallDataset))
-
+        print("keyword召回视频数量：", len(recallDataset))
+        recallDataset.to_excel(self.config.keyword_recall_dataset, index=False)
         return recallDataset
 
 
     def recall_by_bert(self):
-        recallDataset = copy.copy(self.searchDataset)
+
+        # 按照标签过滤，选取保险标签相关的数据
+        self.searchDataset = self.searchDataset[self.searchDataset['topics'].isin(self.config.insurance_topics)]
+
         titles = []
         topics = []
+        recallDataset = pd.DataFrame([])
         for row in tqdm(self.searchDataset.iterrows(), desc='bert语义召回'):
+            poseg = [token.flag for token in pseg.lcut(row[1]['key_word'])]
+            # 如果搜索词为地名或人名则不召回
+            if poseg == ['ns'] or poseg == ['nr']:
+                continue
+
+            # 根据视频时长进行过滤
+            duration = row[1]['duration']
+            if duration < 15 or duration > 120:
+                continue
+
+            # 过滤电视台视频
+            isContinue = False
+            deleteAuthors = ['电视台', '网', '日报', '广播', '频道', '晚报', '新闻']
+            author_name = row[1]['author_name']
+            for deleteAuthor in deleteAuthors:
+                if deleteAuthor in author_name:
+                    isContinue = True
+                    break
+
+            if isContinue:
+                continue
+
             title = row[1]['title']
             topic = row[1]['flag']
             titles.append(title)
             topics.append(topic)
+            recallDataset = recallDataset.append(row[1], ignore_index=True)
 
         scores = self.bertRecallModel.predict_batch_by_bert(titles, topics)
 
@@ -215,21 +289,21 @@ class RecallSearchDataset(object):
     def rank_score_by_time(self, df):
         '''根据发布时间调整分值'''
         if df['days'] <= 7:
-            df['score'] /= (df['days'] + 1)
+            df['rankScore'] /= (df['days'] + 1)
 
         elif df['days'] <= 14:
-            df['score'] /= 10
+            df['rankScore'] /= 10
 
         elif df['days'] <= 21:
-            df['score'] /= 12
+            df['rankScore'] /= 12
 
         elif df['days'] <= 28:
-            df['score'] /= 14
+            df['rankScore'] /= 14
 
         else:
-            df['score'] /= 16
+            df['rankScore'] /= 16
 
-        return df['score']
+        return df['rankScore']
 
 
     # def filter_insurance_vocab(self):

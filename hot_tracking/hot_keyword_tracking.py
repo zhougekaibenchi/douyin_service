@@ -328,7 +328,7 @@ class KeywordMiningByTags(object):
         dataFrame.drop(['len'], axis=1, inplace=True)
         dataFrame.to_excel(self.config.douyin_hot_tag_keyword_file, index=False)
 
-        print("获取最终关键标签及短语完成！")
+        print("获取最终关键标签及短语完成！", len(dataFrame))
 
         return dataFrame
 
