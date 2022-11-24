@@ -33,35 +33,36 @@ class Config(object):
         self.douyin_hot_video_file = hotvideo_path + "/douyin_open_hot_video.json"    # 抖音热门数据
 
         # 热门短语数据
-        self.douyin_hot_tag_keyword_file = hotkeywords_path + '/douyin_hot_tag_keywords.xls'  # 最终输入热点关键标签或短语
+        self.douyin_hot_tag_keyword_file = hotkeywords_path + '/douyin_hot_tag_keywords.xlsx'  # 最终输入热点关键标签或短语
 
         # 热门短语中间文件
-        self.douyin_data_file = hotkeywords_tmp_path + "/douyin_dataset.xls"  # 抖音热榜及热门整理后的数据
-        self.douyin_hot_top_tag_file = hotkeywords_tmp_path + '/douyin_hot_top_keytops.xls'  # 抖音热榜关键主题
-        self.douyin_hot_video_tag_file = hotkeywords_tmp_path + '/douyin_hot_video_keytops.xls'  # 抖音热门是哦关键主题
-        self.douyin_hot_top_keyword_file = hotkeywords_tmp_path + '/douyin_hot_top_keywords.xls'  # 抖音热榜关键短语
-        self.douyin_hot_video_keyword_file = hotkeywords_tmp_path + '/douyin_hot_video_keywords.xls'  # 抖音热门视频关键短语
+        self.douyin_data_file = hotkeywords_tmp_path + "/douyin_dataset.xlsx"  # 抖音热榜及热门整理后的数据
+        self.douyin_hot_top_tag_file = hotkeywords_tmp_path + '/douyin_hot_top_keytops.xlsx'  # 抖音热榜关键主题
+        self.douyin_hot_video_tag_file = hotkeywords_tmp_path + '/douyin_hot_video_keytops.xlsx'  # 抖音热门是哦关键主题
+        self.douyin_hot_top_keywords_by_rule_file = hotkeywords_tmp_path + '/douyin_hot_top_keywords_by_rule.xlsx'  # 抖音热门是哦关键主题
+        self.douyin_hot_top_keyword_file = hotkeywords_tmp_path + '/douyin_hot_top_keywords.xlsx'  # 抖音热榜关键短语
+        self.douyin_hot_video_keyword_file = hotkeywords_tmp_path + '/douyin_hot_video_keywords.xlsx'  # 抖音热门视频关键短语
 
         # 检索词视频数据
         self.douyin_search_data_json_file = searchvideo_path + '/deal_douyin_search.json'    # 抖音搜索视频数据
 
         # 检索词视频中间文件
-        self.douyin_search_data_xls_file = hotkeywords_tmp_path + '/douyin_search_data.xls'    # 整理后的抖音搜索视频数据
+        self.douyin_search_data_xls_file = hotkeywords_tmp_path + '/douyin_search_data.xlsx'    # 整理后的抖音搜索视频数据
 
-        self.bert_recall_dataset = hotkeywords_tmp_path + "/bert_recall_dataset.xls"
-        self.keyword_recall_dataset = hotkeywords_tmp_path + "/keyword_recall_dataset.xls"
-        self.bm25_recall_dataset = hotkeywords_tmp_path + "/bm25_recall_dataset.xls"
+        self.bert_recall_dataset = hotkeywords_tmp_path + "/bert_recall_dataset.xlsx"
+        self.keyword_recall_dataset = hotkeywords_tmp_path + "/keyword_recall_dataset.xlsx"
+        self.bm25_recall_dataset = hotkeywords_tmp_path + "/bm25_recall_dataset.xlsx"
 
         # 召回视频数据
-        self.douyin_search_hot_video_file = recallvideo_path + '/result_hot_insurance_data.xls'  # 最终挖掘热点视频
+        self.douyin_search_hot_video_file = recallvideo_path + '/result_hot_insurance_data.xlsx'  # 最终挖掘热点视频
         self.douyin_search_video_content_file = video_content_path    # 视频文案
 
         # 最终输出数据
-        self.douyin_output_file = hottracking_result_path + '/result_output_file.xls'   # 抖音最终输出文件（包含视频文案）
+        self.douyin_output_file = hottracking_result_path + '/result_output_file.xlsx'   # 抖音最终输出文件（包含视频文案）
 
         # 最终需要改写的数据
-        self.douyin_rewriter_file = rewriter_path + '/douyin_rewriter_file.xls'    # 抖音需要文案改写的数据（未改写前）
-        self.douyin_rewriter_result_file = rewriter_path + '/douyin_rewriter_result_file.xls'   # 改写后的数据
+        self.douyin_rewriter_file = rewriter_path + '/douyin_rewriter_file.xlsx'    # 抖音需要文案改写的数据（未改写前）
+        self.douyin_rewriter_result_file = rewriter_path + '/douyin_rewriter_result_file.xlsx'   # 改写后的数据
 
 
         # 其他辅助文件
@@ -70,8 +71,10 @@ class Config(object):
 
 
         # 热门关键短语挖掘相关配置
-        self.category = ['话题互动', '社会', '交通', '文化教育', '时政', '科技', '财经']    # 提取关键短语热榜主题分类
+        self.category = ['话题互动', '社会', '交通', '文化教育', '时政', '科技', '财经', '体育']    # 提取关键短语热榜主题分类
+        self.notCategory = ['娱乐']
         self.is_stopword = True  # 是否过滤停用词
+        self.is_hot_top_keywords_by_rule = True  # 是否选用基于规则的热榜标签数据
         self.is_hot_top_tags = True  # 是否选用热榜标签数据
         self.is_hot_top_keywords = True  # 是否使用热榜关键短语数据
         self.is_hot_video_tags = False  # 是否使用热门视频标签数据
@@ -82,12 +85,12 @@ class Config(object):
         self.num_hot_video_tags = 5  # 热门视频提取多少个标签信息
         self.num_hot_video_keywords = 10  # 热门视频提取多少个关键短语信息
         self.tag_rate = 0.3    # 热榜数据标签占比
-        self.top_count = 1   # 热榜主题出现频次
+        self.top_count = 0   # 热榜主题出现频次
 
 
 
         # 搜索相关热门视频配置
-        self.insurance_topics = ['时政社会社会新闻', '人文社科人文艺术', '时政社会时政新闻', '财经财经知识',
+        self.insurance_topics = ['教育培训职场技能', '体育竞技体育', '时政社会社会新闻', '人文社科人文艺术', '时政社会时政新闻', '财经财经知识',
                             '财经投资理财', '财经房产', '医疗健康健康', '医疗健康医疗', '']
 
 
@@ -106,7 +109,7 @@ class Config(object):
         # bert召回参数
         self.pretrained_model_path = '/Users/mickey/project/pre-models/bert/bert-base-chinese'
         self.max_sequence_length = 32
-        self.sim_threshold = 0.6
+        self.sim_threshold = 1
         self.batch_size = 64
         self.hidden_sizes = [378, 128]
 

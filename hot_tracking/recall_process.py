@@ -9,8 +9,8 @@ import os
 import numpy as np
 from tqdm import tqdm
 import copy
-from recall_by_bert import RecallByBert
-from recall_by_bm25 import BM25
+from .recall_by_bert import RecallByBert
+from .recall_by_bm25 import BM25
 
 
 
@@ -28,8 +28,6 @@ class RecallSearchDataset(object):
         self.searchDataset = self.read_search_dataset()
         # 语义模型
         self.bertRecallModel = RecallByBert(config)
-        # BM25算法
-        self.bm25 = BM25(config)
 
 
 
@@ -110,15 +108,20 @@ class RecallSearchDataset(object):
 
         return tags
 
-    def recall_dataset_by_bm25(self):
+    def recall_dataset_by_bm25(self, dataset=None):
         '''基于BM25算法进行召回匹配'''
         # 按照标签过滤，选取保险标签相关的数据
-        self.searchDataset = self.searchDataset[self.searchDataset['topics'].isin(self.config.insurance_topics)]
+
+        # BM25算法
+        self.bm25 = BM25(self.config)
+
+        if dataset is None:
+            # self.searchDataset = self.searchDataset[self.searchDataset['topics'].isin(self.config.insurance_topics)]
+            dataset = self.searchDataset
 
         recallDataset = pd.DataFrame([])
-        scores = []
         # 若title中包含保险关键词，则进行召回
-        for row in self.searchDataset.iterrows():
+        for row in dataset.iterrows():
             poseg = [token.flag for token in pseg.lcut(row[1]['key_word'])]
             # 如果搜索词为地名或人名则不召回
             if poseg == ['ns'] or poseg == ['nr']:
@@ -149,20 +152,25 @@ class RecallSearchDataset(object):
 
             recallDataset = recallDataset.append(row[1], ignore_index=True)
 
+        recallDataset = recallDataset[recallDataset['bm25Score'] >= self.config.sim_threshold]
+
         print("BM25召回视频数量：", len(recallDataset))
         recallDataset.to_excel(self.config.bm25_recall_dataset, index=False)
         return recallDataset
 
 
-    def recall_dataset_by_insurances(self):
+    def recall_dataset_by_insurances(self, dataset=None):
         '''基于保险关键词进行内容召回'''
 
+        if dataset is None:
+            dataset = self.searchDataset
+
         # 按照标签过滤，选取保险标签相关的数据
-        self.searchDataset = self.searchDataset[self.searchDataset['topics'].isin(self.config.insurance_topics)]
+        dataset = dataset[dataset['topics'].isin(self.config.insurance_topics)]
 
         recallDataset = pd.DataFrame([])
         # 若title中包含保险关键词，则进行召回
-        for row in self.searchDataset.iterrows():
+        for row in dataset.iterrows():
             poseg = [token.flag for token in pseg.lcut(row[1]['key_word'])]
             # 如果搜索词为地名或人名则不召回
             if poseg == ['ns'] or poseg == ['nr']:
@@ -198,15 +206,18 @@ class RecallSearchDataset(object):
         return recallDataset
 
 
-    def recall_by_bert(self):
+    def recall_by_bert(self, dataset):
+
+        if dataset is None:
+            dataset = self.searchDataset
 
         # 按照标签过滤，选取保险标签相关的数据
-        self.searchDataset = self.searchDataset[self.searchDataset['topics'].isin(self.config.insurance_topics)]
+        dataset = dataset[dataset['topics'].isin(self.config.insurance_topics)]
 
         titles = []
         topics = []
         recallDataset = pd.DataFrame([])
-        for row in tqdm(self.searchDataset.iterrows(), desc='bert语义召回'):
+        for row in tqdm(dataset.iterrows(), desc='bert语义召回'):
             poseg = [token.flag for token in pseg.lcut(row[1]['key_word'])]
             # 如果搜索词为地名或人名则不召回
             if poseg == ['ns'] or poseg == ['nr']:
@@ -239,8 +250,6 @@ class RecallSearchDataset(object):
 
         recallDataset['bertScore'] = scores
         recallDataset = recallDataset[recallDataset['bertScore'] >= self.config.sim_threshold]
-        # if score >= self.config.sim_threshold:
-        #     recallDataset = recallDataset.append(row[1], ignore_index=True)
 
 
         print("bert语义召回完成！", len(recallDataset))
@@ -257,7 +266,8 @@ class RecallSearchDataset(object):
         # recallDataset['play_count'] = recallDataset['like_count'] + recallDataset['comment_count'] + recallDataset['collect_count'] + recallDataset['share_count']
         recallDataset = recallDataset[recallDataset.ne('').all(axis=1)]
         recallDataset = recallDataset.dropna(axis=0, subset=['play_count', 'like_count', 'comment_count', 'collect_count', 'share_count'])
-        recallDataset[['play_count', 'like_count', 'comment_count', 'collect_count', 'share_count']] = recallDataset[['play_count', 'like_count', 'comment_count', 'collect_count', 'share_count']].astype(np.int64)
+
+        recallDataset[['play_count', 'like_count', 'comment_count', 'collect_count', 'share_count']] = recallDataset[['play_count', 'like_count', 'comment_count', 'collect_count', 'share_count']].astype(np.ulonglong)
 
         # 点赞率=点赞量/播放量
         recallDataset['like_rate'] = recallDataset['like_count'] / (recallDataset['play_count'] + 1)

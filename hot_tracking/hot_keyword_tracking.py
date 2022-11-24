@@ -7,6 +7,7 @@ import jieba
 import jieba.posseg as pseg
 from .config import Config
 import numpy as np
+from tqdm import tqdm
 
 
 class KeywordMiningByTags(object):
@@ -129,6 +130,22 @@ class KeywordMiningByTags(object):
         print('生成抖音热门视频关键tag')
         return dataFrame
 
+    def get_keywords_from_hot_top_by_rule(self):
+        '''基于规则构建热榜主题搜索词'''
+        data = self.df[(self.df['source'] == 'hot_top') & (~self.df['category'].isin(self.config.notCategory))]
+        contents = []
+        tops = data['hot_title'].unique()
+        for top in tqdm(tops, desc='基于规则构建热榜主题搜索词'):
+            textPosseg = [(token.flag, token.word) for token in pseg.lcut(top)]
+            for values in textPosseg:
+                flag, word = values
+                if flag in ['nr', 'nrfg', 'nrt', 'nt', 'nz'] and len(word) > 1:
+                    contents.append([top, word+'保险', 10000])
+
+        if len(contents) != 0:
+            dataFrame = pd.DataFrame(contents, columns=['top', 'keyword', 'score'])
+            dataFrame.to_excel(self.config.douyin_hot_top_keywords_by_rule_file, index=False)
+            return dataFrame
 
 
     def get_keywords_from_hot_top(self, sortKey):
@@ -283,10 +300,12 @@ class KeywordMiningByTags(object):
     def merge_keywords(self):
         '''将多路结果进行merge得到最终的结果'''
 
-        hot_top_tags, hot_top_keywords, hot_video_tags, hot_video_keywords = pd.DataFrame([]), pd.DataFrame([]), pd.DataFrame([]), pd.DataFrame([])
+        hot_top_tags, hot_top_keywords, hot_top_keywords_by_rule, hot_video_tags, hot_video_keywords = pd.DataFrame([]), pd.DataFrame([]), pd.DataFrame([]), pd.DataFrame([]), pd.DataFrame([])
 
         if self.config.is_hot_top_tags:
             hot_top_tags = self.get_keytags_from_hot_top()
+        if self.config.is_hot_top_keywords_by_rule:
+            hot_top_keywords_by_rule = self.get_keywords_from_hot_top_by_rule()
         if self.config.is_hot_top_keywords:
             hot_top_keywords = self.get_keywords_from_hot_top(sortKey="score")
         if self.config.is_hot_video_tags:
@@ -326,6 +345,8 @@ class KeywordMiningByTags(object):
         dataFrame = pd.DataFrame(keyTagAndWordsList, columns=['top', 'keyword', 'score', 'len'])
         dataFrame.dropna(subset=['keyword'], inplace=True)
         dataFrame.drop(['len'], axis=1, inplace=True)
+        dataFrame = pd.concat([hot_top_keywords_by_rule, dataFrame])
+        dataFrame.drop_duplicates(subset=['keyword'], keep='first', inplace=True)
         dataFrame.to_excel(self.config.douyin_hot_tag_keyword_file, index=False)
 
         print("获取最终关键标签及短语完成！", len(dataFrame))

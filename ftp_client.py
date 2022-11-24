@@ -336,9 +336,9 @@ class FTP_HOTTrends(FTP_OP):
 
         # 召回、排序热搜词相关视频
         recall = recall_process.RecallSearchDataset(self.hotConfig)
-        # recallDataset = recall.recall_by_bert()
-        # recallDataset = recall.recall_dataset_by_bm25()
         recallDataset = recall.recall_dataset_by_insurances()   # 召回
+        recallDataset = recall.recall_dataset_by_bm25(recallDataset)
+        # recallDataset = recall.recall_by_bert()
         recall.rank_dataset_by_count(recallDataset)  # 排序
 
         self.upload_file(self.recallvideo_local_path, self.recallvideo_sever_path)    # 将整理结果数据传送给爬虫端
@@ -355,7 +355,7 @@ class FTP_HOTTrends(FTP_OP):
 
         recall = recall_process.RecallSearchDataset(self.hotConfig)
         resultDataset = recall.merge_video_content()
-        filename = 'douyin_recall_video_' + self.current_time + '.xls'
+        filename = 'douyin_recall_video_' + self.current_time + '.xlsx'
         resultDataset.to_excel(os.path.join(self.hot_trends_dowload_path, filename), index=False)
         logger.info("******************************Filter By Video Content Finished*****************************************")
 
