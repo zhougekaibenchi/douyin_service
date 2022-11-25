@@ -161,7 +161,10 @@ class BM25(object):
     def cal_text_similarity(self, query, question):
         '''计算两个文本相似度'''
         queryWords = [word for word in jieba.lcut(query) if word and word not in self._stop_words]
-        index = self.param.docs_list.index(question)
+        if question not in self.param.docs_list:
+            return 10
+        else:
+            index = self.param.docs_list.index(question)
         if index:
             score = self._cal_similarity(queryWords, index)
         else:

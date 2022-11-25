@@ -188,7 +188,7 @@ class RequestApi(object):
             self.ts = str(int(time.time()))
             self.signa = self.get_signa()
             uploadresp = self.upload(item)
-            if uploadresp != False:
+            if uploadresp != False and uploadresp.get('content') and uploadresp['content'].get('orderId'):
                 orderId = uploadresp['content']['orderId']
                 result = self.download(uploadresp, item)
                 asr_txt = self.post_process(result)

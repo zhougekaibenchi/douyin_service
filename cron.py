@@ -17,7 +17,7 @@ ftp_trigger = CronTrigger(hour=22, minute=30)
 def main():
 
     scheduler.add_job(func=douyin_pipeline, trigger=ftp_trigger, kwargs={"env":sys.argv[1]}, #{'env':'test'}
-                      name="数据同步", id='pipeline', max_instances=1, replace_existing=True)
+                      name="数据同步", id='pipeline', max_instances=2, replace_existing=True)
     scheduler.add_listener(listener_event, EVENT_JOB_ERROR | EVENT_JOB_EXECUTED)
     try:
         scheduler.start()

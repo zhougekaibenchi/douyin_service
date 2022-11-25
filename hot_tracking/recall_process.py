@@ -55,7 +55,7 @@ class RecallSearchDataset(object):
 
         # data = open(self.douyin_search_data_json_file, 'r', encoding='utf-8').read()
         # dataList = eval(data.replace("ObjectId(", '').replace(")", ""))
-        jsonData = eval(open(self.config.douyin_search_data_json_file, 'r', encoding='utf-8').read())
+        jsonData = json.loads(open(self.config.douyin_search_data_json_file, 'r', encoding='utf-8').read())
         dataList = jsonData['RECORDS']
 
         contents = []
@@ -67,11 +67,14 @@ class RecallSearchDataset(object):
                     tags = self.extract_tags(dataJson['title'], '#')
                     content.append(tags)
                 elif column == 'duration':
-                    ts = dataJson['duration'].split(':')
-                    if len(ts) == 2:
-                        duration = int(ts[0]) * 60 + int(ts[1])
+                    if isinstance(dataJson['duration'], str):
+                        ts = dataJson['duration'].split(':')
+                        if len(ts) == 2:
+                            duration = int(ts[0]) * 60 + int(ts[1])
+                        else:
+                            duration = 0
                     else:
-                        duration = 0
+                        duration = dataJson['duration'] / 1000
                     content.append(duration)
                 else:
                     value = dataJson.get(column, "")
@@ -166,7 +169,7 @@ class RecallSearchDataset(object):
             dataset = self.searchDataset
 
         # 按照标签过滤，选取保险标签相关的数据
-        dataset = dataset[dataset['topics'].isin(self.config.insurance_topics)]
+        dataset = dataset[(dataset['topics'].isin(self.config.insurance_topics)) | (dataset['topics'].str.contains(','))]
 
         recallDataset = pd.DataFrame([])
         # 若title中包含保险关键词，则进行召回
@@ -178,7 +181,7 @@ class RecallSearchDataset(object):
 
             # 根据视频时长进行过滤
             duration = row[1]['duration']
-            if duration < 15 or duration > 120:
+            if duration < 15 or duration > 180:
                 continue
 
             # 过滤电视台视频
@@ -264,7 +267,7 @@ class RecallSearchDataset(object):
                                                recallDataset['play_count'])
         # recallDataset['play_count'] = recallDataset[recallDataset['play_count'] == '0']
         # recallDataset['play_count'] = recallDataset['like_count'] + recallDataset['comment_count'] + recallDataset['collect_count'] + recallDataset['share_count']
-        recallDataset = recallDataset[recallDataset.ne('').all(axis=1)]
+        # recallDataset = recallDataset[recallDataset.ne('').all(axis=1)]
         recallDataset = recallDataset.dropna(axis=0, subset=['play_count', 'like_count', 'comment_count', 'collect_count', 'share_count'])
 
         recallDataset[['play_count', 'like_count', 'comment_count', 'collect_count', 'share_count']] = recallDataset[['play_count', 'like_count', 'comment_count', 'collect_count', 'share_count']].astype(np.ulonglong)

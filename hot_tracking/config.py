@@ -85,7 +85,7 @@ class Config(object):
         self.num_hot_video_tags = 5  # 热门视频提取多少个标签信息
         self.num_hot_video_keywords = 10  # 热门视频提取多少个关键短语信息
         self.tag_rate = 0.3    # 热榜数据标签占比
-        self.top_count = 0   # 热榜主题出现频次
+        self.top_count = 1   # 热榜主题出现频次
 
 
 

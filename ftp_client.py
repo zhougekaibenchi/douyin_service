@@ -130,6 +130,10 @@ class FTP_Updata(FTP_OP):
 
     def download_path(self):
         logger.info("ftp数据传输开始")
+        if not os.path.exists(self.localMP3file_path):
+            os.makedirs(self.localMP3file_path)
+
+        localMP3files = os.listdir(self.localMP3file_path)
 
 
         isBreak = True
@@ -141,6 +145,8 @@ class FTP_Updata(FTP_OP):
                 file_list = self.check(file_list)
                 while file_list:
                     for file_name in tqdm(file_list, desc='asr音频文件下载'):
+                        if file_name in localMP3files:
+                            continue
                         ftp_file = os.path.join(self.severMP3file_path, file_name)
                         logger.info("服务端ftp_file读取路径: " + ftp_file)
                         local_file = os.path.join(self.localMP3file_path, file_name)
