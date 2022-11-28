@@ -71,8 +71,8 @@ class Config(object):
 
 
         # 热门关键短语挖掘相关配置
-        self.category = ['话题互动', '社会', '交通', '文化教育', '时政', '科技', '财经', '体育']    # 提取关键短语热榜主题分类
-        self.notCategory = ['娱乐']
+        self.category = ['话题互动', '社会', '交通', '文化教育', '时政', '科技', '财经', '体育', '娱乐']    # 提取关键短语热榜主题分类
+        self.notCategory = []
         self.is_stopword = True  # 是否过滤停用词
         self.is_hot_top_keywords_by_rule = True  # 是否选用基于规则的热榜标签数据
         self.is_hot_top_tags = True  # 是否选用热榜标签数据

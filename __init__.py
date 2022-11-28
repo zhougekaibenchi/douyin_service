@@ -13,7 +13,7 @@ logger.setLevel(logging.DEBUG)
 filename = "log/cron.log"
 os.makedirs(os.path.dirname(filename), exist_ok=True)
 
-file_handler = logging.handlers.TimedRotatingFileHandler(filename, 'D', 1, 3, encoding='utf8')
+file_handler = logging.handlers.TimedRotatingFileHandler(filename, 'D', 1, 7, encoding='utf8')
 file_handler.setLevel(logging.DEBUG)
 
 formatter = logging.Formatter(

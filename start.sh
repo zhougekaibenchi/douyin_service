@@ -26,8 +26,8 @@ echo "Restart cron job................"
 nohup python cron.py ${environment} >> ${cron_log} 2>&1 &
 echo "restart successfully!"
 
-echo "(3) Run pipeline for check.........."
-nohup python pipeline.py ${environment} >> ${cron_log} 2>&1 &
-echo "服务启动成功！"
+#echo "(3) Run pipeline for check.........."
+#nohup python pipeline.py ${environment} >> ${cron_log} 2>&1 &
+#echo "服务启动成功！"
 
 
