@@ -20,9 +20,9 @@ from utils.utils import write_complete_list, read_complete_list
 
 
 class RequestApi(object):
-    def __init__(self, config):
+    def __init__(self, config, time_now):
         # 当前时间
-        self.current_time = str(datetime.date.today())
+        self.current_time = time_now
         # self.current_time = '2022-11-16'
         # 账号，ID
         self.appid = config["XunFei_ASR"]["Long_Form_ASR"]["appid"]

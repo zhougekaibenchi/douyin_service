@@ -33,6 +33,10 @@ class FTP_OP(object):
         self.port = int(config["FTP_Sever"]["port"])
         self.buffer_size = config["FTP_Sever"]["buffer_size"]
 
+    #@staticmethod
+    def get_time(self):
+        return self.current_time
+
     def ftp_connect(self):
         ftp = FTP()
         ftp.set_debuglevel(1) # 调试模式设置
@@ -126,7 +130,7 @@ class FTP_Updata(FTP_OP):
 
 
             if isBreak:
-                time.sleep(60)
+                time.sleep(5 * 60)
 
     def download_path(self):
         logger.info("ftp数据传输开始")
@@ -164,7 +168,7 @@ class FTP_Updata(FTP_OP):
                 logger.info("无法下载视频数据，请检查视频数据路径! " + self.severMP3file_path)
 
             if isBreak:
-                time.sleep(60)
+                time.sleep( 5 * 60)
 
 
     def download_account(self):
@@ -282,11 +286,12 @@ class FTP_HOTTrends(FTP_OP):
                     break
 
                 if isBreak:
-                    time.sleep(60)
+                    time.sleep(5 * 60)
 
-            except:
+            except Exception as ex:
                 logger.info(sever_path + "路径不存在！")
-                time.sleep(60)
+                logger.error("切换服务器目录报错：", ex)
+                time.sleep(5 * 60)
 
     def download_single_file(self, local_path=None, sever_path=None):
         """
@@ -343,7 +348,7 @@ class FTP_HOTTrends(FTP_OP):
         # 召回、排序热搜词相关视频
         recall = recall_process.RecallSearchDataset(self.hotConfig)
         recallDataset = recall.recall_dataset_by_insurances()   # 召回
-        recallDataset = recall.recall_dataset_by_bm25(recallDataset)
+        # recallDataset = recall.recall_dataset_by_bm25(recallDataset)
         # recallDataset = recall.recall_by_bert()
         recall.rank_dataset_by_count(recallDataset)  # 排序
 

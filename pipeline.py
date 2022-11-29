@@ -25,7 +25,7 @@ def douyin_pipeline(env):
         ftp_hottrends.data_collect()
 
         # 数据ASR输出
-        asr_request = RequestApi(config)
+        asr_request = RequestApi(config, FTP_Updata.get_time())
         asr_request.get_result()
 
         # 基于视频文案进行过滤，并输出最终结果
