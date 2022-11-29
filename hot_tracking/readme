@@ -4,3 +4,23 @@ douyin_hot_keywords_tmp---->挖掘热门关键词或短语中间文件（爬虫�
 douyin_search_video---->根据热门短语检索的视频数据
 douyin_recall_video---->初筛后的视频数据（未拿视频文案的数据）
 douyin_result_video---->最终输出视频结果（爬虫老师不用管）
+
+
+代码路径：/data/dev/zhoumengyuan425/douyin_service
+编译环境：conda activate zhoumengyuan425
+
+热点追踪整体流程： 爬虫老师爬取抖音热榜主题数据---》下载爬取的热榜主题数据---》基于热榜主题数据进行关键词挖掘---》将挖掘关键词上传到爬虫服务器---》
+爬虫老师基于关键词进行检索获取视频文本数据---》下载爬取的视频文本数据---》对视频文本数据进行召回排序---》将召回排序后的数据上传给爬虫端（爬虫老师基于数据下载视频音频）---》
+下载爬取好的音频数据---》调用讯飞接口进行文案转写---》基于视频文案进行最终召回过滤（得到待产品过滤的数据）---》产品筛选后进行改写（调用改写接口）
+
+日志查看：tail -100f log/cron.log
+
+
+网络异常问题处理：
+1. 更改ftp_client.py的时间（将self.current_time = str(datetime.date.today())改成前一天的时间）
+2. 更新定时时间cron.py
+3. 重启定时任务（sh start.sh）
+
+
+讯飞接口更换：
+dev.ymal文件，具体字段可以问梦原

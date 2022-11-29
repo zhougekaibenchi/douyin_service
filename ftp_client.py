@@ -388,32 +388,35 @@ class FTP_HOTTrends(FTP_OP):
         logger.info("API视频文案改写开始")
         isBreak = True
         rewriterDataset = pd.DataFrame([])
+
         while isBreak:
-            # file_list = os.listdir(self.rewriter_local_path)
-            file_list = os.listdir(self.hot_trends_upload_path)
-            for filename in file_list:
-                if self.current_time in filename:
-                    file = os.path.join(self.hot_trends_upload_path, filename)
-                    # if self.hotConfig.douyin_rewriter_file.split('//')[-1] in file_list:
-                    # df = pd.read_excel(self.hotConfig.douyin_rewriter_file)
-                    df = pd.read_excel(file)
-                    for row in tqdm(df.iterrows(), desc='文案改写'):
-                        rewriterContent = self.api_rewriter(row[1]['content'])
-                        row[1]['rewriter'] = rewriterContent[0]
-                        row[1]['rwScore'] = rewriterContent[1]
+            try:
+                file_list = os.listdir(self.hot_trends_upload_path)
+                for filename in file_list:
+                    if self.current_time in filename:
+                        file = os.path.join(self.hot_trends_upload_path, filename)
+                        df = pd.read_excel(file)
+                        for row in tqdm(df.iterrows(), desc='文案改写'):
+                            rewriterContent = self.api_rewriter(row[1]['content'])
+                            row[1]['rewriter'] = rewriterContent[0]
+                            row[1]['rwScore'] = rewriterContent[1]
 
-                        rewriterDataset = rewriterDataset.append(row[1], ignore_index=True)
+                            rewriterDataset = rewriterDataset.append(row[1], ignore_index=True)
 
-                    rewriterFile = os.path.join(self.hot_trends_dowload_path, 'rewriter_' + filename)
-                    rewriterDataset.to_excel(rewriterFile, index=False)
-                    # rewriterDataset.to_excel(self.hotConfig.douyin_rewriter_result_file, index=False)
+                        rewriterFile = os.path.join(self.hot_trends_dowload_path, 'rewriter_' + filename)
+                        rewriterDataset.to_excel(rewriterFile, index=False)
 
-                    logger.info("视频文案改写完成！")
+                        logger.info("视频文案改写完成！")
 
-                    isBreak = False
+                        isBreak = False
+
+            except Exception as ex:
+                logger.error("文案改写报错：", ex)
 
             if isBreak:
                 time.sleep(60)
+
+
 
 
 
