@@ -18,14 +18,14 @@ def douyin_pipeline(env):
         config = Env.get(env)
         # 抖音账号数据更新
         ftp_update = FTP_Updata(config)
-        ftp_update.download_account()
+        # ftp_update.download_account()
 
         # 美芝老师热点数据更新
         ftp_hottrends = FTP_HOTTrends(config)
         ftp_hottrends.data_collect()
 
         # 数据ASR输出
-        asr_request = RequestApi(config, FTP_Updata.get_time())
+        asr_request = RequestApi(config, ftp_update.get_time())
         asr_request.get_result()
 
         # 基于视频文案进行过滤，并输出最终结果
@@ -44,6 +44,6 @@ def douyin_pipeline(env):
     logger.info("******************************Pipeline Finish****************************************")
 
 if __name__ == "__main__":
-    env = sys.argv[1] #"dev"
-    # env = 'dev'
+    # env = sys.argv[1] #"dev"
+    env = 'dev'
     douyin_pipeline(env)

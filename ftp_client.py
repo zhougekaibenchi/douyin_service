@@ -5,6 +5,7 @@
 
 from __init__ import *
 from ftplib import FTP
+import ftplib
 import os
 import time
 import tqdm
@@ -26,7 +27,7 @@ class FTP_OP(object):
         :param config: 配置文件
         """
         self.current_time = str(datetime.date.today())
-        # self.current_time = '2022-11-21'
+        # self.current_time = '2022-11-29'
         self.host = config["FTP_Sever"]["host"]
         self.username = config["FTP_Sever"]["username"]
         self.password = config["FTP_Sever"]["password"]
@@ -258,40 +259,63 @@ class FTP_HOTTrends(FTP_OP):
 
         isBreak = True
 
+
+        # 切换目录
         while isBreak:
             try:
                 self.ftp.cwd('/')
                 self.ftp.cwd(sever_path)
-                file_list = self.ftp.nlst()
-                logger.info("ftp数据传输开始")
-                logger.info(file_list)
+                break
 
-                while file_list:
-                    for file_name in tqdm(file_list, desc="视频数据下载"):
-                        if file_name in loacl_file_list:
-                            continue
-                        ftp_file = os.path.join(sever_path, file_name)
-                        logger.info("服务端ftp_file读取路径: " + ftp_file)
-                        local_file = os.path.join(local_path, file_name)
-                        logger.info("客户端local_file存储路径: " + local_file)
-                        if not os.path.exists(local_path):
-                            os.makedirs(local_path)
-                        f = open(local_file, "wb")
-                        self.ftp.retrbinary('RETR %s'%ftp_file, f.write, self.buffer_size)
-                        f.close()
-                        logger.info("文件下载成功：" + file_name)
-                    logger.info(time.strftime('%Y%m%d', time.localtime(time.time()))+"ftp数据下载完毕")
-
-                    isBreak = False
-                    break
-
-                if isBreak:
-                    time.sleep(5 * 60)
+            except ftplib.error_temp as e:
+                self.ftp = self.ftp_connect()
+                logger.info("远程服务连接超时！")
+                time.sleep(5 * 60)
 
             except Exception as ex:
                 logger.info(sever_path + "路径不存在！")
-                logger.error("切换服务器目录报错：", ex)
+                time.sleep(1 * 60)
+
+
+        while isBreak:
+            try:
+                file_list = self.ftp.nlst()
+                logger.info("ftp数据传输开始")
+                logger.info(file_list)
+                if not file_list:
+                    time.sleep(1 * 60)
+                    continue
+
+                for file_name in tqdm(file_list, desc="视频数据下载"):
+                    if file_name in loacl_file_list:
+                        continue
+                    ftp_file = os.path.join(sever_path, file_name)
+                    logger.info("服务端ftp_file读取路径: " + ftp_file)
+                    local_file = os.path.join(local_path, file_name)
+                    logger.info("客户端local_file存储路径: " + local_file)
+                    if not os.path.exists(local_path):
+                        os.makedirs(local_path)
+                    f = open(local_file, "wb")
+                    self.ftp.retrbinary('RETR %s'%ftp_file, f.write, self.buffer_size)
+                    f.close()
+                    logger.info("文件下载成功：" + file_name)
+                logger.info(time.strftime('%Y%m%d', time.localtime(time.time()))+"ftp数据下载完毕")
+                break
+
+
+            except ftplib.error_temp as e:
+                logger.info("远程服务连接超时！")
+                self.ftp = self.ftp_connect()
+                # self.ftp.cwd('/')
+                self.ftp.cwd(sever_path)
                 time.sleep(5 * 60)
+
+
+            except Exception as ex:
+                logger.info("数据下载失败：")
+                time.sleep(1 * 60)
+
+
 
     def download_single_file(self, local_path=None, sever_path=None):
         """
@@ -307,8 +331,8 @@ class FTP_HOTTrends(FTP_OP):
         :param sever_path:
         :return:
         '''
-        self.ftp.cwd('/')
         try:
+            self.ftp.cwd('/')
             self.ftp.cwd(sever_path)
         except:
             self.ftp.mkd(sever_path)
@@ -377,6 +401,8 @@ class FTP_HOTTrends(FTP_OP):
         rewriterText = requests.post(self.hotConfig.rewriter_url, data=json.dumps(self.hotConfig.rewriter_params), headers=self.hotConfig.headers)
         rewriterText = rewriterText.json()
         if rewriterText.get('data') and rewriterText['data'].get('output'):
+            print("input..: ", rewriterText['data']['input'])
+            print("output: ", rewriterText['data']['output'])
             return rewriterText['data']['output']
 
         return ["", ""]
