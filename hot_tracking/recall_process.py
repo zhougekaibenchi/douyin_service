@@ -263,11 +263,9 @@ class RecallSearchDataset(object):
         '''对召回视频进行排序'''
 
         recallDataset['play_count'] = np.where((recallDataset['play_count'] == '0') | (recallDataset['play_count'] == ""),
-                                               recallDataset['like_count'] + recallDataset['comment_count'] + recallDataset['collect_count'] + recallDataset['share_count'],
+                                               recallDataset['like_count'] + recallDataset['comment_count'] + recallDataset['share_count'],
                                                recallDataset['play_count'])
-        # recallDataset['play_count'] = recallDataset[recallDataset['play_count'] == '0']
-        # recallDataset['play_count'] = recallDataset['like_count'] + recallDataset['comment_count'] + recallDataset['collect_count'] + recallDataset['share_count']
-        # recallDataset = recallDataset[recallDataset.ne('').all(axis=1)]
+
         recallDataset = recallDataset.dropna(axis=0, subset=['play_count', 'like_count', 'comment_count', 'collect_count', 'share_count'])
 
         recallDataset[['play_count', 'like_count', 'comment_count', 'collect_count', 'share_count']] = recallDataset[['play_count', 'like_count', 'comment_count', 'collect_count', 'share_count']].astype(np.ulonglong)
@@ -277,11 +275,11 @@ class RecallSearchDataset(object):
         # 评论率=评论量/播放量
         recallDataset['comment_rate'] = recallDataset['comment_count'] / (recallDataset['play_count'] + 1)
         # 收藏率=收藏量/播放量
-        recallDataset['collect_rate'] = recallDataset['collect_count'] / (recallDataset['play_count'] + 1)
+        # recallDataset['collect_rate'] = recallDataset['collect_count'] / (recallDataset['play_count'] + 1)
         # 转发率=转发量/播放量
         recallDataset['share_rate'] = recallDataset['share_count'] / (recallDataset['play_count'] + 1)
 
-        recallDataset['rankScore'] = recallDataset['like_rate'] + recallDataset['comment_rate'] + recallDataset['collect_rate'] + recallDataset['share_rate']
+        recallDataset['rankScore'] = recallDataset['like_rate'] + recallDataset['comment_rate'] + recallDataset['share_rate']   # recallDataset['collect_rate'] +
 
         # 获取视频发布天数
         recallDataset['days'] = recallDataset['createTime'].apply(func=lambda x: self.diff_time(x))
